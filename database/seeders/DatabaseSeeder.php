@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         // Add others as needed (PunjabGeoSeeder, Org seeds, etc.)
         $this->call([
+            SliderSeeder::class,
+            BlogCategorySeeder::class,
+            BlogTagSeeder::class,
+            BlogPostSeeder::class,
             RbacBootstrapSeeder::class,
         ]);
         User::factory()->create([
