@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CmsController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\FrontendController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Frontend Routes (Public)
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
+Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
+Route::get('/services', [FrontendController::class, 'services'])->name('frontend.services');
+Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
+Route::get('/blog', [FrontendController::class, 'blog'])->name('frontend.blog');
+Route::get('/blogs', [FrontendController::class, 'blog'])->name('frontend.blogs');
+Route::get('/blog/{slug}', [FrontendController::class, 'blogDetails'])->name('frontend.blog.details');
+Route::post('/blog/comment', [FrontendController::class, 'submitComment'])->name('frontend.blog.comment');
+Route::get('/service/{slug}', [FrontendController::class, 'serviceDetails'])->name('frontend.service.details');
+Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('frontend.page');
+Route::middleware(['auth','verified'])->group(function (): void {
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'loginView'])->name('loginView');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -24,7 +44,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [PagesController::class, 'dashboardsCrmAnalytics'])->name('index');
+    Route::get('/admin', [PagesController::class, 'dashboardsCrmAnalytics'])->name('index');
+    Route::get('/dashboard', [PagesController::class, 'dashboardsCrmAnalytics'])->name('dashboard');
 
     Route::get('/elements/avatar', [PagesController::class, 'elementsAvatar'])->name('elements/avatar');
     Route::get('/elements/alert', [PagesController::class, 'elementsAlert'])->name('elements/alert');
@@ -69,6 +90,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms/layout-v3', [PagesController::class, 'formsLayoutV3'])->name('forms/layout-v3');
     Route::get('/forms/layout-v4', [PagesController::class, 'formsLayoutV4'])->name('forms/layout-v4');
     Route::get('/forms/layout-v5', [PagesController::class, 'formsLayoutV5'])->name('forms/layout-v5');
+
+    // Profile Navigation Routes
+    Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
+    Route::get('/messages', [PagesController::class, 'messages'])->name('messages');
+    Route::get('/team', [PagesController::class, 'team'])->name('team');
+    Route::get('/activity', [PagesController::class, 'activity'])->name('activity');
+    Route::get('/settings', [PagesController::class, 'settings'])->name('settings');
+
     Route::get('/forms/input-text', [PagesController::class, 'formsInputText'])->name('forms/input-text');
     Route::get('/forms/input-group', [PagesController::class, 'formsInputGroup'])->name('forms/input-group');
     Route::get('/forms/input-mask', [PagesController::class, 'formsInputMask'])->name('forms/input-mask');
@@ -163,4 +192,48 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboards/project-boards', [PagesController::class, 'dashboardsProjectBoards'])->name('dashboards/project-boards');
     Route::get('/dashboards/widget-ui', [PagesController::class, 'dashboardsWidgetUi'])->name('dashboards/widget-ui');
     Route::get('/dashboards/widget-contacts', [PagesController::class, 'dashboardsWidgetContacts'])->name('dashboards/widget-contacts');
+
+    // CMS Routes
+    Route::prefix('cms')->name('cms.')->group(function () {
+        Route::get('/', [CmsController::class, 'index'])->name('index');
+        Route::get('/pages', [CmsController::class, 'pages'])->name('pages');
+        Route::get('/pages/create', [CmsController::class, 'createPage'])->name('pages.create');
+        Route::post('/pages', [CmsController::class, 'storePage'])->name('pages.store');
+        Route::get('/pages/{id}/edit', [CmsController::class, 'editPage'])->name('pages.edit');
+        Route::put('/pages/{id}', [CmsController::class, 'updatePage'])->name('pages.update');
+        Route::delete('/pages/{id}', [CmsController::class, 'deletePage'])->name('pages.delete');
+        Route::get('/media', [CmsController::class, 'media'])->name('media');
+        Route::post('/media/upload', [CmsController::class, 'uploadMedia'])->name('media.upload');
+
+        // Slider Management Routes
+        Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
+        Route::get('/sliders/create', [SliderController::class, 'create'])->name('sliders.create');
+        Route::post('/sliders', [SliderController::class, 'store'])->name('sliders.store');
+        Route::get('/sliders/{id}/edit', [SliderController::class, 'edit'])->name('sliders.edit');
+        Route::put('/sliders/{id}', [SliderController::class, 'update'])->name('sliders.update');
+        Route::delete('/sliders/{id}', [SliderController::class, 'destroy'])->name('sliders.destroy');
+        Route::patch('/sliders/{id}/toggle-status', [SliderController::class, 'toggleStatus'])->name('sliders.toggle-status');
+        Route::post('/sliders/reorder', [SliderController::class, 'reorder'])->name('sliders.reorder');
+
+        // Blog Management Routes
+        Route::resource('blog', \App\Http\Controllers\Cms\BlogController::class);
+        Route::patch('/blog/{blog}/toggle-featured', [\App\Http\Controllers\Cms\BlogController::class, 'toggleFeatured'])->name('blog.toggle-featured');
+        Route::patch('/blog/{blog}/toggle-publish', [\App\Http\Controllers\Cms\BlogController::class, 'togglePublish'])->name('blog.toggle-publish');
+        Route::get('/blog/preview', [\App\Http\Controllers\Cms\BlogController::class, 'preview'])->name('blog.preview');
+
+        // Blog Categories Management Routes
+        Route::resource('blog-categories', \App\Http\Controllers\Cms\BlogCategoryController::class);
+        Route::patch('/blog-categories/{blogCategory}/toggle-status', [\App\Http\Controllers\Cms\BlogCategoryController::class, 'toggleStatus'])->name('blog-categories.toggle-status');
+        Route::post('/blog-categories/reorder', [\App\Http\Controllers\Cms\BlogCategoryController::class, 'reorder'])->name('blog-categories.reorder');
+
+        // Blog Tags Management Routes
+        Route::resource('blog-tags', \App\Http\Controllers\Cms\BlogTagController::class);
+        Route::patch('/blog-tags/{blogTag}/toggle-status', [\App\Http\Controllers\Cms\BlogTagController::class, 'toggleStatus'])->name('blog-tags.toggle-status');
+
+        // Blog Comments Management Routes
+        Route::resource('blog-comments', \App\Http\Controllers\Cms\BlogCommentController::class);
+        Route::patch('/blog-comments/{blogComment}/approve', [\App\Http\Controllers\Cms\BlogCommentController::class, 'approve'])->name('blog-comments.approve');
+        Route::patch('/blog-comments/{blogComment}/spam', [\App\Http\Controllers\Cms\BlogCommentController::class, 'markAsSpam'])->name('blog-comments.spam');
+        Route::post('/blog-comments/bulk-action', [\App\Http\Controllers\Cms\BlogCommentController::class, 'bulkAction'])->name('blog-comments.bulk-action');
+    });
 });

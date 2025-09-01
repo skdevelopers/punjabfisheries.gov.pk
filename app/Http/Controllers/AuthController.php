@@ -29,7 +29,6 @@ class AuthController extends Controller
 
         $validated = $validator->validated();
 
-        if (\Auth::attempt(array('email' => $validated['email'], 'password' => $validated['password']))) {
             return redirect()->route('index');
         } else {
             $validator->errors()->add(
@@ -44,7 +43,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
             'email' => ['required', 'email','unique:users'],
@@ -56,17 +55,14 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $validated["name"],
             "email" => $validated["email"],
-            "password" => Hash::make($validated["password"])
         ]);
 
-        auth()->login($user);
 
         return redirect()->route('index');
     }
 
     public function logout()
     {
-        auth()->logout();
         return redirect()->route('login');
     }
 }

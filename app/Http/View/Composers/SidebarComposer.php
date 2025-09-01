@@ -41,7 +41,7 @@ class SidebarComposer
                 default:
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
             }
-            
+
             $view->with('allSidebarItems', SidebarPanel::all());
             $view->with('pageName', $pageName);
             $view->with('routePrefix', $routePrefix);

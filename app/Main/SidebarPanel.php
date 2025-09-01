@@ -685,6 +685,5 @@ class SidebarPanel
     }
 
     public static function all(){
-        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements()];
     }
 }

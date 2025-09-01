@@ -206,7 +206,6 @@ class PagesController extends Controller
 
     public function formsLayoutV5()
     {
-        return view('pages/forms-layout-v5');
     }
 
     public function formsInputText()

@@ -113,6 +113,18 @@
                         fill="currentColor" />
                 </svg>
             </a>
+
+            <!-- CMS -->
+            <a href="{{ route('cms.index') }}"
+                class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 {{ $routePrefix === 'cms' ? 'text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 bg-primary/10 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90' : 'hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25' }}"
+                x-tooltip.placement.right="'CMS'">
+                <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" fill-opacity="0.3"
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+                    <path fill="currentColor"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+            </a>
         </div>
 
         <!-- Bottom Links -->
@@ -154,7 +166,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col pt-2 pb-5">
-                            <a href="#"
+                            <a href="{{ route('profile') }}"
                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                 <div class="flex size-8 items-center justify-center rounded-lg bg-warning text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
@@ -174,7 +186,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('messages') }}"
                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                 <div class="flex size-8 items-center justify-center rounded-lg bg-info text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
@@ -194,7 +206,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('team') }}"
                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                 <div
                                     class="flex size-8 items-center justify-center rounded-lg bg-secondary text-white">
@@ -215,7 +227,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('activity') }}"
                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                 <div class="flex size-8 items-center justify-center rounded-lg bg-error text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
@@ -235,7 +247,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('settings') }}"
                                 class="group flex items-center space-x-3 py-2 px-4 tracking-wide outline-hidden transition-all hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                 <div class="flex size-8 items-center justify-center rounded-lg bg-success text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"

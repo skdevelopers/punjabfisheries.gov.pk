@@ -16,7 +16,6 @@
     </title>
 
     <!-- CSS & JS Assets -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
