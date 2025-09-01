@@ -1,0 +1,9 @@
+/* Ye file Vite + Tailwind ke through process hogi */
+@layer components {
+    .tw-btn { @apply inline-flex items-center rounded-md border border-slate-300 dark:border-navy-500 bg-white dark:bg-navy-600 px-2.5 py-1.5 text-sm text-slate-700 dark:text-navy-50 hover:bg-slate-50 dark:hover:bg-navy-500; }
+    .tw-btn-active { @apply bg-primary text-white border-primary hover:bg-primary/90; }
+    .tw-primary { @apply inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-white hover:bg-primary/90; }
+    .tw-secondary { @apply inline-flex items-center rounded-md border border-slate-200 dark:border-navy-500 bg-white dark:bg-navy-600 px-3 py-2 text-sm text-slate-800 dark:text-navy-50 hover:bg-slate-50 dark:hover:bg-navy-500; }
+    .tw-chip { @apply inline-flex items-center rounded-full border border-slate-300 dark:border-navy-500 px-2 py-0.5; }
+  }
+  
