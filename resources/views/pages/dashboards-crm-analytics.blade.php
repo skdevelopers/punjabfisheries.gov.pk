@@ -1,4 +1,4 @@
-<x-app-layout title="CRM Analytics Dashboard" is-header-blur="true">
+<x-app-layout title="Punjab Fisheries Analytics Dashboard" is-header-blur="true">
     <!-- Main Content Wrapper -->
     <main class="main-content w-full pb-8">
         <div
@@ -6,21 +6,21 @@
             <div class="col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between space-x-2">
                     <h2 class="text-base font-medium tracking-wide text-slate-800 line-clamp-1 dark:text-navy-100">
-                        Sales Overview
+                        Fisheries Production Overview
                     </h2>
                     <div x-data="{ activeTab: 'tabRecent' }"
-                        class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
+                         class="is-scrollbar-hidden overflow-x-auto rounded-lg bg-slate-200 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
                         <div class="tabs-list flex p-1">
                             <button @click="activeTab = 'tabRecent'"
-                                :class="activeTab === 'tabRecent' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' :
+                                    :class="activeTab === 'tabRecent' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' :
                                     'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                class="btn shrink-0 px-3 py-1 text-xs-plus font-medium">
+                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium">
                                 Last month
                             </button>
                             <button @click="activeTab = 'tabAll'"
-                                :class="activeTab === 'tabAll' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' :
+                                    :class="activeTab === 'tabAll' ? 'bg-white shadow-sm dark:bg-navy-500 dark:text-navy-100' :
                                     'hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
-                                class="btn shrink-0 px-3 py-1 text-xs-plus font-medium">
+                                    class="btn shrink-0 px-3 py-1 text-xs-plus font-medium">
                                 Last year
                             </button>
                         </div>
@@ -30,28 +30,28 @@
                 <div class="flex flex-col sm:flex-row sm:space-x-7">
                     <div class="mt-4 flex shrink-0 flex-col items-center sm:items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-8 text-info" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                                  d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                  d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
                         </svg>
                         <div class="mt-4">
                             <div class="flex items-center space-x-1">
                                 <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">
-                                    $6,556.55
+                                    2,847 Tons
                                 </p>
                                 <button
                                     class="btn size-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                     </svg>
                                 </button>
                             </div>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                this month
+                                Fish Production This Month
                             </p>
                         </div>
                         <div class="mt-3 flex items-center space-x-2">
@@ -63,9 +63,9 @@
                             </div>
                             <div class="flex items-center space-x-0.5">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                          d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                 </svg>
                                 <p class="text-sm-plus text-slate-800 dark:text-navy-100">
                                     3.2%
@@ -75,12 +75,12 @@
                         <button
                             class="btn mt-8 space-x-2 rounded-full border border-slate-300 px-3 text-xs-plus font-medium text-slate-700 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-100 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="size-4.5 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
+                                 class="size-4.5 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                                      d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
                             </svg>
-                            <span> Download Report</span>
+                            <span> Download Fisheries Report</span>
                         </button>
                     </div>
 
@@ -97,97 +97,97 @@
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                $67.6k
+                                45.2L
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-primary dark:text-accent"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Income</p>
+                        <p class="mt-1 text-xs-plus">Monthly Revenue</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                12.6K
+                                156
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-success" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Completed</p>
+                        <p class="mt-1 text-xs-plus">Fish Farms</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                143
+                                89
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-warning" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Pending</p>
+                        <p class="mt-1 text-xs-plus">Pending Orders</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                651
+                                324
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-info" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                                      d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Dispatch</p>
+                        <p class="mt-1 text-xs-plus">Deliveries</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between space-x-1">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                46k
+                                12
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-secondary" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Products</p>
+                        <p class="mt-1 text-xs-plus">Fish Species</p>
                     </div>
                     <div class="rounded-lg bg-slate-150 p-4 dark:bg-navy-700">
                         <div class="flex justify-between">
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                8.8k
+                                2.4k
                             </p>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-error" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                             </svg>
                         </div>
-                        <p class="mt-1 text-xs-plus">Customers</p>
+                        <p class="mt-1 text-xs-plus">Fishermen</p>
                     </div>
                 </div>
             </div>
             <div class="card col-span-12 lg:col-span-8">
                 <div class="flex items-center justify-between py-3 px-4">
                     <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                        Projects Status
+                        Fisheries Projects Status
                     </h2>
                     <div x-data="usePopper({ placement: 'bottom-end', offset: 4 })" @click.outside="if(isShowPopper) isShowPopper = false"
-                        class="inline-flex">
+                         class="inline-flex">
                         <button x-ref="popperRef" @click="isShowPopper = !isShowPopper"
-                            class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </button>
 
@@ -197,16 +197,16 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
                                             Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
                                             else</a>
                                     </li>
                                 </ul>
@@ -214,7 +214,7 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
                                             Link</a>
                                     </li>
                                 </ul>
@@ -226,13 +226,13 @@
                     <div class="flex flex-col justify-between border-4 border-transparent border-l-info px-4">
                         <div>
                             <p class="text-base font-medium text-slate-600 dark:text-navy-100">
-                                Web Design
+                                Shrimp Farming
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Design Learn Management System
+                                Commercial Shrimp Production Unit
                             </p>
                             <div class="badge mt-2 bg-info/10 text-info dark:bg-info/15">
-                                UI/UX Design
+                                Aquaculture
                             </div>
                         </div>
                         <div>
@@ -248,7 +248,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <div
@@ -258,17 +258,17 @@
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
                                     class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </button>
                             </div>
@@ -277,14 +277,14 @@
                     <div class="flex flex-col justify-between border-4 border-transparent border-l-secondary px-4">
                         <div>
                             <p class="text-base font-medium text-slate-600 dark:text-navy-100">
-                                Mobile App
+                                Fish Processing Plant
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Ecommerce Application
+                                Fish Processing & Packaging Facility
                             </p>
                             <div
                                 class="badge mt-2 bg-secondary/10 text-secondary dark:bg-secondary-light/15 dark:text-secondary-light">
-                                Ecommerce
+                                Processing
                             </div>
                         </div>
                         <div>
@@ -300,7 +300,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <div
@@ -310,17 +310,17 @@
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
                                     class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </button>
                             </div>
@@ -329,17 +329,17 @@
                     <div class="flex flex-col justify-between border-4 border-transparent border-l-warning px-4">
                         <div>
                             <p class="text-base font-medium text-slate-600 dark:text-navy-100">
-                                Design System
+                                Cold Storage Facility
                             </p>
                             <p class="text-xs text-slate-400 dark:text-navy-300">
-                                Create LMS design system on figma
+                                Fish Cold Storage & Preservation Unit
                             </p>
                             <div class="mt-2 flex space-x-1.5">
                                 <div class="badge bg-warning/10 text-warning dark:bg-warning/15">
-                                    LMS
+                                    Storage
                                 </div>
                                 <div class="badge bg-warning/10 text-warning dark:bg-warning/15">
-                                    Figma
+                                    Preservation
                                 </div>
                             </div>
                         </div>
@@ -356,7 +356,7 @@
                                 <div class="flex -space-x-3">
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <div
@@ -366,17 +366,17 @@
                                     </div>
                                     <div class="avatar size-8 hover:z-10">
                                         <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                            src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                             src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                     </div>
                                 </div>
                                 <button
                                     class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                         <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </button>
                             </div>
@@ -387,16 +387,16 @@
             <div class="col-span-12 lg:col-span-4">
                 <div class="flex items-center justify-between">
                     <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                        Customer Satisfaction
+                        Fishermen Satisfaction
                     </h2>
                     <div x-data="usePopper({ placement: 'bottom-end', offset: 4 })" @click.outside="if(isShowPopper) isShowPopper = false"
-                        class="inline-flex">
+                         class="inline-flex">
                         <button x-ref="popperRef" @click="isShowPopper = !isShowPopper"
-                            class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </button>
 
@@ -406,16 +406,16 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
                                             Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
                                             else</a>
                                     </li>
                                 </ul>
@@ -423,7 +423,7 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
                                             Link</a>
                                     </li>
                                 </ul>
@@ -450,88 +450,88 @@
                 <div class="is-scrollbar-hidden mt-4 min-w-full overflow-x-auto">
                     <table class="w-full font-inter">
                         <tbody>
-                            <tr>
-                                <td class="whitespace-nowrap py-2">
-                                    <div class="flex items-center space-x-2">
-                                        <div
-                                            class="size-3.5 rounded-full border-2 border-primary dark:border-accent">
-                                        </div>
-                                        <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                            Exellent
-                                        </p>
+                        <tr>
+                            <td class="whitespace-nowrap py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div
+                                        class="size-3.5 rounded-full border-2 border-primary dark:border-accent">
                                     </div>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">
-                                    <p class="font-medium text-slate-700 dark:text-navy-100">
-                                        1 029
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Exellent
                                     </p>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">42%</td>
-                            </tr>
-                            <tr>
-                                <td class="whitespace-nowrap py-2">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="size-3.5 rounded-full border-2 border-success"></div>
-                                        <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                            Very Good
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">
-                                    <p class="font-medium text-slate-700 dark:text-navy-100">
-                                        426
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">
+                                <p class="font-medium text-slate-700 dark:text-navy-100">
+                                    1 029
+                                </p>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">42%</td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="size-3.5 rounded-full border-2 border-success"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Very Good
                                     </p>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">18%</td>
-                            </tr>
-                            <tr>
-                                <td class="whitespace-nowrap py-2">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="size-3.5 rounded-full border-2 border-info"></div>
-                                        <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                            Good
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">
-                                    <p class="font-medium text-slate-700 dark:text-navy-100">
-                                        326
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">
+                                <p class="font-medium text-slate-700 dark:text-navy-100">
+                                    426
+                                </p>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">18%</td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="size-3.5 rounded-full border-2 border-info"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Good
                                     </p>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">14%</td>
-                            </tr>
-                            <tr>
-                                <td class="whitespace-nowrap py-2">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="size-3.5 rounded-full border-2 border-warning"></div>
-                                        <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                            Poor
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">
-                                    <p class="font-medium text-slate-700 dark:text-navy-100">
-                                        395
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">
+                                <p class="font-medium text-slate-700 dark:text-navy-100">
+                                    326
+                                </p>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">14%</td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="size-3.5 rounded-full border-2 border-warning"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Poor
                                     </p>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">17%</td>
-                            </tr>
-                            <tr>
-                                <td class="whitespace-nowrap py-2">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="size-3.5 rounded-full border-2 border-error"></div>
-                                        <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                                            Very Poor
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">
-                                    <p class="font-medium text-slate-700 dark:text-navy-100">
-                                        129
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">
+                                <p class="font-medium text-slate-700 dark:text-navy-100">
+                                    395
+                                </p>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">17%</td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="size-3.5 rounded-full border-2 border-error"></div>
+                                    <p class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
+                                        Very Poor
                                     </p>
-                                </td>
-                                <td class="whitespace-nowrap py-2 text-right">9%</td>
-                            </tr>
+                                </div>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">
+                                <p class="font-medium text-slate-700 dark:text-navy-100">
+                                    129
+                                </p>
+                            </td>
+                            <td class="whitespace-nowrap py-2 text-right">9%</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -542,26 +542,26 @@
                 class="col-span-12 flex flex-col px-[var(--margin-x)] transition-all duration-[.25s] lg:col-span-3 lg:pr-0">
                 <h2
                     class="text-base font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100 lg:text-xl">
-                    Top Sellers
+                    Top Fisheries
                 </h2>
 
                 <p class="mt-3 grow">
-                    The top sellers is calculated based on the sales of a product and
-                    undergoes hourly updations.
+                    The top fisheries are calculated based on fish production and
+                    revenue generation with daily updates.
                 </p>
 
                 <div class="mt-4">
-                    <p>Sales Growth</p>
+                    <p>Production Growth</p>
                     <div class="mt-1.5 flex items-center space-x-2">
                         <div class="flex size-7 items-center justify-center rounded-full bg-success/15 text-success">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                      d="M7 11l5-5m0 0l5 5m-5-5v12" />
                             </svg>
                         </div>
                         <p class="text-base font-medium text-slate-700 dark:text-navy-100">
-                            $2,225.22
+                            847 Tons
                         </p>
                     </div>
                 </div>
@@ -573,14 +573,14 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
-                                    Travis Fuller
+                                    MuzaffarGarh Farm
                                 </p>
                                 <p class="text-xs text-slate-400 dark:text-navy-300">
-                                    Employee
+                                    Premium Fish Producer
                                 </p>
                             </div>
                         </div>
@@ -589,9 +589,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                                 <div
@@ -603,9 +603,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                                 <div
@@ -617,50 +617,50 @@
                     </div>
                     <div class="flex justify-between space-x-2">
                         <div>
-                            <p class="text-xs-plus">Sells</p>
+                            <p class="text-xs-plus">Production</p>
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                2 348
+                                456 Tons
                             </p>
                         </div>
                         <div>
                             <p class="text-xs-plus">Target</p>
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                3 000
+                                500 Tons
                             </p>
                         </div>
                         <div>
-                            <p class="text-xs-plus">Clients</p>
+                            <p class="text-xs-plus">Distributors</p>
                             <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
-                                78
+                                24
                             </p>
                         </div>
                     </div>
                     <div class="grow">
                         <div class="flex w-full space-x-1">
-                            <div x-tooltip="'Phone Calls'" class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent">
+                            <div x-tooltip="'Fresh Fish'" class="h-2 w-4/12 rounded-full bg-primary dark:bg-accent">
                             </div>
-                            <div x-tooltip="'Chats Messages'" class="h-2 w-3/12 rounded-full bg-success"></div>
-                            <div x-tooltip="'Emails'" class="h-2 w-5/12 rounded-full bg-info"></div>
+                            <div x-tooltip="'Processed Fish'" class="h-2 w-3/12 rounded-full bg-success"></div>
+                            <div x-tooltip="'Live Fish'" class="h-2 w-5/12 rounded-full bg-info"></div>
                         </div>
                         <div class="mt-2 flex flex-wrap">
                             <div class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter">
                                 <div class="size-2 rounded-full bg-primary dark:bg-accent"></div>
                                 <div class="flex space-x-1 text-xs leading-6">
-                                    <span class="font-medium text-slate-700 dark:text-navy-100">Calls</span>
+                                    <span class="font-medium text-slate-700 dark:text-navy-100">Fresh Fish</span>
                                     <span>33%</span>
                                 </div>
                             </div>
                             <div class="mr-4 mb-1 inline-flex items-center space-x-2 font-inter">
                                 <div class="size-2 rounded-full bg-success"></div>
                                 <div class="flex space-x-1 text-xs">
-                                    <span class="font-medium text-slate-700 dark:text-navy-100">Chat Messages</span>
+                                    <span class="font-medium text-slate-700 dark:text-navy-100">Processed Fish</span>
                                     <span>17%</span>
                                 </div>
                             </div>
                             <div class="mb-1 inline-flex items-center space-x-2 font-inter">
                                 <div class="size-2 rounded-full bg-info"></div>
                                 <div class="flex space-x-1 text-xs">
-                                    <span class="font-medium text-slate-700 dark:text-navy-100">Emails</span>
+                                    <span class="font-medium text-slate-700 dark:text-navy-100">Live Fish</span>
                                     <span>50%</span>
                                 </div>
                             </div>
@@ -669,20 +669,20 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 1'" class="size-6"
-                                src="{{ asset('images/awards/award-19.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-19.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-2.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-2.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-5.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-5.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -692,7 +692,7 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -708,9 +708,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                             </div>
@@ -718,9 +718,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                                 <div
@@ -784,20 +784,20 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 1'" class="size-6"
-                                src="{{ asset('images/awards/award-1.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-1.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-6.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-6.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-9.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-9.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -807,7 +807,7 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -823,9 +823,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                                 <div
@@ -837,9 +837,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                             </div>
@@ -899,18 +899,18 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-14.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-14.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-13.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-13.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -920,7 +920,7 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -936,9 +936,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                                 <div
@@ -950,9 +950,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                             </div>
@@ -1012,18 +1012,18 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-15.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-15.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-13.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-13.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -1033,7 +1033,7 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -1049,9 +1049,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                             </div>
@@ -1059,9 +1059,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                             </div>
@@ -1121,20 +1121,20 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-15.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-15.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-5.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-5.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-25.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-25.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -1144,7 +1144,7 @@
                         <div class="flex items-center space-x-3">
                             <div class="avatar">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="image" />
+                                     alt="image" />
                             </div>
                             <div>
                                 <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100">
@@ -1160,9 +1160,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                     </svg>
                                 </button>
                                 <div
@@ -1174,9 +1174,9 @@
                                 <button
                                     class="btn size-7 bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                 </button>
                             </div>
@@ -1239,20 +1239,20 @@
                     <div class="flex justify-between">
                         <div class="flex space-x-2">
                             <img x-tooltip="'Award Level 2'" class="size-6"
-                                src="{{ asset('images/awards/award-1.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-1.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-24.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-24.svg') }}" alt="avatar" />
                             <img x-tooltip="'Award Level 3'" class="size-6"
-                                src="{{ asset('images/awards/award-30.svg') }}" alt="avatar" />
+                                 src="{{ asset('images/awards/award-30.svg') }}" alt="avatar" />
                         </div>
                         <button
                             class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </button>
                     </div>
@@ -1264,16 +1264,16 @@
             <div class="card col-span-12 sm:col-span-6">
                 <div class="my-3 flex items-center justify-between px-4 sm:px-5">
                     <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                        Bandwidth Report
+                        Fisheries Infrastructure Report
                     </h2>
                     <div x-data="usePopper({ placement: 'bottom-end', offset: 4 })" @click.outside="if(isShowPopper) isShowPopper = false"
-                        class="inline-flex">
+                         class="inline-flex">
                         <button x-ref="popperRef" @click="isShowPopper = !isShowPopper"
-                            class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </button>
 
@@ -1283,16 +1283,16 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
                                             Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
                                             else</a>
                                     </li>
                                 </ul>
@@ -1300,7 +1300,7 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
                                             Link</a>
                                     </li>
                                 </ul>
@@ -1313,10 +1313,10 @@
                     <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
                         <div class="flex justify-between">
                             <div>
-                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">393</span>
-                                <span class="text-xs">Mb</span>
+                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">156</span>
+                                <span class="text-xs">Units</span>
                             </div>
-                            <p class="text-xs-plus">HTTP Traffic</p>
+                            <p class="text-xs-plus">Fish Farms</p>
                         </div>
 
                         <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
@@ -1324,16 +1324,16 @@
                         </div>
                         <div class="mt-2 flex justify-between text-xs text-slate-400 dark:text-navy-300">
                             <p>Monthly target</p>
-                            <p>17%</p>
+                            <p>78%</p>
                         </div>
                     </div>
                     <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
                         <div class="flex justify-between">
                             <div>
-                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">293</span>
-                                <span class="text-xs">Mb</span>
+                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">89</span>
+                                <span class="text-xs">Units</span>
                             </div>
-                            <p class="text-xs-plus">SMTP Traffic</p>
+                            <p class="text-xs-plus">Processing Plants</p>
                         </div>
 
                         <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
@@ -1347,10 +1347,10 @@
                     <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
                         <div class="flex justify-between">
                             <div>
-                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">293</span>
-                                <span class="text-xs">Mb</span>
+                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">67</span>
+                                <span class="text-xs">Units</span>
                             </div>
-                            <p class="text-xs-plus">FTP Traffic</p>
+                            <p class="text-xs-plus">Cold Storage</p>
                         </div>
 
                         <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
@@ -1364,10 +1364,10 @@
                     <div class="rounded-lg border border-slate-150 p-4 dark:border-navy-600">
                         <div class="flex justify-between">
                             <div>
-                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">36</span>
-                                <span class="text-xs">Mb</span>
+                                <span class="text-2xl font-medium text-slate-700 dark:text-navy-100">23</span>
+                                <span class="text-xs">Units</span>
                             </div>
-                            <p class="text-xs-plus">POP3 Traffic</p>
+                            <p class="text-xs-plus">Hatcheries</p>
                         </div>
 
                         <div class="progress mt-3 h-1.5 bg-slate-150 dark:bg-navy-500">
@@ -1389,13 +1389,13 @@
                         <p class="text-slate-800 dark:text-navy-100">3.2%</p>
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-success" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                  d="M7 11l5-5m0 0l5 5m-5-5v12" />
                         </svg>
                     </div>
                     <a href="#"
-                        class="border-b border-dotted border-current pb-0.5 text-xs-plus font-medium text-primary outline-hidden transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">Download
+                       class="border-b border-dotted border-current pb-0.5 text-xs-plus font-medium text-primary outline-hidden transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">Download
                         Report</a>
                 </div>
 
@@ -1409,16 +1409,16 @@
             <div class="card col-span-12 pb-4 sm:col-span-6">
                 <div class="my-3 flex items-center justify-between px-4 sm:px-5">
                     <h2 class="font-medium tracking-wide text-slate-700 dark:text-navy-100">
-                        Users Activity
+                        Fisheries Activities
                     </h2>
                     <div x-data="usePopper({ placement: 'bottom-end', offset: 4 })" @click.outside="if(isShowPopper) isShowPopper = false"
-                        class="inline-flex">
+                         class="inline-flex">
                         <button x-ref="popperRef" @click="isShowPopper = !isShowPopper"
-                            class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                                class="btn -mr-1.5 size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
                             </svg>
                         </button>
 
@@ -1428,16 +1428,16 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another
                                             Action</a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something
                                             else</a>
                                     </li>
                                 </ul>
@@ -1445,7 +1445,7 @@
                                 <ul>
                                     <li>
                                         <a href="#"
-                                            class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
+                                           class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated
                                             Link</a>
                                     </li>
                                 </ul>
@@ -1457,60 +1457,60 @@
                     <li class="timeline-item">
                         <div
                             class="timeline-item-point rounded-full border border-current bg-white text-secondary dark:bg-navy-700 dark:text-secondary-light">
-                            <i class="fa fa-user-edit text-tiny"></i>
+                            <i class="fa fa-fish text-tiny"></i>
                         </div>
                         <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
                             <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
                                 <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                    User Photo Changed
+                                    New Fish Stock Added
                                 </p>
-                                <span class="text-xs text-slate-400 dark:text-navy-300">12 minute ago</span>
+                                <span class="text-xs text-slate-400 dark:text-navy-300">12 minutes ago</span>
                             </div>
-                            <p class="py-1">John Doe changed his avatar photo</p>
+                            <p class="py-1">MuzaffarGarh Farm added 500kg Rohu fish stock</p>
                             <div class="avatar mt-2 size-16">
                                 <img class="mask is-squircle" src="{{ asset('images/200x200.png') }}"
-                                    alt="avatar" />
+                                     alt="avatar" />
                             </div>
                         </div>
                     </li>
                     <li class="timeline-item">
                         <div
                             class="timeline-item-point rounded-full border border-current bg-white text-success dark:bg-navy-700">
-                            <i class="fa fa-leaf text-tiny"></i>
+                            <i class="fa fa-water text-tiny"></i>
                         </div>
                         <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
                             <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
                                 <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                    Design Completed
+                                    Processing Plant Completed
                                 </p>
                                 <span class="text-xs text-slate-400 dark:text-navy-300">3 hours ago</span>
                             </div>
                             <p class="py-1">
-                                Robert Nolan completed the design of the CRM application
+                                Ludhiana Fish Processing Plant construction completed
                             </p>
                             <a href="#"
-                                class="inline-flex items-center space-x-1 pt-2 text-slate-600 transition-colors hover:text-primary dark:text-navy-100 dark:hover:text-accent">
+                               class="inline-flex items-center space-x-1 pt-2 text-slate-600 transition-colors hover:text-primary dark:text-navy-100 dark:hover:text-accent">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
-                                <span>File_final.fig</span>
+                                <span>Plant_Report.pdf</span>
                             </a>
                             <div class="pt-2">
                                 <a href="#"
-                                    class="tag rounded-full border border-secondary/30 bg-secondary/10 text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:border-secondary-light/30 dark:bg-secondary-light/10 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25">
-                                    UI/UX
+                                   class="tag rounded-full border border-secondary/30 bg-secondary/10 text-secondary hover:bg-secondary/20 focus:bg-secondary/20 active:bg-secondary/25 dark:border-secondary-light/30 dark:text-secondary-light dark:hover:bg-secondary-light/20 dark:focus:bg-secondary-light/20 dark:active:bg-secondary-light/25">
+                                    Infrastructure
                                 </a>
 
                                 <a href="#"
-                                    class="tag rounded-full border border-info/30 bg-info/10 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
-                                    CRM
+                                   class="tag rounded-full border border-info/30 bg-info/10 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25">
+                                    Processing
                                 </a>
 
                                 <a href="#"
-                                    class="tag rounded-full border border-success/30 bg-success/10 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
-                                    Dashboard
+                                   class="tag rounded-full border border-success/30 bg-success/10 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
+                                    Punjab
                                 </a>
                             </div>
                         </div>
@@ -1518,16 +1518,16 @@
                     <li class="timeline-item">
                         <div
                             class="timeline-item-point rounded-full border border-current bg-white text-warning dark:bg-navy-700">
-                            <i class="fa fa-project-diagram text-tiny"></i>
+                            <i class="fa fa-thermometer-half text-tiny"></i>
                         </div>
                         <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
                             <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
                                 <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                    ER Diagram
+                                    Cold Storage Setup
                                 </p>
                                 <span class="text-xs text-slate-400 dark:text-navy-300">a day ago</span>
                             </div>
-                            <p class="py-1">Team completed the ER diagram app</p>
+                            <p class="py-1">Team completed the cold storage facility setup</p>
                             <div>
                                 <p class="text-xs text-slate-400 dark:text-navy-300">
                                     Members:
@@ -1536,7 +1536,7 @@
                                     <div class="flex flex-wrap -space-x-2">
                                         <div class="avatar size-7 hover:z-10">
                                             <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                                src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                                 src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                         </div>
 
                                         <div class="avatar size-7 hover:z-10">
@@ -1548,25 +1548,25 @@
 
                                         <div class="avatar size-7 hover:z-10">
                                             <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                                src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                                 src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                         </div>
 
                                         <div class="avatar size-7 hover:z-10">
                                             <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                                src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                                 src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                         </div>
 
                                         <div class="avatar size-7 hover:z-10">
                                             <img class="rounded-full ring-3 ring-white dark:ring-navy-700"
-                                                src="{{ asset('images/200x200.png') }}" alt="avatar" />
+                                                 src="{{ asset('images/200x200.png') }}" alt="avatar" />
                                         </div>
                                     </div>
                                     <button
                                         class="btn size-7 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5 rotate-45"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                                                  d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                         </svg>
                                     </button>
                                 </div>
@@ -1576,16 +1576,16 @@
                     <li class="timeline-item">
                         <div
                             class="timeline-item-point rounded-full border border-current bg-white text-error dark:bg-navy-700">
-                            <i class="fa fa-history text-tiny"></i>
+                            <i class="fa fa-chart-line text-tiny"></i>
                         </div>
                         <div class="timeline-item-content flex-1 pl-4 sm:pl-8">
                             <div class="flex flex-col justify-between pb-2 sm:flex-row sm:pb-0">
                                 <p class="pb-2 font-medium leading-none text-slate-600 dark:text-navy-100 sm:pb-0">
-                                    Weekly Report
+                                    Monthly Production Report
                                 </p>
                                 <span class="text-xs text-slate-400 dark:text-navy-300">a day ago</span>
                             </div>
-                            <p class="py-1">The weekly report was uploaded</p>
+                            <p class="py-1">The monthly fisheries production report was uploaded</p>
                         </div>
                     </li>
                 </ol>

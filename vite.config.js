@@ -8,6 +8,9 @@ export default defineConfig({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
-        tailwindcss(),
+        tailwindcss(),  // new Tailwind v4 Vite plugin
     ],
+    build: {
+        chunkSizeWarningLimit: 2000, // suppress warnings until you code-split
+    },
 });

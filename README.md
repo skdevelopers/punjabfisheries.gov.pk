@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.png" alt="Punjab Fisheries – Digital Transformation" width="100%">
+  <img src="public/images/banner.png" alt="Punjab Fisheries – Digital Transformation" width="100%">
 </p>
 
 <h1 align="center">Punjab Fisheries – Digital Transformation Platform</h1>
@@ -49,17 +49,17 @@ It includes:
 
 ## 🛠 Tech Stack
 
-| Layer           | Technology |
-|-----------------|------------|
-| **Backend**     | Laravel 12.x (PHP 8.4) |
-| **Frontend**    | TailwindCSS, Alpine.js, Axios |
-| **Database**    | PostgreSQL / MySQL |
-| **Caching/Queue**| Redis |
-| **Auth**        | Laravel Breeze (Blade) + Sanctum |
-| **RBAC**        | Spatie Laravel Permission |
+| Layer           | Technology                         |
+|-----------------|------------------------------------|
+| **Backend**     | Laravel 12.x (PHP 8.4)             |
+| **Frontend**    | TailwindCSS, Alpine.js, Axios      |
+| **Database**    | PostgreSQL / MySQL Optional        |
+| **Caching/Queue**| Redis                              |
+| **Auth**        | Laravel Breeze (Blade) + Sanctum   |
+| **RBAC**        | Spatie Laravel Permission          |
 | **AI**          | Hugging Face API – KurmaAI/AQUA-7B |
-| **Build Tool**  | Vite |
-| **Hosting**     | Nginx + PHP-FPM + Redis |
+| **Build Tool**  | Vite                               |
+| **Hosting**     | Nginx + PHP-FPM + Redis            |
 
 ---
 
@@ -106,7 +106,7 @@ Set in .env:
 env
 
 HUGGINGFACE_API_TOKEN=hf_xxx
-HUGGINGFACE_MODEL_ID=KurmaAI/AQUA-7B
+HUGGINGFACE_MODEL_ID=KurmaAI/AQUA-7B Or OPenAI API
 Login and visit /chat to interact with the AI bot.
 
 📍 Admin Panel
