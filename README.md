@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/banner.png" alt="Punjab Fisheries – Digital Transformation" width="100%">
+  <img src="public/images/app-logo.svg" alt="Punjab Fisheries Govt Of Punjab – Digital Transformation" width="100%">
 </p>
 
 <h1 align="center">Punjab Fisheries – Digital Transformation Platform</h1>
