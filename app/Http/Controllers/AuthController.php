@@ -45,12 +45,13 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
             'email' => ['required', 'email','unique:users'],
             'password' => ['required',"confirmed", Password::min(7)],
             'staff_id' => ['required', 'string'],
+            'section' => ['required', 'string'],
             'designation' => ['required', 'string'],
             'phone' => ['required', 'string'],
             'joining_date' => ['required', 'date'],
@@ -59,7 +60,6 @@ class AuthController extends Controller
             'division_name' => ['required', 'string'],
             'district_name' => ['required', 'string'],
             'office_location' => ['required', 'string'],
-            'section' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-
 class PagesController extends Controller
 {
     public function elementsAvatar()
@@ -208,8 +206,6 @@ class PagesController extends Controller
 
     public function formsLayoutV5()
     {
-        $user = Auth::user();
-        return view('pages/forms-layout-v5', compact('user'));
     }
 
     public function formsInputText()
@@ -663,34 +659,5 @@ class PagesController extends Controller
     public function dashboardsWidgetContacts()
     {
         return view('pages/dashboards-widget-contacts');
-    }
-
-    // Profile Navigation Methods
-    public function profile()
-    {
-        $user = Auth::user();
-        return view('pages/forms-layout-v5', compact('user'));
-    }
-
-
-
-    public function messages()
-    {
-        return view('pages/messages');
-    }
-
-    public function team()
-    {
-        return view('pages/team');
-    }
-
-    public function activity()
-    {
-        return view('pages/activity');
-    }
-
-    public function settings()
-    {
-        return view('pages/settings');
     }
 }

@@ -1,6 +1,4 @@
 import Alpine from "alpinejs";
-import '../css/app.css'
-
 
 // AlpineJS Plugins
 import persist from "@alpinejs/persist"; // @see https://alpinejs.dev/plugins/persist

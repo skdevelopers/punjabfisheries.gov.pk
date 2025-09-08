@@ -42,7 +42,7 @@ class Slider extends Model
         return $query->orderBy('order', 'asc');
     }
 
-    public function getImageUrlAttribute()
+    public function getImageUrlAttribute(): string
     {
         if ($this->image_path) {
             return Storage::url($this->image_path);

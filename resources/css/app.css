@@ -1,14 +1,9 @@
-
-@import "tailwindcss";
-@import "./editor.css";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
-@layer theme, base, components, pages, utilities;
 @import "./base.css" layer(base);
 @import "./components.css" layer(components);
-@import "./components/slider.css" layer(components);
 
 
 @import "./pages.css" layer(pages);

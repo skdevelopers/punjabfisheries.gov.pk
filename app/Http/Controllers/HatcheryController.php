@@ -13,6 +13,7 @@ class HatcheryController extends Controller
      */
     public function index()
     {
+
         $hatcheries = Hatchery::latest()->paginate(10);
         return view('hatcheries.index', compact('hatcheries'));
     }
@@ -22,12 +23,15 @@ class HatcheryController extends Controller
      */
     public function create()
     {
+
         return view('hatcheries.create');
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(HatcheryRequest $request)
     {
         try {
@@ -41,28 +45,32 @@ class HatcheryController extends Controller
         }
     }
 
+  
+
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+
+    public function show(Hatchery $hatchery)
     {
         $hatchery = Hatchery::findOrFail($id);
         return view('hatcheries.show', compact('hatchery'));
-    }
+    } 
 
     /**
      * Show the form for editing the specified resource.
      */
+
     public function edit(string $id)
     {
         $hatchery = Hatchery::findOrFail($id);
         return view('hatcheries.edit', compact('hatchery'));
-    }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(HatcheryRequest $request, string $id)
+    public function update(HatcheryRequest $request, Hatchery $hatchery)
     {
         try {
             $hatchery = Hatchery::findOrFail($id);
@@ -74,12 +82,13 @@ class HatcheryController extends Controller
             return back()->withInput()
                 ->with('error', 'Error updating hatchery: ' . $e->getMessage());
         }
-    }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+
+    public function destroy(Hatchery $hatchery)
     {
         try {
             $hatchery = Hatchery::findOrFail($id);

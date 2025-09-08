@@ -90,14 +90,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms/layout-v3', [PagesController::class, 'formsLayoutV3'])->name('forms/layout-v3');
     Route::get('/forms/layout-v4', [PagesController::class, 'formsLayoutV4'])->name('forms/layout-v4');
     Route::get('/forms/layout-v5', [PagesController::class, 'formsLayoutV5'])->name('forms/layout-v5');
-    
+
     // Profile Navigation Routes
     Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
     Route::get('/messages', [PagesController::class, 'messages'])->name('messages');
     Route::get('/team', [PagesController::class, 'team'])->name('team');
     Route::get('/activity', [PagesController::class, 'activity'])->name('activity');
     Route::get('/settings', [PagesController::class, 'settings'])->name('settings');
-    
+
     Route::get('/forms/input-text', [PagesController::class, 'formsInputText'])->name('forms/input-text');
     Route::get('/forms/input-group', [PagesController::class, 'formsInputGroup'])->name('forms/input-group');
     Route::get('/forms/input-mask', [PagesController::class, 'formsInputMask'])->name('forms/input-mask');

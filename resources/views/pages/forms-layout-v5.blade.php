@@ -942,7 +942,7 @@
                           <p class="text-xs text-slate-500 dark:text-navy-300">Government of Punjab, Pakistan</p>
                         </div>
                       </div>
-                     
+
                     </div>
                   </div>
                 </div>
@@ -1061,9 +1061,9 @@
                   <!-- Privacy Policy -->
                   <div class="pt-4 border-t border-slate-200 dark:border-navy-500">
                     <p class="text-xs text-slate-400 dark:text-navy-300">
-                      By using this system, you agree to our 
-                      <a href="#" class="text-primary hover:underline dark:text-accent">Privacy Policy</a> 
-                      and 
+                      By using this system, you agree to our
+                      <a href="#" class="text-primary hover:underline dark:text-accent">Privacy Policy</a>
+                      and
                       <a href="#" class="text-primary hover:underline dark:text-accent">Terms of Service</a>.
                     </p>
                   </div>
@@ -1082,13 +1082,13 @@
             document.getElementById('security-content').classList.add('hidden');
             document.getElementById('fisheries-apps-content').classList.add('hidden');
             document.getElementById('data-privacy-content').classList.add('hidden');
-            
+
             // Remove active state from all nav items
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('bg-primary', 'text-white', 'dark:bg-accent');
                 item.classList.add('group');
             });
-            
+
             // Show selected content and update breadcrumb
             if (tabName === 'profile') {
                 document.getElementById('profile-content').classList.remove('hidden');
@@ -1132,7 +1132,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Check if there's a hash in the URL
             const hash = window.location.hash.substring(1);
-            
+
             if (hash === 'notifications') {
                 switchTab('notifications');
             } else if (hash === 'security') {
@@ -1188,9 +1188,9 @@
             if (profileForm) {
                 profileForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
+
                     const formData = new FormData(this);
-                    
+
                     // Show loading state
                     const submitBtn = this.querySelector('button[type="submit"]');
                     const originalText = submitBtn.textContent;
@@ -1210,7 +1210,7 @@
                         if (data.success) {
                             // Show success message
                             alert(data.message);
-                            
+
                             // Update profile photo in left panel if it was changed
                             if (data.profile_photo) {
                                 const leftPanelPhoto = document.querySelector('.avatar.size-14 img');
