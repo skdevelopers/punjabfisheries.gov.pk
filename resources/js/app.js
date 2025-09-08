@@ -125,3 +125,4 @@ Alpine.store("global", store());
 
 Alpine.data("usePopper", usePopper);
 Alpine.data("accordionItem", accordionItem);
+Alpine.start();
