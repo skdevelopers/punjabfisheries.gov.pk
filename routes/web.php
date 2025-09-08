@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CmsController;
-use App\Http\Controllers\SliderController;
+use App\Http\Controllers\Cms\CmsPageController;
+use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\FrontendController;
 
 use Illuminate\Support\Facades\Route;
@@ -195,15 +195,15 @@ Route::middleware('auth')->group(function () {
 
     // CMS Routes
     Route::prefix('cms')->name('cms.')->group(function () {
-        Route::get('/', [CmsController::class, 'index'])->name('index');
-        Route::get('/pages', [CmsController::class, 'pages'])->name('pages');
-        Route::get('/pages/create', [CmsController::class, 'createPage'])->name('pages.create');
-        Route::post('/pages', [CmsController::class, 'storePage'])->name('pages.store');
-        Route::get('/pages/{id}/edit', [CmsController::class, 'editPage'])->name('pages.edit');
-        Route::put('/pages/{id}', [CmsController::class, 'updatePage'])->name('pages.update');
-        Route::delete('/pages/{id}', [CmsController::class, 'deletePage'])->name('pages.delete');
-        Route::get('/media', [CmsController::class, 'media'])->name('media');
-        Route::post('/media/upload', [CmsController::class, 'uploadMedia'])->name('media.upload');
+        Route::get('/', [CmsPageController::class, 'index'])->name('index');
+        Route::get('/pages', [CmsPageController::class, 'pages'])->name('pages');
+        Route::get('/pages/create', [CmsPageController::class, 'createPage'])->name('pages.create');
+        Route::post('/pages', [CmsPageController::class, 'storePage'])->name('pages.store');
+        Route::get('/pages/{id}/edit', [CmsPageController::class, 'editPage'])->name('pages.edit');
+        Route::put('/pages/{id}', [CmsPageController::class, 'updatePage'])->name('pages.update');
+        Route::delete('/pages/{id}', [CmsPageController::class, 'deletePage'])->name('pages.delete');
+        Route::get('/media', [CmsPageController::class, 'media'])->name('media');
+        Route::post('/media/upload', [CmsPageController::class, 'uploadMedia'])->name('media.upload');
 
         // Slider Management Routes
         Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
@@ -235,5 +235,14 @@ Route::middleware('auth')->group(function () {
         Route::patch('/blog-comments/{blogComment}/approve', [\App\Http\Controllers\Cms\BlogCommentController::class, 'approve'])->name('blog-comments.approve');
         Route::patch('/blog-comments/{blogComment}/spam', [\App\Http\Controllers\Cms\BlogCommentController::class, 'markAsSpam'])->name('blog-comments.spam');
         Route::post('/blog-comments/bulk-action', [\App\Http\Controllers\Cms\BlogCommentController::class, 'bulkAction'])->name('blog-comments.bulk-action');
+
+        // Hatchery Management Routes
+        Route::resource('hatcheries', \App\Http\Controllers\HatcheryController::class);
+
+        // Fish Production Management Routes
+        Route::resource('fish-productions', \App\Http\Controllers\FishProductionController::class);
+        
+        // Seed Production Management Routes
+        Route::resource('seed-productions', \App\Http\Controllers\SeedProductionController::class);
     });
 });

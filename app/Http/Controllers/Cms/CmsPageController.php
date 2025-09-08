@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cms;
 
+use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class CmsController extends Controller
+class CmsPageController extends Controller
 {
     public function index()
     {

@@ -44,25 +44,22 @@
 
     <!-- Bulk Actions -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-        <form method="POST" action="{{ route('cms.blog-comments.bulk-action') }}" id="bulk-action-form">
-            @csrf
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <select name="action" class="border border-gray-300 rounded-md px-3 py-2">
-                        <option value="">Bulk Actions</option>
-                        <option value="approve">Approve</option>
-                        <option value="spam">Mark as Spam</option>
-                        <option value="delete">Delete</option>
-                    </select>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Apply
-                    </button>
-                </div>
-                <div class="text-sm text-gray-600">
-                    {{ $comments->total() }} comments found
-                </div>
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <select id="bulk-action" class="border border-gray-300 rounded-md px-3 py-2">
+                    <option value="">Bulk Actions</option>
+                    <option value="approve">Approve</option>
+                    <option value="spam">Mark as Spam</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <button type="button" onclick="applyBulkAction()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Apply
+                </button>
             </div>
-        </form>
+            <div class="text-sm text-gray-600">
+                {{ $comments->total() }} comments found
+            </div>
+        </div>
     </div>
 
     <!-- Comments List -->
@@ -71,7 +68,7 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        <input type="checkbox" id="select-all" class="rounded border-gray-300">
+                        <input type="checkbox" id="select-all" class="rounded border-gray-300" onchange="toggleAllComments(this)">
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Author
@@ -97,7 +94,7 @@
                 @forelse($comments as $comment)
                 <tr>
                     <td class="whitespace-nowrap">
-                        <input type="checkbox" name="comments[]" value="{{ $comment->id }}" form="bulk-action-form" class="comment-checkbox form-checkbox">
+                        <input type="checkbox" name="comments[]" value="{{ $comment->id }}" class="comment-checkbox form-checkbox">
                     </td>
                     <td class="whitespace-nowrap">
                         <div class="flex items-center space-x-3">
