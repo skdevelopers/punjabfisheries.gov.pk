@@ -1,4 +1,5 @@
 import Alpine from "alpinejs";
+import "./bootstrap";
 
 // AlpineJS Plugins
 import persist from "@alpinejs/persist"; // @see https://alpinejs.dev/plugins/persist
@@ -125,4 +126,4 @@ Alpine.store("global", store());
 
 Alpine.data("usePopper", usePopper);
 Alpine.data("accordionItem", accordionItem);
-Alpine.start();
+
