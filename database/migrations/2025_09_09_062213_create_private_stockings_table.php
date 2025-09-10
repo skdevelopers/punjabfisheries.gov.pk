@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('seed_productions', function (Blueprint $table) {
-            $table->dropColumn('avg_size');
+        Schema::create('private_stockings', function (Blueprint $table) {
+            $table->id();
+            $table->string('species');
+            $table->integer('no');
+            $table->decimal('income_from_fish_seed', 10, 2);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('seed_productions', function (Blueprint $table) {
-            $table->decimal('avg_size', 8, 2)->after('production_kg');
-        });
+        Schema::dropIfExists('private_stockings');
     }
 };

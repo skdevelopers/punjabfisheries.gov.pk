@@ -729,7 +729,44 @@ class SidebarPanel
         ];
     }
 
+    public static function crm()
+    {
+        return [
+            'title' => 'CRM Management',
+            'items' => [
+                [
+                    'crm_dashboard' => [
+                        'title' => 'Dashboard',
+                        'route_name' => 'crm.index'
+                    ],
+                    'crm_hatcheries' => [
+                        'title' => 'Hatcheries',
+                        'route_name' => 'crm.hatcheries.index'
+                    ],
+                    'crm_fish_sellings' => [
+                        'title' => 'Fish Sellings',
+                        'route_name' => 'crm.fish-sellings.index'
+                    ],
+                    'crm_seed_sellings' => [
+                        'title' => 'Seed Sellings',
+                        'route_name' => 'crm.seed-sellings.index'
+                    ],
+                ],
+                [
+                    'crm_public_stockings' => [
+                        'title' => 'Public Stockings',
+                        'route_name' => 'crm.public-stockings.index'
+                    ],
+                    'crm_private_stockings' => [
+                        'title' => 'Private Stockings',
+                        'route_name' => 'crm.private-stockings.index'
+                    ],
+                ]
+            ]
+        ];
+    }
+
     public static function all(){
-        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements(), self::cms()];
+        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements(), self::cms(), self::crm()];
     }
 }

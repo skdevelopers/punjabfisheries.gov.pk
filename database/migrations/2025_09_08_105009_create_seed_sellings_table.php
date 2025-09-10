@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seed_productions', function (Blueprint $table) {
+        Schema::create('seed_sellings', function (Blueprint $table) {
             $table->id();
             $table->string('species');
             $table->string('size_range')->nullable();
-            $table->decimal('quantity', 10, 2)->nullable();
             $table->decimal('rate', 10, 2)->nullable();
+            $table->decimal('quantity', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seed_productions');
+        Schema::dropIfExists('seed_sellings');
     }
 };

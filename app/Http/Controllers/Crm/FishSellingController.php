@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crm;
 
-use App\Models\FishProduction;
+use App\Http\Controllers\Controller;
+use App\Models\FishSelling;
 use Illuminate\Http\Request;
 
-class FishProductionController extends Controller
+class FishSellingController extends Controller
 {
     public function index()
     {
-        $fishProductions = FishProduction::latest()->paginate(10);
-        return view('fish-productions.index', compact('fishProductions'));
+        $fishSellings = FishSelling::latest()->paginate(10);
+        return view('crm.fish-sellings.index', compact('fishSellings'));
     }
 
     public function create()
     {
-        $species = FishProduction::SPECIES;
-        $weightRates = FishProduction::WEIGHT_RATES;
-        return view('fish-productions.create', compact('species', 'weightRates'));
+        $species = FishSelling::SPECIES;
+        $weightRates = FishSelling::WEIGHT_RATES;
+        return view('crm.fish-sellings.create', compact('species', 'weightRates'));
     }
 
     public function store(Request $request)
@@ -50,7 +51,7 @@ class FishProductionController extends Controller
         try {
             $createdCount = 0;
             foreach ($request->entries as $entry) {
-                FishProduction::create([
+                FishSelling::create([
                     'species' => $entry['species'],
                     'weight_range' => $entry['weight_range'],
                     'rate' => $entry['rate'] ?? null,
@@ -62,29 +63,29 @@ class FishProductionController extends Controller
             }
 
             $message = $createdCount === 1 
-                ? 'Fish production record created successfully!' 
-                : "{$createdCount} fish production records created successfully!";
+                ? 'Fish selling record created successfully!' 
+                : "{$createdCount} fish selling records created successfully!";
 
-            return redirect()->route('cms.fish-productions.index')
+            return redirect()->route('crm.fish-sellings.index')
                 ->with('success', $message);
         } catch (\Exception $e) {
             return back()->withInput()
-                ->with('error', 'Error creating fish production records: ' . $e->getMessage());
+                ->with('error', 'Error creating fish selling records: ' . $e->getMessage());
         }
     }
 
     public function show(string $id)
     {
-        $fishProduction = FishProduction::findOrFail($id);
-        return view('fish-productions.show', compact('fishProduction'));
+        $fishSelling = FishSelling::findOrFail($id);
+        return view('crm.fish-sellings.show', compact('fishSelling'));
     }
 
     public function edit(string $id)
     {
-        $fishProduction = FishProduction::findOrFail($id);
-        $species = FishProduction::SPECIES;
-        $weightRates = FishProduction::WEIGHT_RATES;
-        return view('fish-productions.edit', compact('fishProduction', 'species', 'weightRates'));
+        $fishSelling = FishSelling::findOrFail($id);
+        $species = FishSelling::SPECIES;
+        $weightRates = FishSelling::WEIGHT_RATES;
+        return view('crm.fish-sellings.edit', compact('fishSelling', 'species', 'weightRates'));
     }
 
     public function update(Request $request, string $id)
@@ -112,25 +113,25 @@ class FishProductionController extends Controller
         ]);
 
         try {
-            $fishProduction = FishProduction::findOrFail($id);
-            $fishProduction->update($request->all());
-            return redirect()->route('cms.fish-productions.index')
-                ->with('success', 'Fish production record updated successfully!');
+            $fishSelling = FishSelling::findOrFail($id);
+            $fishSelling->update($request->all());
+            return redirect()->route('crm.fish-sellings.index')
+                ->with('success', 'Fish selling record updated successfully!');
         } catch (\Exception $e) {
             return back()->withInput()
-                ->with('error', 'Error updating fish production record: ' . $e->getMessage());
+                ->with('error', 'Error updating fish selling record: ' . $e->getMessage());
         }
     }
 
     public function destroy(string $id)
     {
         try {
-            $fishProduction = FishProduction::findOrFail($id);
-            $fishProduction->delete();
-            return redirect()->route('cms.fish-productions.index')
-                ->with('success', 'Fish production record deleted successfully!');
+            $fishSelling = FishSelling::findOrFail($id);
+            $fishSelling->delete();
+            return redirect()->route('crm.fish-sellings.index')
+                ->with('success', 'Fish selling record deleted successfully!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Error deleting fish production record: ' . $e->getMessage());
+            return back()->with('error', 'Error deleting fish selling record: ' . $e->getMessage());
         }
     }
 }

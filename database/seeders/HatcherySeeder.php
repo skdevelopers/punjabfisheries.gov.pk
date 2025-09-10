@@ -45,7 +45,7 @@ class HatcherySeeder extends Seeder
                 'district' => 'Sylhet',
                 'longitude' => 91.8687,
                 'latitude' => 24.8949,
-                'office_type' => 'BOTH',
+                'office_type' => 'HM',
                 'dd_adf_name' => 'Dr. Mohammad Hassan',
                 'dd_adf_contact_number' => '+880-1612-345678',
             ],

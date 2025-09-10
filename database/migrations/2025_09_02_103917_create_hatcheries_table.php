@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('office_number')->nullable();
             $table->string('division');
             $table->string('district');
+            $table->text('office_address')->nullable();
             $table->decimal('longitude', 10, 8)->nullable();
             $table->decimal('latitude', 11, 8)->nullable();
-            $table->enum('office_type', ['HM', 'AQUA', 'BOTH']);
+            $table->enum('office_type', ['HM', 'AQUA']);
             $table->string('dd_adf_name')->nullable();
             $table->string('dd_adf_contact_number')->nullable();
             $table->timestamps();

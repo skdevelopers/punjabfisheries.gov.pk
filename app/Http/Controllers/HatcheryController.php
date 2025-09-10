@@ -33,7 +33,7 @@ class HatcheryController extends Controller
         try {
             $hatchery = Hatchery::create($request->validated());
             
-            return redirect()->route('cms.hatcheries.index')
+            return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery created successfully!');
         } catch (\Exception $e) {
             return back()->withInput()
@@ -68,7 +68,7 @@ class HatcheryController extends Controller
             $hatchery = Hatchery::findOrFail($id);
             $hatchery->update($request->validated());
             
-            return redirect()->route('cms.hatcheries.index')
+            return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery updated successfully!');
         } catch (\Exception $e) {
             return back()->withInput()
@@ -85,7 +85,7 @@ class HatcheryController extends Controller
             $hatchery = Hatchery::findOrFail($id);
             $hatchery->delete();
             
-            return redirect()->route('cms.hatcheries.index')
+            return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery deleted successfully!');
         } catch (\Exception $e) {
             return back()->with('error', 'Error deleting hatchery: ' . $e->getMessage());

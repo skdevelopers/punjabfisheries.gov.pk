@@ -1,5 +1,6 @@
 import Alpine from "alpinejs";
 import '../css/app.css'
+import './bootstrap';
 
 
 // AlpineJS Plugins
@@ -7,7 +8,6 @@ import persist from "@alpinejs/persist"; // @see https://alpinejs.dev/plugins/pe
 import collapse from "@alpinejs/collapse"; // @see https://alpinejs.dev/plugins/collapse
 import intersect from "@alpinejs/intersect"; // @see https://alpinejs.dev/plugins/intersect
 
-// Third Party Libraries
 
 /*
     Scrollbar Library
@@ -107,6 +107,7 @@ window.FilePond = FilePond;
 window.flatpickr = flatpickr;
 window.Quill = Quill;
 window.Tom = Tom;
+
 
 window.Alpine = Alpine;
 window.helpers = helpers;

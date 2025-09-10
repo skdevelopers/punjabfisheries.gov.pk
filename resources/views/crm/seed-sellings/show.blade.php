@@ -1,4 +1,4 @@
-<x-app-layout title="Seed Production Details" is-header-blur="true">
+<x-app-layout title="Seed Selling Details" is-header-blur="true">
     <!-- Main Content Wrapper -->
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
@@ -9,14 +9,14 @@
                         <div class="mb-6">
                             <div class="flex items-center justify-between mb-3">
                                 <div class="flex items-center">
-                                    <a href="{{ route('cms.seed-productions.index') }}" class="text-slate-500 dark:text-navy-200 mr-3 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
+                                    <a href="{{ route('crm.seed-sellings.index') }}" class="text-slate-500 dark:text-navy-200 mr-3 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                         </svg>
                                     </a>
-                                    <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Seed Production Details</h1>
+                                    <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Seed Selling Details</h1>
                                 </div>
-                                <a href="{{ route('cms.seed-productions.edit', $seedProduction->id) }}" 
+                                <a href="{{ route('crm.seed-sellings.edit', $seedSelling->id) }}" 
                                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90">
                                     <svg class="size-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -32,7 +32,7 @@
                             <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Species</label>
                                 <div class="text-lg font-semibold text-slate-800 dark:text-navy-100">
-                                    {{ $seedProduction->species }}
+                                    {{ $seedSelling->species }}
                                 </div>
                             </div>
 
@@ -40,7 +40,7 @@
                             <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Size Range</label>
                                 <div class="text-lg font-semibold text-slate-800 dark:text-navy-100">
-                                    {{ $seedProduction->size_range ?? 'N/A' }}
+                                    {{ $seedSelling->size_range ?? 'N/A' }}
                                 </div>
                             </div>
 
@@ -48,7 +48,7 @@
                             <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Rate (PKR)</label>
                                 <div class="text-lg font-semibold text-slate-800 dark:text-navy-100">
-                                    {{ $seedProduction->rate ? 'PKR ' . number_format($seedProduction->rate, 2) : 'N/A' }}
+                                    {{ $seedSelling->rate ? 'PKR ' . number_format($seedSelling->rate, 2) : 'N/A' }}
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                             <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Quantity</label>
                                 <div class="text-lg font-semibold text-slate-800 dark:text-navy-100">
-                                    {{ $seedProduction->quantity ? number_format($seedProduction->quantity, 2) : 'N/A' }}
+                                    {{ $seedSelling->quantity ? number_format($seedSelling->quantity, 2) : 'N/A' }}
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@
                             <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Total Amount (PKR)</label>
                                 <div class="text-lg font-semibold text-slate-800 dark:text-navy-100">
-                                    {{ $seedProduction->total_amount ? 'PKR ' . number_format($seedProduction->total_amount, 2) : 'N/A' }}
+                                    {{ $seedSelling->total_amount ? 'PKR ' . number_format($seedSelling->total_amount, 2) : 'N/A' }}
                                 </div>
                             </div>
                         </div>
@@ -75,14 +75,14 @@
                                 <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                     <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Created At</label>
                                     <div class="text-slate-800 dark:text-navy-100">
-                                        {{ $seedProduction->created_at->format('F d, Y \a\t g:i A') }}
+                                        {{ $seedSelling->created_at->format('F d, Y \a\t g:i A') }}
                                     </div>
                                 </div>
 
                                 <div class="bg-slate-50 dark:bg-navy-800 p-4 rounded-lg">
                                     <label class="block text-sm font-medium text-slate-600 dark:text-navy-300 mb-2">Last Updated</label>
                                     <div class="text-slate-800 dark:text-navy-100">
-                                        {{ $seedProduction->updated_at->format('F d, Y \a\t g:i A') }}
+                                        {{ $seedSelling->updated_at->format('F d, Y \a\t g:i A') }}
                                     </div>
                                 </div>
                             </div>

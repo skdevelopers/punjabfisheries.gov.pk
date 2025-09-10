@@ -236,13 +236,26 @@ Route::middleware('auth')->group(function () {
         Route::patch('/blog-comments/{blogComment}/spam', [\App\Http\Controllers\Cms\BlogCommentController::class, 'markAsSpam'])->name('blog-comments.spam');
         Route::post('/blog-comments/bulk-action', [\App\Http\Controllers\Cms\BlogCommentController::class, 'bulkAction'])->name('blog-comments.bulk-action');
 
-        // Hatchery Management Routes
-        Route::resource('hatcheries', \App\Http\Controllers\HatcheryController::class);
+    });
 
-        // Fish Production Management Routes
-        Route::resource('fish-productions', \App\Http\Controllers\FishProductionController::class);
+    // CRM Routes (separate from CMS)
+    Route::prefix('crm')->name('crm.')->middleware('auth')->group(function () {
+        // CRM Dashboard
+        Route::get('/', [\App\Http\Controllers\Crm\CrmController::class, 'index'])->name('index');
         
-        // Seed Production Management Routes
-        Route::resource('seed-productions', \App\Http\Controllers\SeedProductionController::class);
+        // Hatchery Management Routes (moved from CMS)
+        Route::resource('hatcheries', \App\Http\Controllers\HatcheryController::class);
+        
+        // Fish Selling Management Routes
+        Route::resource('fish-sellings', \App\Http\Controllers\Crm\FishSellingController::class);
+        
+        // Seed Selling Management Routes
+        Route::resource('seed-sellings', \App\Http\Controllers\Crm\SeedSellingController::class);
+        
+        // Public Stocking Management Routes
+        Route::resource('public-stockings', \App\Http\Controllers\Crm\PublicStockingController::class);
+        
+        // Private Stocking Management Routes
+        Route::resource('private-stockings', \App\Http\Controllers\Crm\PrivateStockingController::class);
     });
 });

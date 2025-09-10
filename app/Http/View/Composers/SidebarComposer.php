@@ -41,6 +41,9 @@ class SidebarComposer
                 case 'cms':
                     $view->with('sidebarMenu', SidebarPanel::cms());
                     break;
+                case 'crm':
+                    $view->with('sidebarMenu', SidebarPanel::crm());
+                    break;
                 default:
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
             }

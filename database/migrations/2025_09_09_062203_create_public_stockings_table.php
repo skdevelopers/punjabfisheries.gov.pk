@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('fish_productions', function (Blueprint $table) {
-            $table->dropColumn('avg_size');
+        Schema::create('public_stockings', function (Blueprint $table) {
+            $table->id();
+            $table->string('species');
+            $table->integer('no');
+            $table->string('water_body_name');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('fish_productions', function (Blueprint $table) {
-            $table->decimal('avg_size', 8, 2)->after('production_kg');
-        });
+        Schema::dropIfExists('public_stockings');
     }
 };
