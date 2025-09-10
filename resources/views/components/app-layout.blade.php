@@ -2,9 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">  
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    <meta charset="UTF-8">
 
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
@@ -17,10 +15,7 @@
         @endisset
     </title>
 
-    <!-- CSS & JS Assets -->
-    @vite(['resources/css/app.css'])
-    @vite(['resources/js/app.js'])
-
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

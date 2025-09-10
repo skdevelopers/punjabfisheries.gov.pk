@@ -1,61 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/app-logo.svg" alt="Punjab Fisheries Govt Of Punjab – Digital Transformation" width="40%" height="40%">
 </p>
 
-## About Laravel
+<h1 align="center">Punjab Fisheries – Digital Transformation Platform</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <a href="https://laravel.com" target="_blank"><img src="https://img.shields.io/badge/Laravel-12.x-ff2d20?style=flat-square&logo=laravel" alt="Laravel"></a>
+  <a href="https://www.php.net/" target="_blank"><img src="https://img.shields.io/badge/PHP-8.4-blue?style=flat-square&logo=php" alt="PHP"></a>
+  <a href="https://redis.io" target="_blank"><img src="https://img.shields.io/badge/Redis-Enabled-red?style=flat-square&logo=redis" alt="Redis"></a>
+  <a href="https://tailwindcss.com" target="_blank"><img src="https://img.shields.io/badge/TailwindCSS-3.x-38bdf8?style=flat-square&logo=tailwind-css" alt="TailwindCSS"></a>
+  <a href="https://alpinejs.dev" target="_blank"><img src="https://img.shields.io/badge/Alpine.js-3.x-77c1d2?style=flat-square&logo=alpine.js" alt="Alpine.js"></a>
+  <a href="https://axios-http.com" target="_blank"><img src="https://img.shields.io/badge/Axios-Ready-purple?style=flat-square&logo=axios" alt="Axios"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"></a>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📖 Overview
 
-## Learning Laravel
+The **Punjab Fisheries – Digital Transformation Platform** is the official modernization project for the Punjab Fisheries Department, developed to enhance public access, streamline internal workflows, and integrate AI-powered services.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+It includes:
+- GIS-enabled maps for fishery resources
+- AI chatbot & FAQ powered by **KurmaAI/AQUA-7B** via Hugging Face API
+- Content management for news, services, and resources
+- SEO automation for better reach
+- Role-based admin panel for departmental operations
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Repository:** [punjabfisheries.gov.pk](https://github.com/skdevelopers/punjabfisheries.gov.pk)  
+**Production Target:** https://punjabfisheries.gov.pk
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🚀 Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Modern Laravel Stack** (Laravel 12.x, PHP 8.4)
+- **PostgreSQL / MySQL** support
+- **Redis** for caching, queues, and sessions
+- **TailwindCSS + Alpine.js + Axios** for reactive UI
+- **RBAC** via Spatie Laravel Permission
+- **Admin Dashboard** CMS ready
+- **AI Chat & FAQ** powered by Hugging Face OpenAI Deep Seek AI
+- **API-ready** with Laravel Sanctum
+- **SEO Automation**
+- **GIS Mapping** support with optional PostGIS
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠 Tech Stack
 
-## Contributing
+| Layer           | Technology                         |
+|-----------------|------------------------------------|
+| **Backend**     | Laravel 12.x (PHP 8.4)             |
+| **Frontend**    | TailwindCSS, Alpine.js, Axios      |
+| **Database**    | PostgreSQL / MySQL Optional        |
+| **Caching/Queue**| Redis                              |
+| **Auth**        | Laravel Breeze (Blade) + Sanctum   |
+| **RBAC**        | Spatie Laravel Permission          |
+| **AI**          | Hugging Face API – KurmaAI/AQUA-7B |
+| **Build Tool**  | Vite                               |
+| **Hosting**     | Nginx + PHP-FPM + Redis            |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 📦 Installation (Local – WSL Ubuntu)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+# Clone repository
+git clone https://github.com/skdevelopers/punjabfisheries.gov.pk.git
+cd punjabfisheries.gov.pk
 
-## Security Vulnerabilities
+# Install PHP dependencies
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Install JS dependencies
+npm install
 
-## License
+# Copy env & set key
+cp .env.example .env
+php artisan key:generate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Configure .env for DB, Redis, Hugging Face, Open AI, Deep Seek API
+nano .env
+
+# Run migrations & seed
+php artisan migrate --seed
+
+# Build frontend
+npm run dev
+
+# Serve
+php artisan serve
+
+💬 AI Chatbot
+Create a Hugging Face account.
+
+Create an Open AI account.
+
+Create a Deep Seek AI account.
+
+Generate an Access Token.
+
+Set in .env:
+
+env
+
+HUGGINGFACE_API_TOKEN=hf_xxx
+HUGGINGFACE_MODEL_ID=KurmaAI/AQUA-7B Or OPenAI API
+Login and visit /chat to interact with the AI bot.
+
+📍 Admin Panel
+URL: /admin/dashboard (after login)
+
+Default Roles: admin, staff, viewer
+
+RBAC managed by Spatie Laravel Permission
+
+🗺 GIS Support
+Optional PostGIS integration:
+
+Install PostGIS on your PostgreSQL server
+
+Use Laravel spatial data types for maps
+
+Integrate with Leaflet.js or Mapbox
+
+🛡 Security
+Uses Laravel Sanctum for API token authentication
+
+CSRF protection enabled
+
+Redis-backed sessions for better security
+
+RBAC limits access to sensitive modules
+
+📜 License
+This project is licensed under the MIT License. See LICENSE for details.
+
+👥 Credits
+Punjab Fisheries Department – Project Owner
+
+Lead Developer: Mian Salman (CTO, TeqTronics Systems)
+
+AI Model: KurmaAI/AQUA-7B
+
+Framework: Laravel

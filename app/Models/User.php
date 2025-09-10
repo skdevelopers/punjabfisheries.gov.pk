@@ -2,28 +2,33 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
-   // app/Models/User.php
-protected $fillable = [
-    'name','email','password',
-    'staff_id','designation','section','phone','office_location','joining_date',
-    'office_name','directorate_name','division_name','district_name','profile_photo_path',
-];
-
+    protected $fillable = [
+        'directorate_name',
+        'office_name',
+        'name',
+        'email',
+        'password',
+        'staff_id',
+        'designation',
+        'phone',
+        'joining_date',
+        'division_name',
+        'district_name',
+        'office_location',
+        'section',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,7 +49,7 @@ protected $fillable = [
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
     }
 }

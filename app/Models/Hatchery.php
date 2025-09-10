@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Hatchery extends Model
 {
+  /** @use HasFactory<\Database\Factories\HatcheryFactory> */
+    use HasFactory;
     protected $fillable = [
         'hatchery_name',
         'contact_person',
@@ -40,4 +44,5 @@ class Hatchery extends Model
     {
         return $query->where('district', $district);
     }
+
 }

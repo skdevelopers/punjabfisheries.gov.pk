@@ -38,16 +38,13 @@ class SidebarComposer
                 case 'dashboards':
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
                     break;
-                case 'cms':
-                    $view->with('sidebarMenu', SidebarPanel::cms());
-                    break;
                 case 'crm':
                     $view->with('sidebarMenu', SidebarPanel::crm());
                     break;
                 default:
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
             }
-            
+
             $view->with('allSidebarItems', SidebarPanel::all());
             $view->with('pageName', $pageName);
             $view->with('routePrefix', $routePrefix);

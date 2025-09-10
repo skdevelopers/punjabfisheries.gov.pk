@@ -7,7 +7,7 @@
             </p>
         </a>
     </div>
-    
+
     <div class="hidden w-full place-items-center lg:grid">
         <div class="w-full max-w-lg p-6">
             <img class="w-full" x-show="!$store.global.isDarkModeEnabled"
@@ -16,7 +16,7 @@
                 src="{{ asset('images/illustrations/dashboard-meet-dark.svg') }}" alt="image" />
         </div>
     </div>
-    
+
     <main class="flex w-full flex-col items-center bg-white dark:bg-navy-700 lg:max-w-4xl">
         <div class="flex w-full max-w-3xl grow flex-col justify-center p-5">
             <div class="text-center">
@@ -42,7 +42,7 @@
                     <span>Github</span>
                 </button>
             </div>
-            
+
             <div class="my-7 flex items-center space-x-3">
                 <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
                 <p class="text-tiny-plus uppercase">or register with email</p>
@@ -52,7 +52,7 @@
             <!-- Comprehensive Registration Form -->
             <form class="mt-6" action="{{ route('register') }}" method="post">
                 @method('POST') @csrf
-                
+
                 <!-- Account Information Section -->
                 <div class="bg-slate-50 dark:bg-navy-800/50 rounded-lg p-4 mb-6">
                     <h3 class="text-lg font-semibold text-slate-800 dark:text-navy-100 mb-4">
@@ -68,7 +68,7 @@
                                 <span class="text-tiny-plus text-error">{{ $message }}</span>
                             @enderror
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
@@ -78,7 +78,7 @@
                                 <span class="text-tiny-plus text-error">{{ $message }}</span>
                             @enderror
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
@@ -88,7 +88,7 @@
                                 <span class="text-tiny-plus text-error">{{ $message }}</span>
                             @enderror
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
@@ -113,21 +113,21 @@
                                     placeholder="Staff ID" type="text" name="staff_id" value="{{ old('staff_id') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="Designation (e.g., Fisheries Officer)" type="text" name="designation" value="{{ old('designation') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="Phone Number" type="tel" name="phone" value="{{ old('phone') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
@@ -149,35 +149,35 @@
                                     placeholder="Office Name" type="text" name="office_name" value="{{ old('office_name') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="Directorate Name" type="text" name="directorate_name" value="{{ old('directorate_name') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="Division Name" type="text" name="division_name" value="{{ old('division_name') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="District Name" type="text" name="district_name" value="{{ old('district_name') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
                                     placeholder="Office Location" type="text" name="office_location" value="{{ old('office_location') }}" required />
                             </label>
                         </div>
-                        
+
                         <div>
                             <label class="relative flex">
                                 <input class="form-input peer w-full rounded-lg bg-white dark:bg-navy-900 px-3 py-2 ring-primary/50 placeholder:text-slate-400 hover:bg-slate-50 focus:ring-3 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-800 dark:focus:bg-navy-800"
@@ -187,7 +187,7 @@
                     </div>
                 </div>
 
-             
+
                 <!-- Submit Button -->
                 <button type="submit" class="btn mt-6 h-12 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90 text-lg">
                   Register              </button>
@@ -196,7 +196,7 @@
             <!-- Login Link -->
             <div class="mt-6 text-center text-sm">
                 <p class="text-slate-600 dark:text-navy-300">
-                    Already have an account? 
+                    Already have an account?
                     <a class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent font-medium"
                         href="{{ route('loginView') }}">Sign In</a>
                 </p>

@@ -11,7 +11,9 @@ class HatcheryRequest extends FormRequest
      */
     public function authorize(): bool
     {
+
         return true;
+
     }
 
     /**
@@ -21,6 +23,7 @@ class HatcheryRequest extends FormRequest
      */
     public function rules(): array
     {
+
         $rules = [
             'hatchery_name' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
@@ -59,6 +62,7 @@ class HatcheryRequest extends FormRequest
             'office_type.in' => 'Office type must be HM, AQUA, or BOTH.',
             'dd_adf_name.required' => 'DD/ADF name is required when both office types are selected.',
             'dd_adf_contact_number.required' => 'DD/ADF contact number is required when both office types are selected.',
+
         ];
     }
 }
