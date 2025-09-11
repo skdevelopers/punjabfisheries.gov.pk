@@ -36,7 +36,7 @@ class HatcheryController extends Controller
     {
         try {
             $hatchery = Hatchery::create($request->validated());
-            
+
             return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery created successfully!');
         } catch (\Exception $e) {
@@ -45,7 +45,6 @@ class HatcheryController extends Controller
         }
     }
 
-  
 
     /**
      * Display the specified resource.
@@ -55,27 +54,28 @@ class HatcheryController extends Controller
     {
         $hatchery = Hatchery::findOrFail($hatchery);
         return view('hatcheries.show', compact('hatchery'));
-    } 
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
 
-    public function edit(string $id)
+    public function edit(Hatchery $hatchery)
     {
-        $hatchery = Hatchery::findOrFail($id);
+        $hatchery = Hatchery::findOrFail($hatchery);
         return view('hatcheries.edit', compact('hatchery'));
 
     }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(HatcheryRequest $request, Hatchery $hatchery)
     {
         try {
-            $hatchery = Hatchery::findOrFail($hatchery);
+
             $hatchery->update($request->validated());
-            
+
             return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery updated successfully!');
         } catch (\Exception $e) {
@@ -91,9 +91,9 @@ class HatcheryController extends Controller
     public function destroy(Hatchery $hatchery)
     {
         try {
-            $hatchery = Hatchery::findOrFail($hatchery);
+
             $hatchery->delete();
-            
+
             return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery deleted successfully!');
         } catch (\Exception $e) {
