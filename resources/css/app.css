@@ -1,41 +1,43 @@
-/* 1) Load Tailwind v4 core */
+/* 1) Tailwind v4 core */
 @import "tailwindcss";
 
-/* 2) Tailwind v4 plugin syntax */
+/* 2) Plugins */
 @plugin "@tailwindcss/forms";
+/* @plugin "@tailwindcss/typography";  // enable if you use prose */
 
-/* 3) (Optional but fine) sources for scanning */
+/* 3) Sources (trim if slow) */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+/* @source '../../storage/framework/views/*.php'; */ /* optional */
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* 4) Your layered CSS imports (kept intact, just placed after Tailwind) */
+/* 4) Your layered CSS (Tailwind first, then your layers) */
 @import "./base.css" layer(base);
 @import "./components.css" layer(components);
 @import "./pages.css" layer(pages);
-@import "highlight.js/styles/atom-one-dark.css" layer(components); /* Just for demo purpose only for highlighting code */
 
-/* 5) Dark variant (kept) */
+/* 3rd-party CSS should be global (not inside Tailwind layers) */
+@import "highlight.js/styles/atom-one-dark.css";
+
+/* 5) Dark variant */
 @custom-variant dark (&:is(.dark *));
 
-/* 6) Your theme tokens (kept) + **added breakpoints** for sm:/md:/lg:/xl:/2xl: */
+/* 6) Theme tokens + breakpoints */
 @theme {
-    /* BREAKPOINTS (added so md: etc. works) */
+    /* BREAKPOINTS */
     --breakpoint-sm: 40rem;   /* 640px */
     --breakpoint-md: 48rem;   /* 768px */
     --breakpoint-lg: 64rem;   /* 1024px */
     --breakpoint-xl: 80rem;   /* 1280px */
     --breakpoint-2xl: 96rem;  /* 1536px */
 
-    /* === Your existing tokens below are unchanged === */
+    /* FONTS */
     --font-sans: Poppins, ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-inter: Inter, ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+    /* COLORS */
     --color-navy-50: #e7e9ef;
     --color-navy-100: #c2c9d6;
     --color-navy-200: #a3adc2;
@@ -91,7 +93,7 @@
     }
 }
 
-/* 7) Your base layer (kept) */
+/* 7) Base layer */
 @layer base {
     @keyframes fade-out {
         0% { opacity: 1; visibility: visible; }
@@ -104,4 +106,11 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+}
+
+/* 8) Small helper utilities for dynamic toggles (optional) */
+@layer utilities {
+    .bg-primary { background-color: var(--color-primary); }
+    .text-primary { color: var(--color-primary); }
+    .shadow-soft { box-shadow: var(--shadow-soft); }
 }
