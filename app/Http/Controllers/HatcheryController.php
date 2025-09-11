@@ -35,7 +35,7 @@ class HatcheryController extends Controller
     public function store(HatcheryRequest $request)
     {
         try {
-            $hatchery = Hatchery::create($request->validated());
+             Hatchery::create($request->validated());
 
             return redirect()->route('crm.hatcheries.index')
                 ->with('success', 'Hatchery created successfully!');
@@ -52,7 +52,6 @@ class HatcheryController extends Controller
 
     public function show(Hatchery $hatchery)
     {
-        $hatchery = Hatchery::findOrFail($hatchery);
         return view('hatcheries.show', compact('hatchery'));
     }
 
@@ -60,11 +59,10 @@ class HatcheryController extends Controller
      * Show the form for editing the specified resource.
      */
 
-    public function edit(Hatchery $hatchery)
+    public function edit(string $id)
     {
-        $hatchery = Hatchery::findOrFail($hatchery);
+        $hatchery = Hatchery::findOrFail($id);
         return view('hatcheries.edit', compact('hatchery'));
-
     }
 
     /**
