@@ -1,21 +1,21 @@
-<x-app-layout title="Create Fish Production" is-header-blur="true">
+<x-app-layout title="Create Fish Selling" is-header-blur="true">
     <!-- Main Content Wrapper -->
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
             <div class="col-span-12 flex justify-center">
-                <div class="card w-full max-w-5xl" x-data="fishProductionForm()">
+                <div class="card w-full max-w-5xl" x-data="fishSellingForm()">
                     <div class="p-6">
                         <!-- Header -->
                         <div class="mb-6">
                             <div class="flex items-center mb-3">
-                                <a href="{{ route('cms.fish-productions.index') }}" class="text-slate-500 dark:text-navy-200 mr-3 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
+                                <a href="{{ route('crm.fish-sellings.index') }}" class="text-slate-500 dark:text-navy-200 mr-3 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </a>
-                                <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Create Fish Production</h1>
+                                <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Create Fish Selling</h1>
             </div>
-                            <p class="text-slate-500 dark:text-navy-200 text-sm">Add new fish production records</p>
+                            <p class="text-slate-500 dark:text-navy-200 text-sm">Add new fish selling records</p>
                         </div>
 
                         @if($errors->any())
@@ -28,7 +28,7 @@
                     </div>
                 @endif
 
-                        <form action="{{ route('cms.fish-productions.store') }}" method="POST" @submit="validateForm" class="space-y-6">
+                        <form action="{{ route('crm.fish-sellings.store') }}" method="POST" @submit="validateForm" class="space-y-6">
                     @csrf
                     
                     <!-- Multiple Entries Container -->
@@ -167,7 +167,7 @@
 
                     <!-- Form Actions -->
                             <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200 dark:border-navy-600">
-                        <a href="{{ route('cms.fish-productions.index') }}" 
+                        <a href="{{ route('crm.fish-sellings.index') }}" 
                                    class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             Cancel
                         </a>
@@ -185,8 +185,11 @@
         </div>
     </main>
 
-    <script>
-        function fishProductionForm() {
+    <script type="text/javascript">
+        // Pass data from PHP to JavaScript
+        window.fishSellingData = <?php echo json_encode($weightRates); ?>;
+        
+        function fishSellingForm() {
             return {
                 entries: [{
                     species: '',
@@ -198,7 +201,7 @@
                 }],
 
                 // Weight rates data from PHP
-                weightRates: @json($weightRates),
+                weightRates: window.fishSellingData,
 
                 addEntry() {
                     this.entries.push({

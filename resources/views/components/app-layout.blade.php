@@ -10,12 +10,13 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config('app.name') }} @isset($title) - {{ $title }} @endisset
+    <title>{{ config('app.name') }} @isset($title)
+            - {{ $title }}
+        @endisset
     </title>
 
     <!-- CSS & JS Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +25,7 @@
         rel="stylesheet" />
     <script>
         /**
-         * THIS SCRIPT REQUIRED FOR PREVENT FLICKERING IN SOME BROWSERS
+         * THIS SCRIPT REQUIRED FOR PREVENTION FLICKERING IN SOME BROWSERS
          */
         localStorage.getItem("_x_darkMode_on") === "true" &&
             document.documentElement.classList.add("dark");

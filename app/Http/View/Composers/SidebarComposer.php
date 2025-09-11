@@ -38,6 +38,9 @@ class SidebarComposer
                 case 'dashboards':
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
                     break;
+                case 'crm':
+                    $view->with('sidebarMenu', SidebarPanel::crm());
+                    break;
                 default:
                     $view->with('sidebarMenu', SidebarPanel::dashboards());
             }

@@ -1,12 +1,13 @@
 import Alpine from "alpinejs";
-import "./bootstrap";
+import '../css/app.css'
+import './bootstrap';
+
 
 // AlpineJS Plugins
 import persist from "@alpinejs/persist"; // @see https://alpinejs.dev/plugins/persist
 import collapse from "@alpinejs/collapse"; // @see https://alpinejs.dev/plugins/collapse
 import intersect from "@alpinejs/intersect"; // @see https://alpinejs.dev/plugins/intersect
 
-// Third Party Libraries
 
 /*
     Scrollbar Library
@@ -107,6 +108,7 @@ window.flatpickr = flatpickr;
 window.Quill = Quill;
 window.Tom = Tom;
 
+
 window.Alpine = Alpine;
 window.helpers = helpers;
 window.pages = pages;
@@ -126,4 +128,3 @@ Alpine.store("global", store());
 
 Alpine.data("usePopper", usePopper);
 Alpine.data("accordionItem", accordionItem);
-

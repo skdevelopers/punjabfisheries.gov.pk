@@ -189,44 +189,6 @@
                             </div>
                         </a>
 
-                        <!-- Manage Hatcheries -->
-                        <a href="{{ route('cms.hatcheries.index') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
-                            <div class="size-10 rounded-full bg-secondary/10 flex items-center justify-center mr-3">
-                                <svg class="size-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Manage Hatcheries</h4>
-                                <p class="text-xs text-slate-500 dark:text-navy-200">Manage hatchery information and contacts</p>
-                            </div>
-                        </a>
-
-                        <!-- Manage Fish Productions -->
-                        <a href="{{ route('cms.fish-productions.index') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
-                            <div class="size-10 rounded-full bg-emerald-500/10 flex items-center justify-center mr-3">
-                                <svg class="size-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Fish Productions</h4>
-                                <p class="text-xs text-slate-500 dark:text-navy-200">Manage fish production records</p>
-                            </div>
-                        </a>
-
-                        <!-- Manage Seed Productions -->
-                        <a href="{{ route('cms.seed-productions.index') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
-                            <div class="size-10 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
-                                <svg class="size-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Seed Productions</h4>
-                                <p class="text-xs text-slate-500 dark:text-navy-200">Manage fish seed production records</p>
-                            </div>
-                        </a>
 
                         <!-- Manage Pages -->
                         <a href="{{ route('cms.pages') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">

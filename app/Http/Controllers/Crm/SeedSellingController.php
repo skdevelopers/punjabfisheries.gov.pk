@@ -1,34 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Crm;
 
-use App\Models\SeedProduction;
+use App\Http\Controllers\Controller;
+use App\Models\SeedSelling;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
-class SeedProductionController extends Controller
+class SeedSellingController extends Controller
 {
     public function index()
     {
-        $seedProductions = SeedProduction::latest()->paginate(10);
-        return view('seed-productions.index', compact('seedProductions'));
+        $seedSellings = SeedSelling::latest()->paginate(10);
+        return view('crm.seed-sellings.index', compact('seedSellings'));
     }
 
     public function create()
     {
-        $species = SeedProduction::SPECIES;
-        $sizeRates = SeedProduction::SIZE_RATES;
-        return view('seed-productions.create', compact('species', 'sizeRates'));
+        $species = SeedSelling::SPECIES;
+        $sizeRates = SeedSelling::SIZE_RATES;
+        return view('crm.seed-sellings.create', compact('species', 'sizeRates'));
     }
 
     public function store(Request $request)
     {
         // Debug: Log the incoming request data
-        \Log::info('Seed Production Store Request:', $request->all());
+        Log::info('Seed Selling Store Request:', $request->all());
         
         $request->validate([
             'entries' => 'required|array|min:1',
             'entries.*.species' => 'required|string',
-            'entries.*.size_range' => 'required|string',
+            'entries.*.main_size_option' => 'required|string',
+            'entries.*.size_range' => 'nullable|string',
             'entries.*.rate' => 'nullable|numeric|min:0',
             'entries.*.quantity' => 'required|numeric|min:0',
             'entries.*.total_amount' => 'nullable|numeric|min:0',
@@ -37,7 +40,7 @@ class SeedProductionController extends Controller
             'entries.array' => 'Entries must be in array format.',
             'entries.min' => 'At least one entry is required.',
             'entries.*.species.required' => 'Species selection is required for all entries.',
-            'entries.*.size_range.required' => 'Size range is required for all entries.',
+            'entries.*.main_size_option.required' => 'Size option is required for all entries.',
             'entries.*.quantity.required' => 'Quantity is required for all entries.',
             'entries.*.quantity.numeric' => 'Quantity must be a number.',
             'entries.*.quantity.min' => 'Quantity cannot be negative.',
@@ -50,53 +53,59 @@ class SeedProductionController extends Controller
         try {
             $createdCount = 0;
             foreach ($request->entries as $entry) {
-                SeedProduction::create([
+                Log::info('Creating seed selling entry:', $entry);
+                $seedSelling = SeedSelling::create([
                     'species' => $entry['species'],
-                    'size_range' => $entry['size_range'],
+                    'main_size_option' => $entry['main_size_option'],
+                    'size_range' => $entry['size_range'] ?? null,
                     'rate' => $entry['rate'] ?? null,
                     'quantity' => $entry['quantity'],
                     'total_amount' => $entry['total_amount'] ?? null,
                 ]);
+                Log::info('Created seed selling with ID:', ['id' => $seedSelling->id]);
                 $createdCount++;
             }
 
             $message = $createdCount === 1 
-                ? 'Seed production record created successfully!' 
-                : "{$createdCount} seed production records created successfully!";
+                ? 'Seed selling record created successfully!' 
+                : "{$createdCount} seed selling records created successfully!";
 
-            return redirect()->route('cms.seed-productions.index')
+            Log::info('Redirecting with success message:', ['message' => $message]);
+            return redirect()->route('crm.seed-sellings.index')
                 ->with('success', $message);
         } catch (\Exception $e) {
+            Log::error('Error creating seed selling records:', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return back()->withInput()
-                ->with('error', 'Error creating seed production records: ' . $e->getMessage());
+                ->with('error', 'Error creating seed selling records: ' . $e->getMessage());
         }
     }
 
     public function show(string $id)
     {
-        $seedProduction = SeedProduction::findOrFail($id);
-        return view('seed-productions.show', compact('seedProduction'));
+        $seedSelling = SeedSelling::findOrFail($id);
+        return view('crm.seed-sellings.show', compact('seedSelling'));
     }
 
     public function edit(string $id)
     {
-        $seedProduction = SeedProduction::findOrFail($id);
-        $species = SeedProduction::SPECIES;
-        $sizeRates = SeedProduction::SIZE_RATES;
-        return view('seed-productions.edit', compact('seedProduction', 'species', 'sizeRates'));
+        $seedSelling = SeedSelling::findOrFail($id);
+        $species = SeedSelling::SPECIES;
+        $sizeRates = SeedSelling::SIZE_RATES;
+        return view('crm.seed-sellings.edit', compact('seedSelling', 'species', 'sizeRates'));
     }
 
     public function update(Request $request, string $id)
     {
         $request->validate([
             'species' => 'required|string',
-            'size_range' => 'required|string',
+            'main_size_option' => 'required|string',
+            'size_range' => 'nullable|string',
             'rate' => 'nullable|numeric|min:0',
             'quantity' => 'required|numeric|min:0',
             'total_amount' => 'nullable|numeric|min:0',
         ], [
             'species.required' => 'Species selection is required.',
-            'size_range.required' => 'Size range is required.',
+            'main_size_option.required' => 'Size option is required.',
             'quantity.required' => 'Quantity is required.',
             'quantity.numeric' => 'Quantity must be a number.',
             'quantity.min' => 'Quantity cannot be negative.',
@@ -107,25 +116,25 @@ class SeedProductionController extends Controller
         ]);
 
         try {
-            $seedProduction = SeedProduction::findOrFail($id);
-            $seedProduction->update($request->all());
-            return redirect()->route('cms.seed-productions.index')
-                ->with('success', 'Seed production record updated successfully!');
+            $seedSelling = SeedSelling::findOrFail($id);
+            $seedSelling->update($request->all());
+            return redirect()->route('crm.seed-sellings.index')
+                ->with('success', 'Seed selling record updated successfully!');
         } catch (\Exception $e) {
             return back()->withInput()
-                ->with('error', 'Error updating seed production record: ' . $e->getMessage());
+                ->with('error', 'Error updating seed selling record: ' . $e->getMessage());
         }
     }
 
     public function destroy(string $id)
     {
         try {
-            $seedProduction = SeedProduction::findOrFail($id);
-            $seedProduction->delete();
-            return redirect()->route('cms.seed-productions.index')
-                ->with('success', 'Seed production record deleted successfully!');
+            $seedSelling = SeedSelling::findOrFail($id);
+            $seedSelling->delete();
+            return redirect()->route('crm.seed-sellings.index')
+                ->with('success', 'Seed selling record deleted successfully!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Error deleting seed production record: ' . $e->getMessage());
+            return back()->with('error', 'Error deleting seed selling record: ' . $e->getMessage());
         }
     }
 }

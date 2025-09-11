@@ -1,0 +1,206 @@
+<x-app-layout title="Create Public Stocking" is-header-blur="true">
+    <!-- Main Content Wrapper -->
+    <main class="main-content w-full px-[var(--margin-x)] pb-8">
+        <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
+            <div class="col-span-12 flex justify-center">
+                <div class="card w-full max-w-4xl" x-data="publicStockingForm()">
+                    <div class="p-6">
+                        <!-- Header -->
+                        <div class="mb-6">
+                            <div class="flex items-center mb-3">
+                                <a href="{{ route('crm.public-stockings.index') }}" class="text-slate-500 dark:text-navy-200 mr-3 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </a>
+                                <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Create Public Stocking</h1>
+                            </div>
+                            <p class="text-slate-500 dark:text-navy-200 text-sm">Add new public stocking records</p>
+                        </div>
+
+                        @if($errors->any())
+                            <div class="alert alert-error mb-4">
+                                <ul class="list-disc list-inside text-sm">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form @submit.prevent="submitForm" class="space-y-6">
+                            @csrf
+                            
+                            <!-- Multiple Entries Container -->
+                            <div class="space-y-4">
+                                <template x-for="(entry, index) in entries" :key="index">
+                                    <div class="entry-row bg-slate-50 dark:bg-navy-800 p-6 rounded-lg border border-slate-200 dark:border-navy-600">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h3 class="text-lg font-medium text-slate-800 dark:text-navy-100" x-text="`Entry ${index + 1}`"></h3>
+                                            <button type="button" 
+                                                    @click="removeEntry(index)"
+                                                    x-show="entries.length > 1"
+                                                    class="btn size-8 rounded-full p-0 bg-red-500/10 text-red-500 hover:bg-red-500/20">
+                                                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                            <!-- Species -->
+                                            <div>
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-navy-200 mb-1">
+                                                    Species <span class="text-red-500">*</span>
+                                                </label>
+                                                <select :name="`entries[${index}][species]`" 
+                                                        x-model="entry.species"
+                                                        class="form-select w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
+                                                        required>
+                                                    <option value="">Select Species</option>
+                                                    @foreach($species as $key => $value)
+                                                        <option value="{{ $key }}">{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <!-- Number -->
+                                            <div>
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-navy-200 mb-1">
+                                                    No. <span class="text-red-500">*</span>
+                                                </label>
+                                                <input type="number" 
+                                                       :name="`entries[${index}][no]`" 
+                                                       x-model="entry.no"
+                                                       class="form-input w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
+                                                       min="1" 
+                                                       placeholder="Enter number"
+                                                       required>
+                                            </div>
+
+                                            <!-- Water Body Name -->
+                                            <div>
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-navy-200 mb-1">
+                                                    Name of Water Body <span class="text-red-500">*</span>
+                                                </label>
+                                                <input type="text" 
+                                                       :name="`entries[${index}][water_body_name]`" 
+                                                       x-model="entry.water_body_name"
+                                                       class="form-input w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
+                                                       placeholder="Enter water body name"
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <!-- Add Entry Button -->
+                            <div class="flex justify-center">
+                                <button type="button" 
+                                        @click="addEntry"
+                                        class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent-focus/90">
+                                    <svg class="size-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                    Add Another Entry
+                                </button>
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-200 dark:border-navy-600">
+                                <a href="{{ route('crm.public-stockings.index') }}" 
+                                   class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                                    Cancel
+                                </a>
+                                <button type="submit" 
+                                        :disabled="isSubmitting"
+                                        class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent-focus/90 disabled:opacity-50">
+                                    <svg x-show="!isSubmitting" class="size-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <svg x-show="isSubmitting" class="animate-spin size-4 mr-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span x-text="isSubmitting ? 'Creating...' : 'Create Records'"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        function publicStockingForm() {
+            return {
+                entries: [{
+                    species: '',
+                    no: '',
+                    water_body_name: ''
+                }],
+                isSubmitting: false,
+
+                addEntry() {
+                    this.entries.push({
+                        species: '',
+                        no: '',
+                        water_body_name: ''
+                    });
+                },
+
+                removeEntry(index) {
+                    if (this.entries.length > 1) {
+                        this.entries.splice(index, 1);
+                    }
+                },
+
+                async submitForm() {
+                    this.isSubmitting = true;
+                    
+                    try {
+                        const formData = new FormData();
+                        formData.append('_token', document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+                        
+                        this.entries.forEach((entry, index) => {
+                            formData.append(`entries[${index}][species]`, entry.species);
+                            formData.append(`entries[${index}][no]`, entry.no);
+                            formData.append(`entries[${index}][water_body_name]`, entry.water_body_name);
+                        });
+
+                        const response = await axios.post('{{ route("crm.public-stockings.store") }}', formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                            }
+                        });
+
+                        if (response.data.success) {
+                            window.location.href = '{{ route("crm.public-stockings.index") }}';
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        if (error.response && error.response.data.errors) {
+                            // Handle validation errors
+                            this.showValidationErrors(error.response.data.errors);
+                        } else {
+                            alert('An error occurred while creating the records. Please try again.');
+                        }
+                    } finally {
+                        this.isSubmitting = false;
+                    }
+                },
+
+                showValidationErrors(errors) {
+                    // Simple error display - you can enhance this
+                    let errorMessage = 'Please fix the following errors:\n';
+                    Object.keys(errors).forEach(key => {
+                        errorMessage += `\n${key}: ${errors[key].join(', ')}`;
+                    });
+                    alert(errorMessage);
+                }
+            }
+        }
+    </script>
+</x-app-layout>

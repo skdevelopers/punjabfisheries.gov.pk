@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class FishProduction extends Model
+class FishSelling extends Model
 {
     use HasFactory;
 
@@ -193,8 +193,8 @@ class FishProduction extends Model
         return $query->where('species', $species);
     }
 
-    public function scopeByProductionRange($query, $minKg, $maxKg)
+    public function scopeBySellingRange($query, $minKg, $maxKg)
     {
-        return $query->whereBetween('production_kg', [$minKg, $maxKg]);
+        return $query->whereBetween('total_weight', [$minKg, $maxKg]);
     }
 }

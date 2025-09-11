@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('hatcheries', function (Blueprint $table) {
-            $table->text('office_address')->nullable()->after('district');
+        Schema::table('seed_sellings', function (Blueprint $table) {
+            $table->string('main_size_option')->nullable()->after('species');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('hatcheries', function (Blueprint $table) {
-            $table->dropColumn('office_address');
+        Schema::table('seed_sellings', function (Blueprint $table) {
+            $table->dropColumn('main_size_option');
         });
     }
 };

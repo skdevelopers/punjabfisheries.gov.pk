@@ -684,6 +684,91 @@ class SidebarPanel
         ];
     }
 
-    public static function all(){
+
+    public static function cms()
+    {
+        return [
+            'title' => 'CMS Management',
+            'items' => [
+                [
+                    'cms_dashboard' => [
+                        'title' => 'Dashboard',
+                        'route_name' => 'cms.index'
+                    ],
+                    'cms_blog' => [
+                        'title' => 'Blog Posts',
+                        'route_name' => 'cms.blog.index'
+                    ],
+                    'cms_blog_categories' => [
+                        'title' => 'Blog Categories',
+                        'route_name' => 'cms.blog-categories.index'
+                    ],
+                    'cms_blog_tags' => [
+                        'title' => 'Blog Tags',
+                        'route_name' => 'cms.blog-tags.index'
+                    ],
+                    'cms_blog_comments' => [
+                        'title' => 'Blog Comments',
+                        'route_name' => 'cms.blog-comments.index'
+                    ],
+                ],
+                [
+                    'cms_pages' => [
+                        'title' => 'Pages',
+                        'route_name' => 'cms.pages'
+                    ],
+                    'cms_sliders' => [
+                        'title' => 'Sliders',
+                        'route_name' => 'cms.sliders.index'
+                    ],
+                    'cms_media' => [
+                        'title' => 'Media',
+                        'route_name' => 'cms.media'
+                    ],
+                ]
+            ]
+        ];
     }
+
+    public static function crm()
+    {
+        return [
+            'title' => 'CRM Management',
+            'items' => [
+                [
+                    'crm_dashboard' => [
+                        'title' => 'Dashboard',
+                        'route_name' => 'crm.index'
+                    ],
+                    'crm_hatcheries' => [
+                        'title' => 'Hatcheries',
+                        'route_name' => 'crm.hatcheries.index'
+                    ],
+                    'crm_fish_sellings' => [
+                        'title' => 'Fish Sellings',
+                        'route_name' => 'crm.fish-sellings.index'
+                    ],
+                    'crm_seed_sellings' => [
+                        'title' => 'Seed Sellings',
+                        'route_name' => 'crm.seed-sellings.index'
+                    ],
+                ],
+                [
+                    'crm_public_stockings' => [
+                        'title' => 'Public Stockings',
+                        'route_name' => 'crm.public-stockings.index'
+                    ],
+                    'crm_private_stockings' => [
+                        'title' => 'Private Stockings',
+                        'route_name' => 'crm.private-stockings.index'
+                    ],
+                ]
+            ]
+        ];
+    }
+
+    public static function all(){
+        return [self::dashboards(),self::apps(), self::layouts(), self::forms(), self::components(), self::elements(), self::cms(), self::crm()];
+      }
+    
 }

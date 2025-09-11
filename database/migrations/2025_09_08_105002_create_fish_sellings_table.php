@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fish_productions', function (Blueprint $table) {
+        Schema::create('fish_sellings', function (Blueprint $table) {
             $table->id();
             $table->enum('species', [
-                'Rohu', 'Mori', 'Thalia', 'Silver Carp', 'Grass Carp',
-                'Big Head', 'Tilapia', 'Gulfam', 'Catfish', 'Other'
+                'Rohu', 'Mori', 'Thalia', 'Grass Carp', 'Gulfam', 'Pangasius', 'Kalbans', 'Seabass', 'Mahseer', 
+                'Silver Carp', 'Bighead', 'Carp', 'Clarias', 'Mullee', 'Khagga', 'Saul', 'Singharee', 'Tilapia', 
+                'Trash and Weed Fish', 'Trout', 'Jhalli', 'Other'
             ]);
             $table->string('weight_range')->nullable();
-            $table->decimal('avg_weight', 8, 2)->nullable(); // Average weight in grams
-            $table->integer('fish_qty')->nullable(); // Fish quantity
-            $table->decimal('rate', 10, 2)->nullable(); // Rate per unit
+            $table->decimal('rate', 10, 2)->nullable();
+            $table->integer('fish_qty')->nullable();
             $table->decimal('total_weight', 10, 2)->nullable();
+            $table->decimal('avg_weight', 8, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fish_productions');
+        Schema::dropIfExists('fish_sellings');
     }
 };
