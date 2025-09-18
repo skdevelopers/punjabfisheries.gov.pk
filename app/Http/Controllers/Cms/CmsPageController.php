@@ -15,7 +15,117 @@ class CmsPageController extends Controller
 {
     public function index()
     {
-        return view('cms.index');
+        // Get real CMS analytics data
+        $blogPosts = \App\Models\BlogPost::count();
+        $publishedPosts = \App\Models\BlogPost::where('status', 'published')->count();
+        $draftPosts = \App\Models\BlogPost::where('status', 'draft')->count();
+        $totalViews = \App\Models\BlogPost::sum('view_count');
+        $avgViews = $blogPosts > 0 ? round($totalViews / $blogPosts, 0) : 0;
+        
+        $totalComments = \App\Models\BlogComment::count();
+        $pendingComments = \App\Models\BlogComment::where('status', 'pending')->count();
+        $approvedComments = \App\Models\BlogComment::where('status', 'approved')->count();
+        
+        $totalPages = \App\Models\Page::count();
+        $publishedPages = \App\Models\Page::where('status', 'published')->count();
+        
+        $totalTenders = \App\Models\Tender::count();
+        $activeTenders = \App\Models\Tender::where('status', 'active')->where('is_published', true)->count();
+        $expiredTenders = \App\Models\Tender::where('deadline', '<', now())->count();
+        
+        $totalAnnouncements = \App\Models\Announcement::count();
+        $activeAnnouncements = \App\Models\Announcement::active()->count();
+        
+        $totalSliders = \App\Models\Slider::count();
+        $activeSliders = \App\Models\Slider::where('is_active', true)->count();
+        
+        // Get recent blog posts for analytics
+        $recentPosts = \App\Models\BlogPost::with(['category', 'author'])
+            ->latest()
+            ->limit(10)
+            ->get();
+            
+        // Get top performing posts
+        $topPosts = \App\Models\BlogPost::with(['category', 'author'])
+            ->orderBy('view_count', 'desc')
+            ->limit(8)
+            ->get();
+            
+        // Get monthly blog post data for chart (PostgreSQL compatible)
+        $monthlyData = \App\Models\BlogPost::selectRaw('EXTRACT(MONTH FROM created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->keyBy('month');
+            
+        // Get monthly view data for chart (PostgreSQL compatible)
+        $monthlyViews = \App\Models\BlogPost::selectRaw('EXTRACT(MONTH FROM created_at) as month, SUM(view_count) as views')
+            ->whereYear('created_at', now()->year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->keyBy('month');
+            
+        // Calculate monthly increase
+        $currentMonth = now()->month;
+        $lastMonth = $currentMonth - 1;
+        $currentMonthViews = $monthlyViews->get($currentMonth)->views ?? 0;
+        $lastMonthViews = $monthlyViews->get($lastMonth)->views ?? 0;
+        $monthlyIncrease = $lastMonthViews > 0 ? round((($currentMonthViews - $lastMonthViews) / $lastMonthViews) * 100, 1) : 0;
+        
+        // Get recent activities
+        $recentActivities = collect();
+        
+        // Add recent blog posts
+        foreach(\App\Models\BlogPost::latest()->limit(3)->get() as $post) {
+            $recentActivities->push([
+                'type' => 'blog',
+                'title' => $post->title,
+                'action' => $post->status == 'published' ? 'Blog post published' : 'Blog post created',
+                'time' => $post->created_at,
+                'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
+                'color' => 'purple-500'
+            ]);
+        }
+        
+        // Add recent tenders
+        foreach(\App\Models\Tender::latest()->limit(2)->get() as $tender) {
+            $recentActivities->push([
+                'type' => 'tender',
+                'title' => $tender->title,
+                'action' => $tender->is_published ? 'Tender published' : 'Tender created',
+                'time' => $tender->created_at,
+                'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+                'color' => 'blue-500'
+            ]);
+        }
+        
+        // Add recent announcements
+        foreach(\App\Models\Announcement::latest()->limit(2)->get() as $announcement) {
+            $recentActivities->push([
+                'type' => 'announcement',
+                'title' => $announcement->title,
+                'action' => 'Announcement created',
+                'time' => $announcement->created_at,
+                'icon' => 'M15 17h5l-5 5v-5zM4 19h6v-6H4v6zM4 5h6V1H4v4zM15 3h5l-5-5v5z',
+                'color' => 'red-500'
+            ]);
+        }
+        
+        // Sort by creation time and take latest 5
+        $recentActivities = $recentActivities->sortByDesc('time')->take(5);
+        
+        return view('cms.dashboard', compact(
+            'blogPosts', 'publishedPosts', 'draftPosts', 'totalViews', 'avgViews',
+            'totalComments', 'pendingComments', 'approvedComments',
+            'totalPages', 'publishedPages',
+            'totalTenders', 'activeTenders', 'expiredTenders',
+            'totalAnnouncements', 'activeAnnouncements',
+            'totalSliders', 'activeSliders',
+            'recentPosts', 'topPosts', 'monthlyData', 'monthlyViews',
+            'monthlyIncrease', 'recentActivities'
+        ));
     }
 
     public function pages()

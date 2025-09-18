@@ -17,7 +17,11 @@ class SidebarComposer
     {
         if (!is_null(request()->route())) {
             $pageName = request()->route()->getName();
+            // Handle both / and . separators in route names
             $routePrefix = explode('/', $pageName)[0] ?? '';
+            if (strpos($routePrefix, '.') !== false) {
+                $routePrefix = explode('.', $routePrefix)[0];
+            }
 
             switch ($routePrefix) {
                 case 'elements':
@@ -40,6 +44,9 @@ class SidebarComposer
                     break;
                 case 'crm':
                     $view->with('sidebarMenu', SidebarPanel::crm());
+                    break;
+                case 'cms':
+                    $view->with('sidebarMenu', SidebarPanel::cms());
                     break;
                 default:
                     $view->with('sidebarMenu', SidebarPanel::dashboards());

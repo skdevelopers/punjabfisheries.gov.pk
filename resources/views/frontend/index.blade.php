@@ -44,6 +44,7 @@
     <li><a href="/" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Home</a></li>
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">About</a></li>
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Services</a></li>
+    <li><a href="{{ route('frontend.announcements') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Announcements</a></li>
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Shop</a></li>
     <li class="submenu-item">
       <button aria-label="submenu button" class="submenu-btn border border-neutral-40 flex w-full items-center justify-between rounded-md px-3 py-2.5 font-medium">
@@ -82,6 +83,9 @@
       </li>
       <li>
         <a class="menu-link" href="#">Services</a>
+      </li>
+      <li>
+        <a class="menu-link" href="{{ route('frontend.announcements') }}">Announcements</a>
       </li>
      
       <li class="dropdown-item">
@@ -833,6 +837,75 @@
       </div>
     </section>
     <!-- Tenders section end -->
+
+    <!-- Announcements section start -->
+    <section class="bg-neutral-0 py-120 relative overflow-hidden">
+      <div class="cont relative z-[2]">
+        <div class="flex justify-between items-center flex-wrap gap-4 mb-10 xl:mb-14">
+          <div>
+            <p class="sub-heading blur_anim">Announcements</p>
+            <h2 class="split_anim">Latest Announcements</h2>
+          </div>
+          <a href="{{ route('frontend.announcements') }}" class="btn-secondary"
+            >View All <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+          ></a>
+        </div>
+        
+        @if($featuredAnnouncements->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8 mb-10">
+          @foreach($featuredAnnouncements->take(3) as $announcement)
+          <div class="bg-neutral-0 rounded-2xl p-6 xl:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-40">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-3 h-3 bg-primary-500 rounded-full"></div>
+              <span class="text-sm font-semibold text-primary-600 uppercase">{{ ucfirst($announcement->type) }}</span>
+              @if($announcement->priority === 'high')
+              <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">High Priority</span>
+              @endif
+            </div>
+            <h3 class="text-lg xl:text-xl font-bold mb-3 text-neutral-900 line-clamp-2">{{ $announcement->title }}</h3>
+            <p class="text-neutral-600 mb-4 line-clamp-3">{{ Str::limit($announcement->description, 120) }}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-500">{{ $announcement->published_date->format('M d, Y') }}</span>
+              <a href="{{ route('frontend.announcements.show', $announcement) }}" class="btn-primary text-sm px-4 py-2">Read More</a>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        @endif
+
+        @if($latestAnnouncements->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+          @foreach($latestAnnouncements->take(6) as $announcement)
+          <div class="bg-neutral-0 rounded-2xl p-6 xl:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-40">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-3 h-3 bg-{{ $announcement->priority === 'high' ? 'red' : ($announcement->priority === 'normal' ? 'primary' : 'blue') }}-500 rounded-full"></div>
+              <span class="text-sm font-semibold text-{{ $announcement->priority === 'high' ? 'red' : ($announcement->priority === 'normal' ? 'primary' : 'blue') }}-600 uppercase">{{ ucfirst($announcement->type) }}</span>
+            </div>
+            <h3 class="text-lg xl:text-xl font-bold mb-3 text-neutral-900 line-clamp-2">{{ $announcement->title }}</h3>
+            <p class="text-neutral-600 mb-4 line-clamp-3">{{ Str::limit($announcement->description, 100) }}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-neutral-500">{{ $announcement->published_date->format('M d, Y') }}</span>
+              <a href="{{ route('frontend.announcements.show', $announcement) }}" class="text-primary-500 text-sm font-medium hover:text-primary-600">Read More →</a>
+            </div>
+          </div>
+          @endforeach
+        </div>
+        @endif
+
+        @if($featuredAnnouncements->count() === 0 && $latestAnnouncements->count() === 0)
+        <div class="text-center py-12">
+          <div class="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-neutral-900 mb-2">No Announcements Available</h3>
+          <p class="text-neutral-600">Check back later for the latest announcements and updates.</p>
+        </div>
+        @endif
+      </div>
+    </section>
+    <!-- Announcements section end -->
 
     <!-- Book Appointment section start -->
     <section class="py-120 bg-cover bg-no-repeat bg-neutral-900 relative after:inset-0 after:absolute after:size-full after:bg-neutral-900/60" data-bg="{{ asset('assets/images/home-1/booking-bg.webp') }}">

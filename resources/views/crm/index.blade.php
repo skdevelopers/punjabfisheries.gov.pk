@@ -3,7 +3,7 @@
     <main class="main-content w-full px-[var(--margin-x)] pb-8">
         <div class="mt-4 grid grid-cols-12 gap-4 sm:mt-5 sm:gap-5 lg:mt-6 lg:gap-6">
             <!-- Quick Stats -->
-            <div class="col-span-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div class="col-span-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
                 <!-- Hatcheries -->
                 <div class="card p-4 sm:p-5">
                     <div class="flex items-center justify-between">
@@ -78,6 +78,25 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Targets -->
+                <div class="card p-4 sm:p-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs+ text-slate-500 dark:text-navy-200">Targets</p>
+                            <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ $totalTargets }}</p>
+                            <div class="flex space-x-2 mt-1">
+                                <span class="text-xs text-success">{{ $activeTargets }} Active</span>
+                                <span class="text-xs text-info">{{ $completedTargets }} Done</span>
+                            </div>
+                        </div>
+                        <div class="size-12 rounded-full bg-accent/10 flex items-center justify-center">
+                            <svg class="size-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Recent Activities -->
@@ -137,6 +156,24 @@
                                         <p class="text-xs text-slate-500 dark:text-navy-300">Qty: {{ $seedSelling->seed_qty }} | Weight: {{ $seedSelling->total_weight }}kg</p>
                                     </div>
                                     <span class="text-xs text-slate-500 dark:text-navy-300">{{ $seedSelling->created_at->diffForHumans() }}</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
+                        <!-- Recent Targets -->
+                        @if($recentTargets->count() > 0)
+                        <div>
+                            <h4 class="text-sm font-medium text-slate-600 dark:text-navy-200 mb-2">Recent Targets</h4>
+                            <div class="space-y-2">
+                                @foreach($recentTargets as $target)
+                                <div class="flex items-center justify-between p-2 bg-slate-50 dark:bg-navy-600 rounded">
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-700 dark:text-navy-100">{{ $target->title }}</p>
+                                        <p class="text-xs text-slate-500 dark:text-navy-300">{{ $target->type_label }} | {{ $target->progress_percentage }}% Complete</p>
+                                    </div>
+                                    <span class="text-xs text-slate-500 dark:text-navy-300">{{ $target->created_at->diffForHumans() }}</span>
                                 </div>
                                 @endforeach
                             </div>
@@ -209,6 +246,18 @@
                             <div>
                                 <p class="text-sm font-medium text-slate-700 dark:text-navy-100">Add Private Stocking</p>
                                 <p class="text-xs text-slate-500 dark:text-navy-300">Record private stocking</p>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('crm.targets.index') }}" class="flex items-center p-3 bg-accent/10 hover:bg-accent/20 rounded-lg transition-colors">
+                            <div class="size-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
+                                <svg class="size-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-slate-700 dark:text-navy-100">Target Management</p>
+                                <p class="text-xs text-slate-500 dark:text-navy-300">Set and track goals</p>
                             </div>
                         </a>
                     </div>

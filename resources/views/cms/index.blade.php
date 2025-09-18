@@ -273,6 +273,32 @@
                                 <p class="text-xs text-slate-500 dark:text-navy-200">Edit and manage tender notices</p>
                             </div>
                         </a>
+
+                        <!-- Create New Announcement -->
+                        <a href="{{ route('cms.announcements.create') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
+                            <div class="size-10 rounded-full bg-red-500/10 flex items-center justify-center mr-3">
+                                <svg class="size-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Create New Announcement</h4>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">Add a new announcement or notice</p>
+                            </div>
+                        </a>
+
+                        <!-- Manage Announcements -->
+                        <a href="{{ route('cms.announcements.index') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
+                            <div class="size-10 rounded-full bg-amber-500/10 flex items-center justify-center mr-3">
+                                <svg class="size-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-6H4v6zM4 5h6V1H4v4zM15 3h5l-5-5v5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Manage Announcements</h4>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">Edit and manage announcements</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

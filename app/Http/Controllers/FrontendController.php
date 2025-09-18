@@ -10,6 +10,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\BlogComment;
 use App\Models\Tender;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
@@ -27,8 +28,26 @@ class FrontendController extends Controller
         // Get published pages for navigation
         $pages = Page::where('status', 'published')
                     ->get();
+
+        // Get featured announcements for homepage
+        $featuredAnnouncements = Announcement::active()
+            ->published()
+            ->notExpired()
+            ->featured()
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('published_date', 'desc')
+            ->limit(6)
+            ->get();
+
+        // Get latest announcements for homepage
+        $latestAnnouncements = Announcement::active()
+            ->published()
+            ->notExpired()
+            ->orderBy('published_date', 'desc')
+            ->limit(6)
+            ->get();
         
-        return view('frontend.index', compact('sliders', 'pages'));
+        return view('frontend.index', compact('sliders', 'pages', 'featuredAnnouncements', 'latestAnnouncements'));
     }
     
     /**

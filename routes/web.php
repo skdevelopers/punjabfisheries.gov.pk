@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Cms\CmsPageController;
 use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Frontend\AnnouncementController as FrontendAnnouncementController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +37,10 @@ Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('frontend.
 Route::get('/tenders', [FrontendController::class, 'tenders'])->name('frontend.tenders');
 Route::get('/tender/{id}/download', [FrontendController::class, 'downloadTenderPdf'])->name('frontend.tender.download');
 Route::get('/tender/{id}/download-2', [FrontendController::class, 'downloadTenderPdf2'])->name('frontend.tender.download2');
+
+// Announcements Routes
+Route::get('/announcements', [FrontendAnnouncementController::class, 'index'])->name('frontend.announcements');
+Route::get('/announcements/{announcement}', [FrontendAnnouncementController::class, 'show'])->name('frontend.announcements.show');
 Route::middleware(['auth','verified'])->group(function (): void {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
@@ -252,6 +258,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/tenders/{tender}/download-pdf', [\App\Http\Controllers\Cms\TenderController::class, 'downloadPdf'])->name('tenders.download-pdf');
         Route::get('/tenders/{tender}/download-pdf2', [\App\Http\Controllers\Cms\TenderController::class, 'downloadPdf2'])->name('tenders.download-pdf2');
 
+        // Announcements Management Routes
+        Route::resource('announcements', AnnouncementController::class);
+        Route::patch('/announcements/{announcement}/toggle-status', [AnnouncementController::class, 'toggleStatus'])->name('announcements.toggle-status');
+        Route::patch('/announcements/{announcement}/toggle-featured', [AnnouncementController::class, 'toggleFeatured'])->name('announcements.toggle-featured');
+        Route::post('/announcements/reorder', [AnnouncementController::class, 'reorder'])->name('announcements.reorder');
+
         // Enhanced Media Library Routes (integrated with CMS)
         Route::prefix('media-library')->name('media-library.')->group(function () {
             Route::get('/', [CmsPageController::class, 'media'])->name('index');
@@ -262,6 +274,12 @@ Route::middleware('auth')->group(function () {
             Route::post('/bulk-delete', [CmsPageController::class, 'bulkDeleteMedia'])->name('bulk-delete');
             Route::post('/gallery', [CmsPageController::class, 'createGallery'])->name('gallery.create');
         });
+
+        // Announcements Management Routes
+        Route::resource('announcements', AnnouncementController::class);
+        Route::patch('/announcements/{announcement}/toggle-status', [AnnouncementController::class, 'toggleStatus'])->name('announcements.toggle-status');
+        Route::patch('/announcements/{announcement}/toggle-featured', [AnnouncementController::class, 'toggleFeatured'])->name('announcements.toggle-featured');
+        Route::post('/announcements/reorder', [AnnouncementController::class, 'reorder'])->name('announcements.reorder');
 
     });
     
@@ -285,5 +303,13 @@ Route::middleware('auth')->group(function () {
         
         // Private Stocking Management Routes
         Route::resource('private-stockings', \App\Http\Controllers\Crm\PrivateStockingController::class);
+        
+        // Target Management Routes
+        Route::resource('targets', \App\Http\Controllers\Crm\TargetController::class);
+        Route::post('targets/{target}/update-progress', [\App\Http\Controllers\Crm\TargetController::class, 'updateProgress'])->name('targets.update-progress');
+        Route::post('targets/{target}/complete', [\App\Http\Controllers\Crm\TargetController::class, 'complete'])->name('targets.complete');
+        Route::post('targets/{target}/pause', [\App\Http\Controllers\Crm\TargetController::class, 'pause'])->name('targets.pause');
+        Route::post('targets/{target}/resume', [\App\Http\Controllers\Crm\TargetController::class, 'resume'])->name('targets.resume');
+        Route::post('targets/{target}/cancel', [\App\Http\Controllers\Crm\TargetController::class, 'cancel'])->name('targets.cancel');
     });
 });

@@ -766,6 +766,10 @@ class SidebarPanel
                         'title' => 'Private Stockings',
                         'route_name' => 'crm.private-stockings.index'
                     ],
+                    'crm_targets' => [
+                        'title' => 'Targets',
+                        'route_name' => 'crm.targets.index'
+                    ],
                 ]
             ]
         ];

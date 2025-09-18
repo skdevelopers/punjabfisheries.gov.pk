@@ -45,48 +45,48 @@
 
                         <!-- Table -->
                         <div class="overflow-x-auto">
-                            <table class="table">
-                                <thead>
+                            <table class="w-full">
+                                <thead class="border-b border-slate-200 dark:border-navy-500">
                                     <tr>
-                                        <th class="whitespace-nowrap">ID</th>
-                                        <th class="whitespace-nowrap">Species</th>
-                                        <th class="whitespace-nowrap">No.</th>
-                                        <th class="whitespace-nowrap">Water Body Name</th>
-                                        <th class="whitespace-nowrap">Created At</th>
-                                        <th class="whitespace-nowrap">Actions</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">ID</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">Species</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">No.</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">Water Body Name</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">Created At</th>
+                                        <th class="whitespace-nowrap px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-navy-300 uppercase tracking-wider">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="divide-y divide-slate-200 dark:divide-navy-500">
                                     @forelse($publicStockings as $stocking)
-                                        <tr x-data="{ isDeleting: false }" x-show="!isDeleting" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                                            <td class="font-medium">{{ $stocking->id }}</td>
-                                            <td>{{ $stocking->species }}</td>
-                                            <td>{{ $stocking->no }}</td>
-                                            <td>{{ $stocking->water_body_name }}</td>
-                                            <td>{{ $stocking->created_at->format('M d, Y') }}</td>
-                                            <td>
+                                        <tr x-data="{ isDeleting: false }" x-show="!isDeleting" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="hover:bg-slate-50 dark:hover:bg-navy-600 transition-colors">
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-navy-50">{{ $stocking->id }}</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-navy-50">{{ $stocking->species }}</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-navy-50">{{ $stocking->no }}</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-navy-50">{{ $stocking->water_body_name }}</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-navy-300">{{ $stocking->created_at->format('M d, Y') }}</td>
+                                            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex items-center space-x-2">
                                                     <a href="{{ route('crm.public-stockings.show', $stocking->id) }}" 
-                                                       class="btn size-8 rounded-full p-0 bg-slate-150 text-slate-600 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                                                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                       class="text-info hover:text-info-focus" title="View">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                                         </svg>
                                                     </a>
                                                     <a href="{{ route('crm.public-stockings.edit', $stocking->id) }}" 
-                                                       class="btn size-8 rounded-full p-0 bg-slate-150 text-slate-600 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-100 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
-                                                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                       class="text-primary hover:text-primary-focus" title="Edit">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                         </svg>
                                                     </a>
                                                     <button type="button" 
                                                             @click="deleteRecord({{ $stocking->id }}, $el.closest('tr'))"
                                                             :disabled="isDeleting"
-                                                            class="btn size-8 rounded-full p-0 bg-red-500/10 text-red-500 hover:bg-red-500/20 focus:bg-red-500/20 active:bg-red-500/20 disabled:opacity-50">
-                                                        <svg x-show="!isDeleting" class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            class="text-error hover:text-error-focus disabled:opacity-50" title="Delete">
+                                                        <svg x-show="!isDeleting" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                                         </svg>
-                                                        <svg x-show="isDeleting" class="size-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                                                        <svg x-show="isDeleting" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                         </svg>
@@ -96,8 +96,14 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center py-8 text-slate-500 dark:text-navy-200">
-                                                No public stocking records found.
+                                            <td colspan="6" class="px-4 py-12 text-center">
+                                                <div class="text-slate-500 dark:text-navy-300">
+                                                    <svg class="w-12 h-12 mx-auto mb-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 009.586 13H7"></path>
+                                                    </svg>
+                                                    <p class="text-lg font-medium">No public stocking records found</p>
+                                                    <p class="text-sm">Get started by creating your first record.</p>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforelse
