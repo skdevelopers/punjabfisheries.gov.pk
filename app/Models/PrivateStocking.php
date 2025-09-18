@@ -11,11 +11,12 @@ class PrivateStocking extends Model
 
     protected $fillable = [
         'species',
-        'no',
+        'no', // This field now stores weight
         'income_from_fish_seed',
     ];
 
     protected $casts = [
+        'no' => 'decimal:2', // Cast as decimal for weight
         'income_from_fish_seed' => 'decimal:2',
     ];
 

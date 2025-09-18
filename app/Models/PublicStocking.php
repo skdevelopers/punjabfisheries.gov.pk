@@ -11,8 +11,12 @@ class PublicStocking extends Model
 
     protected $fillable = [
         'species',
-        'no',
+        'no', // This field now stores weight
         'water_body_name',
+    ];
+
+    protected $casts = [
+        'no' => 'decimal:2', // Cast as decimal for weight
     ];
 
     // Species constants

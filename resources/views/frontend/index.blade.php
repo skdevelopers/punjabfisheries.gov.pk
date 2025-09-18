@@ -2,11 +2,12 @@
 <html lang="en">
   
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.plyr.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.plyr.io; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
-    
-    <title>Department of Fisheries - Punjab</title>
+  
+  <title>Department of Fisheries - Punjab</title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/fav.png') }}" type="image/x-icon" />

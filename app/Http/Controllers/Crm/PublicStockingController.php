@@ -34,16 +34,16 @@ class PublicStockingController extends Controller
         $request->validate([
             'entries' => 'required|array|min:1',
             'entries.*.species' => 'required|string',
-            'entries.*.no' => 'required|integer|min:1',
+            'entries.*.weight' => 'required|numeric|min:0',
             'entries.*.water_body_name' => 'required|string|max:255',
         ], [
             'entries.required' => 'At least one entry is required.',
             'entries.array' => 'Entries must be in array format.',
             'entries.min' => 'At least one entry is required.',
             'entries.*.species.required' => 'Species selection is required for all entries.',
-            'entries.*.no.required' => 'Number is required for all entries.',
-            'entries.*.no.integer' => 'Number must be an integer.',
-            'entries.*.no.min' => 'Number must be at least 1.',
+            'entries.*.weight.required' => 'Weight is required for all entries.',
+            'entries.*.weight.numeric' => 'Weight must be a number.',
+            'entries.*.weight.min' => 'Weight cannot be negative.',
             'entries.*.water_body_name.required' => 'Water body name is required for all entries.',
             'entries.*.water_body_name.max' => 'Water body name cannot exceed 255 characters.',
         ]);
@@ -53,7 +53,7 @@ class PublicStockingController extends Controller
             foreach ($request->entries as $entry) {
                 PublicStocking::create([
                     'species' => $entry['species'],
-                    'no' => $entry['no'],
+                    'no' => $entry['weight'], // Using weight value for no field
                     'water_body_name' => $entry['water_body_name'],
                 ]);
                 $createdCount++;

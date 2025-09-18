@@ -35,11 +35,9 @@
                             <div class="space-y-4">
                                 <template x-for="(entry, index) in entries" :key="index">
                                     <div class="entry-row bg-slate-50 dark:bg-navy-800 p-6 rounded-lg border border-slate-200 dark:border-navy-600">
-                                        <div class="flex items-center justify-between mb-4">
-                                            <h3 class="text-lg font-medium text-slate-800 dark:text-navy-100" x-text="`Entry ${index + 1}`"></h3>
+                                        <div class="flex items-center justify-end mb-4" x-show="entries.length > 1">
                                             <button type="button" 
                                                     @click="removeEntry(index)"
-                                                    x-show="entries.length > 1"
                                                     class="btn size-8 rounded-full p-0 bg-red-500/10 text-red-500 hover:bg-red-500/20">
                                                 <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -64,18 +62,40 @@
                                                 </select>
                                             </div>
 
-                                            <!-- Number -->
+                                            <!-- Weight (Kg) -->
                                             <div>
                                                 <label class="block text-sm font-medium text-slate-700 dark:text-navy-200 mb-1">
-                                                    No. <span class="text-red-500">*</span>
+                                                    Weight (Kg) <span class="text-red-500">*</span>
                                                 </label>
-                                                <input type="number" 
-                                                       :name="`entries[${index}][no]`" 
-                                                       x-model="entry.no"
-                                                       class="form-input w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
-                                                       min="1" 
-                                                       placeholder="Enter number"
-                                                       required>
+                                                <div class="relative">
+                                                    <input type="number" 
+                                                           :name="`entries[${index}][weight]`" 
+                                                           x-model="entry.weight"
+                                                           class="form-input w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 pr-10 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
+                                                           step="0.01" 
+                                                           min="0" 
+                                                           placeholder="0.00"
+                                                           required>
+                                                    <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 text-xs">Kg</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Water Body Name -->
+                                            <div>
+                                                <label class="block text-sm font-medium text-slate-700 dark:text-navy-200 mb-1">
+                                                    Name of Water Body <span class="text-red-500">*</span>
+                                                </label>
+                                                <select :name="`entries[${index}][water_body_name]`" 
+                                                        x-model="entry.water_body_name"
+                                                        class="form-select w-full rounded-lg border-2 border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent dark:focus:ring-accent/20" 
+                                                        required>
+                                                    <option value="">Select Water Body</option>
+                                                    <option value="indus">Indus River</option>
+                                                    <option value="jhelum">Jhelum River</option>
+                                                    <option value="chenab">Chenab River</option>
+                                                    <option value="ravi">Ravi River</option>
+                                                    <option value="sutlej">Sutlej River</option>
+                                                </select>
                                             </div>
 
                                             <!-- Income from Fish Seed -->
@@ -143,7 +163,8 @@
             return {
                 entries: [{
                     species: '',
-                    no: '',
+                    weight: '',
+                    water_body_name: '',
                     income_from_fish_seed: ''
                 }],
                 isSubmitting: false,
@@ -151,7 +172,8 @@
                 addEntry() {
                     this.entries.push({
                         species: '',
-                        no: '',
+                        weight: '',
+                        water_body_name: '',
                         income_from_fish_seed: ''
                     });
                 },
@@ -171,7 +193,8 @@
                         
                         this.entries.forEach((entry, index) => {
                             formData.append(`entries[${index}][species]`, entry.species);
-                            formData.append(`entries[${index}][no]`, entry.no);
+                            formData.append(`entries[${index}][weight]`, entry.weight);
+                            formData.append(`entries[${index}][water_body_name]`, entry.water_body_name);
                             formData.append(`entries[${index}][income_from_fish_seed]`, entry.income_from_fish_seed);
                         });
 

@@ -79,8 +79,8 @@
                             <tr>
                                 <td>
                                     <div class="flex items-center space-x-3">
-                                        @if($post->featured_image)
-                                            <img src="{{ asset('storage/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-12 h-12 rounded object-cover">
+                                        @if($post->getFirstMedia('featured_image'))
+                                            <img src="{{ $post->getFirstMedia('featured_image')->getUrl('thumb') }}" alt="{{ $post->title }}" class="w-12 h-12 rounded object-cover">
                                         @else
                                             <div class="w-12 h-12 rounded bg-slate-200 dark:bg-navy-600 flex items-center justify-center">
                                                 <svg class="size-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

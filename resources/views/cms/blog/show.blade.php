@@ -30,9 +30,9 @@
                     <!-- Post Content -->
                     <div class="card p-4 sm:p-5">
                         <!-- Banner Image -->
-                        @if($post->banner_image)
+                        @if($post->getFirstMedia('banner_image'))
                         <div class="mb-6">
-                            <img src="{{ asset('storage/' . $post->banner_image) }}" alt="{{ $post->title }}" class="w-full h-48 object-cover rounded-lg">
+                            <img src="{{ $post->getFirstMedia('banner_image')->getUrl() }}" alt="{{ $post->title }}" class="w-full h-48 object-cover rounded-lg">
                         </div>
                         @endif
 

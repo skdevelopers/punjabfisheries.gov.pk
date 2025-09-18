@@ -210,9 +210,9 @@ class SidebarPanel
                         'title' => 'Form Layout v4',
                         'route_name' => 'forms/layout-v4'
                     ],
-                    'forms_layout_v5' => [
-                        'title' => 'Form Layout v5',
-                        'route_name' => 'forms/layout-v5'
+                    'forms_profile_settings' => [
+                        'title' => 'Profile Settings',
+                        'route_name' => 'profile-settings'
                     ],
                 ],
                 [
@@ -721,8 +721,12 @@ class SidebarPanel
                         'title' => 'Sliders',
                         'route_name' => 'cms.sliders.index'
                     ],
+                    'cms_tenders' => [
+                        'title' => 'Tenders',
+                        'route_name' => 'cms.tenders.index'
+                    ],
                     'cms_media' => [
-                        'title' => 'Media',
+                        'title' => 'Media Library',
                         'route_name' => 'cms.media'
                     ],
                 ]

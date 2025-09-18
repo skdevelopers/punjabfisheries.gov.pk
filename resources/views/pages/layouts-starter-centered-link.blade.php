@@ -123,7 +123,7 @@
                 <!-- Bottom Links -->
                 <div class="flex flex-col items-center space-y-3 py-3">
                     <!-- Settings -->
-                    <a href="{{ route('forms/layout-v5') }}"
+                    <a href="{{ route('profile.user', ['username' => Auth::user()->name]) }}"
                         class="flex size-11 items-center justify-center rounded-lg outline-hidden transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                         <svg class="size-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-opacity="0.3" fill="currentColor"

@@ -10,7 +10,7 @@
                                 <h1 class="text-3xl font-semibold text-slate-800 dark:text-navy-50 m-0">Offices</h1>
                                 <p class="text-slate-500 dark:text-navy-200 text-base mt-2">Manage office information and contacts</p>
                             </div>
-                            <a href="{{ route('cms.hatcheries.create') }}" 
+                            <a href="{{ route('crm.hatcheries.create') }}" 
                                class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent-focus/90">
                                 Add New Office
                             </a>
@@ -96,7 +96,7 @@
                                             </td>
                                             <td class="py-4 px-4">
                                                 <div class="flex space-x-3">
-                                                    <a href="{{ route('cms.hatcheries.show', $hatchery->id) }}" 
+                                                    <a href="{{ route('crm.hatcheries.show', $hatchery->id) }}" 
                                                        class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-primary hover:text-primary-focus dark:text-accent dark:hover:text-accent-focus border border-primary/20 hover:border-primary/40 rounded-md transition-colors">
                                                         <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -104,14 +104,14 @@
                                                         </svg>
                                                         View
                                                     </a>
-                                                    <a href="{{ route('cms.hatcheries.edit', $hatchery->id) }}" 
+                                                    <a href="{{ route('crm.hatcheries.edit', $hatchery->id) }}" 
                                                        class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-info hover:text-info-focus border border-info/20 hover:border-info/40 rounded-md transition-colors">
                                                         <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                         </svg>
                                                         Edit
                                                     </a>
-                                                    <form action="{{ route('cms.hatcheries.destroy', $hatchery->id) }}" 
+                                                    <form action="{{ route('crm.hatcheries.destroy', $hatchery->id) }}" 
                                                           method="POST" class="inline" 
                                                           onsubmit="return confirm('Are you sure you want to delete this office?')">
                                                         @csrf
@@ -138,7 +138,7 @@
                                                     </div>
                                                     <p class="text-lg font-medium text-slate-600 dark:text-navy-200 mb-2">No offices found</p>
                                                     <p class="text-sm text-slate-500 dark:text-navy-300 mb-4">Get started by creating your first office</p>
-                                                    <a href="{{ route('cms.hatcheries.create') }}" 
+                                                    <a href="{{ route('crm.hatcheries.create') }}" 
                                                        class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent-focus/90">
                                                         Create New Office
                                                     </a>

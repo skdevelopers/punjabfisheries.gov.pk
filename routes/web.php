@@ -8,6 +8,7 @@ use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\FrontendController;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::get('/blog/{slug}', [FrontendController::class, 'blogDetails'])->name('fr
 Route::post('/blog/comment', [FrontendController::class, 'submitComment'])->name('frontend.blog.comment');
 Route::get('/service/{slug}', [FrontendController::class, 'serviceDetails'])->name('frontend.service.details');
 Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('frontend.page');
+Route::get('/tenders', [FrontendController::class, 'tenders'])->name('frontend.tenders');
+Route::get('/tender/{id}/download', [FrontendController::class, 'downloadTenderPdf'])->name('frontend.tender.download');
+Route::get('/tender/{id}/download-2', [FrontendController::class, 'downloadTenderPdf2'])->name('frontend.tender.download2');
 Route::middleware(['auth','verified'])->group(function (): void {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
@@ -89,7 +93,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms/layout-v2', [PagesController::class, 'formsLayoutV2'])->name('forms/layout-v2');
     Route::get('/forms/layout-v3', [PagesController::class, 'formsLayoutV3'])->name('forms/layout-v3');
     Route::get('/forms/layout-v4', [PagesController::class, 'formsLayoutV4'])->name('forms/layout-v4');
-    Route::get('/forms/layout-v5', [PagesController::class, 'formsLayoutV5'])->name('forms/layout-v5');
+    Route::get('/profile/{username}', [PagesController::class, 'profileUser'])->name('profile.user');
+    Route::redirect('/forms/profile-settings', '/profile-settings');
+    Route::get('/profile-settings', function () {
+        return redirect()->route('profile.user', ['username' => Auth::user()->name]);
+    })->name('profile-settings');
 
     // Profile Navigation Routes
     Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
@@ -204,6 +212,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/pages/{id}', [CmsPageController::class, 'deletePage'])->name('pages.delete');
         Route::get('/media', [CmsPageController::class, 'media'])->name('media');
         Route::post('/media/upload', [CmsPageController::class, 'uploadMedia'])->name('media.upload');
+        Route::get('/media/images', [CmsPageController::class, 'getImages'])->name('media.images');
+        Route::delete('/media/delete', [CmsPageController::class, 'deleteImage'])->name('media.delete');
 
         // Slider Management Routes
         Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
@@ -236,7 +246,25 @@ Route::middleware('auth')->group(function () {
         Route::patch('/blog-comments/{blogComment}/spam', [\App\Http\Controllers\Cms\BlogCommentController::class, 'markAsSpam'])->name('blog-comments.spam');
         Route::post('/blog-comments/bulk-action', [\App\Http\Controllers\Cms\BlogCommentController::class, 'bulkAction'])->name('blog-comments.bulk-action');
 
+        // Tender Management Routes
+        Route::resource('tenders', \App\Http\Controllers\Cms\TenderController::class);
+        Route::patch('/tenders/{tender}/toggle-status', [\App\Http\Controllers\Cms\TenderController::class, 'toggleStatus'])->name('tenders.toggle-status');
+        Route::get('/tenders/{tender}/download-pdf', [\App\Http\Controllers\Cms\TenderController::class, 'downloadPdf'])->name('tenders.download-pdf');
+        Route::get('/tenders/{tender}/download-pdf2', [\App\Http\Controllers\Cms\TenderController::class, 'downloadPdf2'])->name('tenders.download-pdf2');
+
+        // Enhanced Media Library Routes (integrated with CMS)
+        Route::prefix('media-library')->name('media-library.')->group(function () {
+            Route::get('/', [CmsPageController::class, 'media'])->name('index');
+            Route::get('/{media}', [CmsPageController::class, 'showMedia'])->name('show');
+            Route::post('/upload', [CmsPageController::class, 'uploadMedia'])->name('upload');
+            Route::put('/{media}', [CmsPageController::class, 'updateMedia'])->name('update');
+            Route::delete('/{media}', [CmsPageController::class, 'destroyMedia'])->name('destroy');
+            Route::post('/bulk-delete', [CmsPageController::class, 'bulkDeleteMedia'])->name('bulk-delete');
+            Route::post('/gallery', [CmsPageController::class, 'createGallery'])->name('gallery.create');
+        });
+
     });
+    
 
     // CRM Routes (separate from CMS)
     Route::prefix('crm')->name('crm.')->middleware('auth')->group(function () {

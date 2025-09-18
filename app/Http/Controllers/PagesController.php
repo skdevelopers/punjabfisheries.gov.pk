@@ -206,6 +206,34 @@ class PagesController extends Controller
 
     public function formsLayoutV5()
     {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        return view('pages/forms-layout-v5', compact('user'));
+    }
+
+    public function formsProfileSettings()
+    {
+        $user = \Illuminate\Support\Facades\Auth::user();
+        return view('pages/profile-settings', compact('user'));
+    }
+
+    public function profileUser(string $username)
+    {
+        $authUser = \Illuminate\Support\Facades\Auth::user();
+        if (!$authUser) {
+            return redirect()->route('loginView');
+        }
+
+        // Normalize username comparison (case-insensitive trim)
+        $normalizedRequested = trim(mb_strtolower($username));
+        $normalizedActual = trim(mb_strtolower((string) $authUser->name));
+
+        // If someone tries to access a different user's profile, always show the logged-in user's profile
+        if ($normalizedRequested !== $normalizedActual) {
+            return redirect()->route('profile.user', ['username' => $authUser->name]);
+        }
+
+        $user = $authUser;
+        return view('pages/profile', compact('user'));
     }
 
     public function formsInputText()

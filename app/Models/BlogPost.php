@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Image\Enums\Fit;
 
-class BlogPost extends Model
+class BlogPost extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'title',
@@ -155,5 +159,96 @@ class BlogPost extends Model
             'status' => 'draft',
             'published_at' => null
         ]);
+    }
+
+    /**
+     * Media collections for blog post images
+     */
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('featured_image')
+            ->useDisk('public')
+            ->acceptsMimeTypes(['image/jpeg','image/png','image/webp'])
+            ->withResponsiveImages()
+            ->singleFile()
+            ->useFallbackUrl(url('/images/800x600.png'))
+            ->useFallbackPath(public_path('/images/800x600.png'));
+
+        $this
+            ->addMediaCollection('banner_image')
+            ->useDisk('public')
+            ->acceptsMimeTypes(['image/jpeg','image/png','image/webp'])
+            ->withResponsiveImages()
+            ->singleFile()
+            ->useFallbackUrl(url('/images/800x600.png'))
+            ->useFallbackPath(public_path('/images/800x600.png'));
+    }
+
+    /**
+     * Media conversions for blog post images
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Generic thumb conversion for both collections
+        $this
+            ->addMediaConversion('thumb')
+            ->width(300)
+            ->height(200)
+            ->keepOriginalImageFormat()
+            ->performOnCollections('featured_image', 'banner_image')
+            ->nonQueued();
+
+        // Featured image conversions
+        $this
+            ->addMediaConversion('featured_thumb')
+            ->fit(Fit::Crop, 400, 300)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('featured_image')
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('featured_web')
+            ->fit(Fit::Max, 1200, 800)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('featured_image')
+            ->nonQueued();
+
+        // Banner image conversions
+        $this
+            ->addMediaConversion('banner_thumb')
+            ->fit(Fit::Crop, 600, 200)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('banner_image')
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('banner_web')
+            ->fit(Fit::Max, 1920, 600)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('banner_image')
+            ->nonQueued();
+    }
+
+    /**
+     * Get featured image URL
+     */
+    public function getFeaturedImageUrlAttribute()
+    {
+        $media = $this->getFirstMedia('featured_image');
+        return $media ? $media->getUrl() : url('/images/800x600.png');
+    }
+
+    /**
+     * Get banner image URL
+     */
+    public function getBannerImageUrlAttribute()
+    {
+        $media = $this->getFirstMedia('banner_image');
+        return $media ? $media->getUrl() : url('/images/800x600.png');
     }
 }

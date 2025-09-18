@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Image\Enums\Fit;
 
-class Slider extends Model
+class Slider extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'title',
@@ -48,5 +52,60 @@ class Slider extends Model
             return Storage::url($this->image_path);
         }
         return asset('images/800x600.png');
+    }
+
+    /**
+     * Media collections for slider images
+     */
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('slider_image')
+            ->useDisk('public')
+            ->acceptsMimeTypes(['image/jpeg','image/png','image/webp'])
+            ->withResponsiveImages()
+            ->singleFile()
+            ->useFallbackUrl(url('/images/800x600.png'))
+            ->useFallbackPath(public_path('/images/800x600.png'));
+    }
+
+    /**
+     * Media conversions for slider images
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Slider image conversions
+        $this
+            ->addMediaConversion('slider_thumb')
+            ->fit(Fit::Crop, 400, 300)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('slider_image')
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('slider_web')
+            ->fit(Fit::Max, 1920, 800)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('slider_image')
+            ->nonQueued();
+
+        $this
+            ->addMediaConversion('slider_mobile')
+            ->fit(Fit::Max, 768, 400)
+            ->format('webp')
+            ->withResponsiveImages()
+            ->performOnCollections('slider_image')
+            ->nonQueued();
+    }
+
+    /**
+     * Get slider image URL using media library
+     */
+    public function getSliderImageUrlAttribute()
+    {
+        $media = $this->getFirstMedia('slider_image');
+        return $media ? $media->getUrl() : $this->getImageUrlAttribute();
     }
 }

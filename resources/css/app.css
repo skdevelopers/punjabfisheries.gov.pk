@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 /* 2) Plugins */
-@plugin "@tailwindcss/forms";
-/* @plugin "@tailwindcss/typography";  // enable if you use prose */
+/* @import "@tailwindcss/forms"; */
+/* @import "@tailwindcss/typography";  // enable if you use prose */
 
 /* 3) Sources (trim if slow) */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -113,4 +113,47 @@
     .bg-primary { background-color: var(--color-primary); }
     .text-primary { color: var(--color-primary); }
     .shadow-soft { box-shadow: var(--shadow-soft); }
+    
+    /* Alert classes */
+    .alert {
+        @apply p-4 rounded-lg border;
+    }
+    .alert-error {
+        @apply bg-red-50 border-red-200 text-red-800;
+    }
+    .alert-success {
+        @apply bg-green-50 border-green-200 text-green-800;
+    }
+    .alert-warning {
+        @apply bg-yellow-50 border-yellow-200 text-yellow-800;
+    }
+    .alert-info {
+        @apply bg-blue-50 border-blue-200 text-blue-800;
+    }
+    
+    /* Line clamp utilities */
+    .line-clamp-1 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+    .line-clamp-2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    .line-clamp-3 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+    .line-clamp-4 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+    }
 }

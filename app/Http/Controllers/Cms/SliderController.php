@@ -40,12 +40,12 @@ class SliderController extends Controller
         $data = $request->except(['image']);
         $data['is_active'] = $request->has('is_active');
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('sliders', 'public');
-            $data['image_path'] = $imagePath;
-        }
+        $slider = Slider::create($data);
 
-        Slider::create($data);
+        if ($request->hasFile('image')) {
+            $slider->addMediaFromRequest('image')
+                ->toMediaCollection('slider_image');
+        }
         return redirect()->route('cms.sliders.index')->with('success', 'Slider created successfully!');
     }
 
@@ -76,12 +76,10 @@ class SliderController extends Controller
         $data['is_active'] = $request->has('is_active');
 
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($slider->image_path) {
-                Storage::disk('public')->delete($slider->image_path);
-            }
-            $imagePath = $request->file('image')->store('sliders', 'public');
-            $data['image_path'] = $imagePath;
+            // Clear existing slider_image
+            $slider->clearMediaCollection('slider_image');
+            $slider->addMediaFromRequest('image')
+                ->toMediaCollection('slider_image');
         }
 
         $slider->update($data);
@@ -92,10 +90,8 @@ class SliderController extends Controller
     {
         $slider = Slider::findOrFail($id);
         
-        // Delete image if exists
-        if ($slider->image_path) {
-            Storage::disk('public')->delete($slider->image_path);
-        }
+        // Clear all media collections (this will also delete the files)
+        $slider->clearMediaCollection('slider_image');
         
         $slider->delete();
         return redirect()->route('cms.sliders.index')->with('success', 'Slider deleted successfully!');

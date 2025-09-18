@@ -78,6 +78,51 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Total Tenders -->
+                <div class="card p-4 sm:p-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs+ text-slate-500 dark:text-navy-200">Total Tenders</p>
+                            <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ \App\Models\Tender::count() }}</p>
+                        </div>
+                        <div class="size-12 rounded-full bg-blue-500/10 flex items-center justify-center">
+                            <svg class="size-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Tenders -->
+                <div class="card p-4 sm:p-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs+ text-slate-500 dark:text-navy-200">Active Tenders</p>
+                            <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ \App\Models\Tender::where('status', 'active')->where('is_published', true)->count() }}</p>
+                        </div>
+                        <div class="size-12 rounded-full bg-success/10 flex items-center justify-center">
+                            <svg class="size-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expired Tenders -->
+                <div class="card p-4 sm:p-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs+ text-slate-500 dark:text-navy-200">Expired Tenders</p>
+                            <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ \App\Models\Tender::where('deadline', '<', now())->count() }}</p>
+                        </div>
+                        <div class="size-12 rounded-full bg-error/10 flex items-center justify-center">
+                            <svg class="size-6 text-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Quick Actions -->
@@ -202,6 +247,32 @@
                                 <p class="text-xs text-slate-500 dark:text-navy-200">Edit and organize your pages</p>
                             </div>
                         </a>
+
+                        <!-- Create New Tender -->
+                        <a href="{{ route('cms.tenders.create') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
+                            <div class="size-10 rounded-full bg-blue-500/10 flex items-center justify-center mr-3">
+                                <svg class="size-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Create New Tender</h4>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">Add a new tender notice</p>
+                            </div>
+                        </a>
+
+                        <!-- Manage Tenders -->
+                        <a href="{{ route('cms.tenders.index') }}" class="flex items-center p-4 rounded-lg border border-slate-200 hover:bg-slate-50 dark:border-navy-500 dark:hover:bg-navy-600 transition-colors">
+                            <div class="size-10 rounded-full bg-indigo-500/10 flex items-center justify-center mr-3">
+                                <svg class="size-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-slate-800 dark:text-navy-50">Manage Tenders</h4>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">Edit and manage tender notices</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -212,20 +283,49 @@
                     <h3 class="text-lg font-medium text-slate-800 dark:text-navy-50 mb-4">Recent Activity</h3>
                     <div class="space-y-4">
                         @php
-                            $recentPosts = \App\Models\BlogPost::latest()->limit(3)->get();
+                            $recentPosts = \App\Models\BlogPost::latest()->limit(2)->get();
+                            $recentTenders = \App\Models\Tender::latest()->limit(2)->get();
+                            $recentActivities = collect();
+                            
+                            // Add blog posts to activities
+                            foreach($recentPosts as $post) {
+                                $recentActivities->push([
+                                    'type' => 'blog',
+                                    'title' => $post->title,
+                                    'action' => $post->status == 'published' ? 'Blog post published' : 'Blog post created',
+                                    'time' => $post->created_at,
+                                    'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
+                                    'color' => 'purple-500'
+                                ]);
+                            }
+                            
+                            // Add tenders to activities
+                            foreach($recentTenders as $tender) {
+                                $recentActivities->push([
+                                    'type' => 'tender',
+                                    'title' => $tender->title,
+                                    'action' => $tender->is_published ? 'Tender published' : 'Tender created',
+                                    'time' => $tender->created_at,
+                                    'icon' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+                                    'color' => 'blue-500'
+                                ]);
+                            }
+                            
+                            // Sort by creation time and take latest 3
+                            $recentActivities = $recentActivities->sortByDesc('time')->take(3);
                         @endphp
                         
-                        @forelse($recentPosts as $post)
+                        @forelse($recentActivities as $activity)
                         <div class="flex items-start space-x-3">
-                            <div class="size-8 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                <svg class="size-4 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            <div class="size-8 rounded-full bg-{{ $activity['color'] }}/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="size-4 text-{{ $activity['color'] }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $activity['icon'] }}"></path>
                                 </svg>
                             </div>
                             <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-slate-800 dark:text-navy-50">{{ $post->status == 'published' ? 'Blog post published' : 'Blog post created' }}</p>
-                                <p class="text-xs text-slate-500 dark:text-navy-200">"{{ $post->title }}"</p>
-                                <p class="text-xs text-slate-400 dark:text-navy-300">{{ $post->created_at->diffForHumans() }}</p>
+                                <p class="text-sm font-medium text-slate-800 dark:text-navy-50">{{ $activity['action'] }}</p>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">"{{ Str::limit($activity['title'], 50) }}"</p>
+                                <p class="text-xs text-slate-400 dark:text-navy-300">{{ $activity['time']->diffForHumans() }}</p>
                             </div>
                         </div>
                         @empty
@@ -237,7 +337,7 @@
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-slate-800 dark:text-navy-50">No recent activity</p>
-                                <p class="text-xs text-slate-500 dark:text-navy-200">Create your first blog post to get started</p>
+                                <p class="text-xs text-slate-500 dark:text-navy-200">Create your first content to get started</p>
                             </div>
                         </div>
                         @endforelse

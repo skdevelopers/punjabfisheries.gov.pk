@@ -80,19 +80,9 @@ class BlogController extends Controller
             'tags.*' => 'exists:blog_tags,id'
         ]);
 
-        $data = $request->all();
+        $data = $request->except(['featured_image', 'banner_image']);
         $data['author_id'] = Auth::id();
         $data['slug'] = Str::slug($request->title);
-
-        // Handle featured image upload
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $this->uploadImage($request->file('featured_image'), 'blog/featured');
-        }
-
-        // Handle banner image upload
-        if ($request->hasFile('banner_image')) {
-            $data['banner_image'] = $this->uploadImage($request->file('banner_image'), 'blog/banner');
-        }
 
         // Set published_at if status is published and no date provided
         if ($request->status === 'published' && !$request->published_at) {
@@ -100,6 +90,18 @@ class BlogController extends Controller
         }
 
         $post = BlogPost::create($data);
+
+        // Handle featured image upload
+        if ($request->hasFile('featured_image')) {
+            $post->addMediaFromRequest('featured_image')
+                ->toMediaCollection('featured_image');
+        }
+
+        // Handle banner image upload
+        if ($request->hasFile('banner_image')) {
+            $post->addMediaFromRequest('banner_image')
+                ->toMediaCollection('banner_image');
+        }
 
         // Attach tags
         if ($request->has('tags')) {
@@ -154,25 +156,23 @@ class BlogController extends Controller
             'tags.*' => 'exists:blog_tags,id'
         ]);
 
-        $data = $request->all();
+        $data = $request->except(['featured_image', 'banner_image']);
         $data['slug'] = Str::slug($request->title);
 
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
-            // Delete old image
-            if ($blog->featured_image) {
-                Storage::delete($blog->featured_image);
-            }
-            $data['featured_image'] = $this->uploadImage($request->file('featured_image'), 'blog/featured');
+            // Clear existing featured_image
+            $blog->clearMediaCollection('featured_image');
+            $blog->addMediaFromRequest('featured_image')
+                ->toMediaCollection('featured_image');
         }
 
         // Handle banner image upload
         if ($request->hasFile('banner_image')) {
-            // Delete old image
-            if ($blog->banner_image) {
-                Storage::delete($blog->banner_image);
-            }
-            $data['banner_image'] = $this->uploadImage($request->file('banner_image'), 'blog/banner');
+            // Clear existing banner_image
+            $blog->clearMediaCollection('banner_image');
+            $blog->addMediaFromRequest('banner_image')
+                ->toMediaCollection('banner_image');
         }
 
         // Set published_at if status is published and no date provided

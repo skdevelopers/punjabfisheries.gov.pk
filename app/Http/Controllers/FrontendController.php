@@ -9,6 +9,8 @@ use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\BlogComment;
+use App\Models\Tender;
+use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
 {
@@ -176,5 +178,75 @@ class FrontendController extends Controller
     public function serviceDetails($slug)
     {
         return view('frontend.service-details', compact('slug'));
+    }
+    
+    /**
+     * Display tenders page
+     */
+    public function tenders(Request $request)
+    {
+        // Start with published tenders only
+        $query = Tender::published();
+
+        // Search functionality
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                  ->orWhere('description', 'like', '%' . $request->search . '%')
+                  ->orWhere('tender_number', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Filter by status - if not specified, show both active and closed
+        if ($request->filled('status')) {
+            if ($request->status === 'active') {
+                $query->where('status', 'active')->notExpired();
+            } elseif ($request->status === 'closed') {
+                $query->where(function($q) {
+                    $q->where('status', 'closed')->orWhere('deadline', '<', now());
+                });
+            }
+        } else {
+            // If no status filter, show active tenders by default
+            $query->where('status', 'active')->notExpired();
+        }
+
+        $tenders = $query->latest('published_at')->paginate(12);
+
+        return view('frontend.tenders', compact('tenders'));
+    }
+    
+    /**
+     * Download tender PDF
+     */
+    public function downloadTenderPdf($id)
+    {
+        $tender = Tender::published()->findOrFail($id);
+        
+        if (!$tender->pdf_path || !Storage::disk('public')->exists($tender->pdf_path)) {
+            return redirect()->back()->with('error', 'PDF file not found.');
+        }
+        
+        // Increment view count
+        $tender->incrementViewCount();
+        
+        return response()->download(storage_path('app/public/' . $tender->pdf_path), $tender->tender_number . '.pdf');
+    }
+
+    /**
+     * Download tender PDF 2
+     */
+    public function downloadTenderPdf2($id)
+    {
+        $tender = Tender::published()->findOrFail($id);
+        
+        if (!$tender->pdf_path_2 || !Storage::disk('public')->exists($tender->pdf_path_2)) {
+            return redirect()->back()->with('error', 'PDF file not found.');
+        }
+        
+        // Increment view count
+        $tender->incrementViewCount();
+        
+        return response()->download(storage_path('app/public/' . $tender->pdf_path_2), $tender->tender_number . '_2.pdf');
     }
 }

@@ -8,14 +8,20 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Gallery - a central bucket for images.
+ * Gallery - WordPress-like media library for images and files.
  *
  * @property int $id
  * @property string $title
  * @property string $slug
+ * @property string|null $description
  * @property int|null $org_unit_id
+ * @property bool $is_public
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Gallery extends Model implements HasMedia
 {
@@ -23,46 +29,252 @@ class Gallery extends Model implements HasMedia
     use HasOrgScope;
 
     /** @var array<int, string> */
-    protected $fillable = ['title','slug','description','org_unit_id','is_public'];
+    protected $fillable = [
+        'title',
+        'slug', 
+        'description',
+        'org_unit_id',
+        'is_public'
+    ];
+
+    /** @var array<string, string> */
+    protected $casts = [
+        'is_public' => 'boolean',
+    ];
 
     /**
-     * Media collections. We keep one named 'images'.
-     * withResponsiveImages() here generates srcset for the ORIGINAL file.
+     * Media collections for different file types
      */
     public function registerMediaCollections(): void
     {
+        // Images collection - main collection for all images
         $this
             ->addMediaCollection('images')
-            ->useDisk(config('filesystems.default', 'public'))
-            ->acceptsMimeTypes(['image/jpeg','image/png','image/webp'])
-            ->withResponsiveImages() // responsive sizes for the original
+            ->useDisk('public')
+            ->acceptsMimeTypes([
+                'image/jpeg',
+                'image/png', 
+                'image/webp',
+                'image/gif',
+                'image/svg+xml'
+            ])
+            ->withResponsiveImages()
             ->useFallbackUrl(url('/images/app-logo.svg'))
             ->useFallbackPath(public_path('/images/app-logo.svg'));
+
+        // Documents collection
+        $this
+            ->addMediaCollection('documents')
+            ->useDisk('public')
+            ->acceptsMimeTypes([
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'text/plain',
+                'text/csv'
+            ]);
+
+        // Videos collection
+        $this
+            ->addMediaCollection('videos')
+            ->useDisk('public')
+            ->acceptsMimeTypes([
+                'video/mp4',
+                'video/webm',
+                'video/ogg',
+                'video/avi',
+                'video/mov'
+            ]);
+
+        // Audio collection
+        $this
+            ->addMediaCollection('audio')
+            ->useDisk('public')
+            ->acceptsMimeTypes([
+                'audio/mpeg',
+                'audio/wav',
+                'audio/ogg',
+                'audio/mp4'
+            ]);
     }
 
     /**
-     * Conversions:
-     * - thumb: exact crop for cards/admin (optional responsive for DPRs)
-     * - web: single “max” pipeline in WEBP, but with responsive widths
+     * Image conversions for different use cases
      */
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Card/admin thumbnail (exact crop ≈ CSS object-fit: cover)
+        // Thumbnail for admin/cards (360x240)
         $this
             ->addMediaConversion('thumb')
             ->fit(Fit::Crop, 360, 240)
             ->format('webp')
-            ->withResponsiveImages()              // create 1x/1.5x/2x etc for the thumb too
+            ->quality(85)
+            ->withResponsiveImages()
             ->performOnCollections('images')
             ->queued();
 
-        // Front-end delivery (no fixed S/M/L; let srcset pick widths)
+        // Small size (480x320)
         $this
-            ->addMediaConversion('web')
-            ->fit(Fit::Max, 2560, 2560)          // cap the long edge; keeps aspect
+            ->addMediaConversion('small')
+            ->fit(Fit::Max, 480, 320)
             ->format('webp')
-            ->withResponsiveImages()              // generates multiple widths for 'web'
+            ->quality(85)
+            ->withResponsiveImages()
             ->performOnCollections('images')
             ->queued();
+
+        // Medium size (800x600)
+        $this
+            ->addMediaConversion('medium')
+            ->fit(Fit::Max, 800, 600)
+            ->format('webp')
+            ->quality(90)
+            ->withResponsiveImages()
+            ->performOnCollections('images')
+            ->queued();
+
+        // Large size (1200x900)
+        $this
+            ->addMediaConversion('large')
+            ->fit(Fit::Max, 1200, 900)
+            ->format('webp')
+            ->quality(90)
+            ->withResponsiveImages()
+            ->performOnCollections('images')
+            ->queued();
+
+        // Extra large size (1920x1080)
+        $this
+            ->addMediaConversion('xlarge')
+            ->fit(Fit::Max, 1920, 1080)
+            ->format('webp')
+            ->quality(95)
+            ->withResponsiveImages()
+            ->performOnCollections('images')
+            ->queued();
+
+        // Square thumbnail (300x300)
+        $this
+            ->addMediaConversion('square')
+            ->fit(Fit::Crop, 300, 300)
+            ->format('webp')
+            ->quality(85)
+            ->withResponsiveImages()
+            ->performOnCollections('images')
+            ->queued();
+
+        // Avatar size (150x150)
+        $this
+            ->addMediaConversion('avatar')
+            ->fit(Fit::Crop, 150, 150)
+            ->format('webp')
+            ->quality(85)
+            ->performOnCollections('images')
+            ->queued();
+
+        // Hero banner (1920x600)
+        $this
+            ->addMediaConversion('hero')
+            ->fit(Fit::Crop, 1920, 600)
+            ->format('webp')
+            ->quality(90)
+            ->withResponsiveImages()
+            ->performOnCollections('images')
+            ->queued();
+    }
+
+    /**
+     * Get all media items for this gallery
+     */
+    public function mediaItems()
+    {
+        return $this->morphMany(Media::class, 'model');
+    }
+
+    /**
+     * Get images only
+     */
+    public function getImagesAttribute()
+    {
+        return $this->getMedia('images');
+    }
+
+    /**
+     * Get documents only
+     */
+    public function getDocumentsAttribute()
+    {
+        return $this->getMedia('documents');
+    }
+
+    /**
+     * Get videos only
+     */
+    public function getVideosAttribute()
+    {
+        return $this->getMedia('videos');
+    }
+
+    /**
+     * Get audio files only
+     */
+    public function getAudioAttribute()
+    {
+        return $this->getMedia('audio');
+    }
+
+    /**
+     * Get total file size of all media
+     */
+    public function getTotalSizeAttribute(): int
+    {
+        return $this->mediaItems()->sum('size');
+    }
+
+    /**
+     * Get formatted total size
+     */
+    public function getFormattedTotalSizeAttribute(): string
+    {
+        $bytes = $this->total_size;
+        $units = ['B', 'KB', 'MB', 'GB', 'TB'];
+        
+        for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
+            $bytes /= 1024;
+        }
+        
+        return round($bytes, 2) . ' ' . $units[$i];
+    }
+
+    /**
+     * Get media count by collection
+     */
+    public function getMediaCountsAttribute(): array
+    {
+        return [
+            'images' => $this->getMedia('images')->count(),
+            'documents' => $this->getMedia('documents')->count(),
+            'videos' => $this->getMedia('videos')->count(),
+            'audio' => $this->getMedia('audio')->count(),
+            'total' => $this->mediaItems()->count()
+        ];
+    }
+
+    /**
+     * Scope for public galleries
+     */
+    public function scopePublic($query)
+    {
+        return $query->where('is_public', true);
+    }
+
+    /**
+     * Scope for private galleries
+     */
+    public function scopePrivate($query)
+    {
+        return $query->where('is_public', false);
     }
 }

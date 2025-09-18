@@ -6,7 +6,7 @@
                 <div class="p-8">
                     <div class="mb-8">
                         <div class="flex items-center mb-4">
-                            <a href="{{ route('cms.hatcheries.index') }}" class="text-slate-500 dark:text-navy-200 mr-4 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
+                            <a href="{{ route('crm.hatcheries.index') }}" class="text-slate-500 dark:text-navy-200 mr-4 flex items-center hover:text-slate-700 dark:hover:text-navy-100">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                 </svg>
@@ -92,11 +92,11 @@
                     </div>
 
                     <div class="flex justify-end space-x-4 pt-8 border-t border-slate-200 dark:border-navy-600">
-                        <a href="{{ route('cms.hatcheries.index') }}" 
+                        <a href="{{ route('crm.hatcheries.index') }}" 
                            class="btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                             Back to List
                         </a>
-                        <a href="{{ route('cms.hatcheries.edit', $hatchery->id) }}" 
+                        <a href="{{ route('crm.hatcheries.edit', $hatchery->id) }}" 
                            class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent-focus/90">
                             Edit Office
                         </a>
