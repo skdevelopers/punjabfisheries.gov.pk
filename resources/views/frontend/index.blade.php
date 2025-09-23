@@ -45,6 +45,7 @@
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">About</a></li>
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Services</a></li>
     <li><a href="{{ route('frontend.announcements') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Announcements</a></li>
+    <li><a href="{{ route('frontend.jobs') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Careers</a></li>
     <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Shop</a></li>
     <li class="submenu-item">
       <button aria-label="submenu button" class="submenu-btn border border-neutral-40 flex w-full items-center justify-between rounded-md px-3 py-2.5 font-medium">
@@ -86,6 +87,9 @@
       </li>
       <li>
         <a class="menu-link" href="{{ route('frontend.announcements') }}">Announcements</a>
+      </li>
+      <li>
+        <a class="menu-link" href="{{ route('frontend.jobs') }}">Careers</a>
       </li>
      
       <li class="dropdown-item">

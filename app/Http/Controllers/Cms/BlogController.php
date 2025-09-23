@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -69,6 +70,8 @@ class BlogController extends Controller
             'category_id' => 'required|exists:blog_categories,id',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'gallery_featured_image' => 'nullable|string|url',
+            'gallery_banner_image' => 'nullable|string|url',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:255',
@@ -80,7 +83,7 @@ class BlogController extends Controller
             'tags.*' => 'exists:blog_tags,id'
         ]);
 
-        $data = $request->except(['featured_image', 'banner_image']);
+        $data = $request->except(['featured_image', 'banner_image', 'gallery_featured_image', 'gallery_banner_image']);
         $data['author_id'] = Auth::id();
         $data['slug'] = Str::slug($request->title);
 
@@ -91,16 +94,24 @@ class BlogController extends Controller
 
         $post = BlogPost::create($data);
 
-        // Handle featured image upload
+        // Handle featured image upload (file upload)
         if ($request->hasFile('featured_image')) {
             $post->addMediaFromRequest('featured_image')
                 ->toMediaCollection('featured_image');
         }
+        // Handle featured image from gallery
+        elseif ($request->filled('gallery_featured_image')) {
+            $this->addMediaFromUrl($post, $request->gallery_featured_image, 'featured_image');
+        }
 
-        // Handle banner image upload
+        // Handle banner image upload (file upload)
         if ($request->hasFile('banner_image')) {
             $post->addMediaFromRequest('banner_image')
                 ->toMediaCollection('banner_image');
+        }
+        // Handle banner image from gallery
+        elseif ($request->filled('gallery_banner_image')) {
+            $this->addMediaFromUrl($post, $request->gallery_banner_image, 'banner_image');
         }
 
         // Attach tags
@@ -145,6 +156,8 @@ class BlogController extends Controller
             'category_id' => 'required|exists:blog_categories,id',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'gallery_featured_image' => 'nullable|string|url',
+            'gallery_banner_image' => 'nullable|string|url',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:500',
             'meta_keywords' => 'nullable|string|max:255',
@@ -156,23 +169,33 @@ class BlogController extends Controller
             'tags.*' => 'exists:blog_tags,id'
         ]);
 
-        $data = $request->except(['featured_image', 'banner_image']);
+        $data = $request->except(['featured_image', 'banner_image', 'gallery_featured_image', 'gallery_banner_image']);
         $data['slug'] = Str::slug($request->title);
 
-        // Handle featured image upload
+        // Handle featured image upload (file upload)
         if ($request->hasFile('featured_image')) {
             // Clear existing featured_image
             $blog->clearMediaCollection('featured_image');
             $blog->addMediaFromRequest('featured_image')
                 ->toMediaCollection('featured_image');
         }
+        // Handle featured image from gallery
+        elseif ($request->filled('gallery_featured_image')) {
+            $blog->clearMediaCollection('featured_image');
+            $this->addMediaFromUrl($blog, $request->gallery_featured_image, 'featured_image');
+        }
 
-        // Handle banner image upload
+        // Handle banner image upload (file upload)
         if ($request->hasFile('banner_image')) {
             // Clear existing banner_image
             $blog->clearMediaCollection('banner_image');
             $blog->addMediaFromRequest('banner_image')
                 ->toMediaCollection('banner_image');
+        }
+        // Handle banner image from gallery
+        elseif ($request->filled('gallery_banner_image')) {
+            $blog->clearMediaCollection('banner_image');
+            $this->addMediaFromUrl($blog, $request->gallery_banner_image, 'banner_image');
         }
 
         // Set published_at if status is published and no date provided
@@ -249,6 +272,24 @@ class BlogController extends Controller
         $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
         $filePath = $file->storeAs($path, $filename, 'public');
         return $filePath;
+    }
+
+    /**
+     * Add media from URL to blog post
+     */
+    private function addMediaFromUrl($post, $url, $collection)
+    {
+        try {
+            $post->addMediaFromUrl($url)
+                ->toMediaCollection($collection);
+        } catch (\Exception $e) {
+            // Log error but don't break the flow
+            Log::error('Failed to add media from URL: ' . $e->getMessage(), [
+                'url' => $url,
+                'collection' => $collection,
+                'post_id' => $post->id
+            ]);
+        }
     }
 
     /**

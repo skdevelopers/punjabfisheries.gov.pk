@@ -265,14 +265,23 @@
                 <div class="mt-4">
                   <p class="text-lg font-medium text-slate-900 dark:text-slate-100">Drop files to upload</p>
                   <p class="text-slate-500 dark:text-slate-400">or</p>
-                  <button type="button" onclick="document.getElementById('galleryFileUpload').click()" 
+                  <button type="button" onclick="selectGalleryFiles()" 
                           class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Select Files
                   </button>
                 </div>
               </div>
               <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">Maximum upload file size: 2 MB</p>
-              <input type="file" id="galleryFileUpload" multiple accept="image/*" class="hidden">
+              
+              <!-- Gallery Selection -->
+              <div class="mt-4">
+                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select Gallery</label>
+                <select id="gallerySelect" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100">
+                  <option value="">Choose a gallery...</option>
+                </select>
+              </div>
+              
+              <input type="file" id="galleryFileUpload" multiple accept="image/*" class="hidden" onchange="handleGalleryFileSelect(event)">
             </div>
           </div>
         </div>
@@ -597,6 +606,7 @@
     function openGalleryModal() {
       document.getElementById('galleryModal').classList.remove('hidden');
       switchTab('upload'); // Start with upload tab
+      loadGalleries(); // Load galleries for upload
     }
 
     function openBannerGalleryModal() {
@@ -612,10 +622,11 @@
       document.querySelectorAll('.gallery-image-item').forEach(item => {
         item.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2');
       });
-      // Reset select button
+      // Reset select button and modal title
       const selectBtn = document.getElementById('selectImageBtn');
       selectBtn.disabled = true;
       selectBtn.textContent = 'Set featured image';
+      document.querySelector('#galleryModal h3').textContent = 'Featured Image';
     }
 
     function switchTab(tabName) {
@@ -640,6 +651,26 @@
       }
     }
 
+    // Load galleries for upload
+    function loadGalleries() {
+      fetch('/cms/galleries')
+        .then(response => response.json())
+        .then(data => {
+          const select = document.getElementById('gallerySelect');
+          select.innerHTML = '<option value="">Choose a gallery...</option>';
+          
+          data.forEach(gallery => {
+            const option = document.createElement('option');
+            option.value = gallery.id;
+            option.textContent = gallery.title;
+            select.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error('Error loading galleries:', error);
+        });
+    }
+
     function loadGalleryImages() {
       const loading = document.getElementById('galleryLoading');
       const imagesContainer = document.getElementById('galleryImages');
@@ -650,21 +681,56 @@
       emptyState.classList.add('hidden');
 
         fetch('/cms/media/images')
-        .then(response => response.json())
-        .then(images => {
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const images = data.data || data; // Handle both old and new response format
           galleryImages = images;
           if (images.length === 0) {
             emptyState.classList.remove('hidden');
           } else {
-          displayGalleryImages(images);
+            displayGalleryImages(images);
           }
           loading.classList.add('hidden');
         })
         .catch(error => {
-          console.error('Error loading gallery images:', error);
-          loading.classList.add('hidden');
+          console.error('Error loading media library:', error);
+          emptyState.innerHTML = `
+            <div class="text-center py-8">
+              <svg class="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+              <p class="text-red-600 mb-2">Error loading media library</p>
+              <p class="text-sm text-slate-500">Please check your connection and try again</p>
+            </div>
+          `;
           emptyState.classList.remove('hidden');
+          loading.classList.add('hidden');
         });
+    }
+
+    // Select gallery files
+    function selectGalleryFiles() {
+      const galleryId = document.getElementById('gallerySelect').value;
+      if (!galleryId) {
+        alert('Please select a gallery first');
+        return;
+      }
+      document.getElementById('galleryFileUpload').click();
+    }
+
+    // Handle file selection
+    function handleGalleryFileSelect(event) {
+      const files = event.target.files;
+      if (files && files.length > 0) {
+        handleGalleryUpload(files);
+      }
+      // Reset the input value to allow selecting the same file again
+      event.target.value = '';
     }
 
     // Handle file upload in gallery
@@ -686,6 +752,17 @@
         </div>
       `;
 
+      // Get selected gallery
+      const galleryId = document.getElementById('gallerySelect').value;
+      if (!galleryId) {
+        alert('Please select a gallery first');
+        return;
+      }
+
+      // Add gallery_id to form data
+      formData.append('gallery_id', galleryId);
+      formData.append('collection_name', 'images');
+
       fetch('/cms/media/upload', {
         method: 'POST',
         body: formData,
@@ -693,11 +770,17 @@
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.success) {
           // Switch to library tab and refresh
           switchTab('library');
+          loadGalleryImages();
           // Show success message
           showNotification('Images uploaded successfully!', 'success');
           
@@ -728,6 +811,8 @@
         console.error('Upload error:', error);
         showNotification('Upload failed: ' + error.message, 'error');
         uploadArea.innerHTML = originalContent;
+        // Reset gallery selection
+        document.getElementById('gallerySelect').value = '';
       });
     }
 
@@ -762,9 +847,22 @@
         div.onclick = () => selectImageFromGallery(image);
         
         div.innerHTML = `
-          <div class="aspect-square relative">
-            <img src="${image.thumb || image.url}" alt="${image.name}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
+          <div class="aspect-square relative bg-gray-100">
+            <img src="${image.thumb || image.url}" 
+                 alt="${image.name}" 
+                 class="w-full h-full object-cover rounded-lg" 
+                 style="min-height: 200px; background-color: #f3f4f6;"
+                 onerror="console.log('Image failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                 onload="console.log('Image loaded successfully:', this.src); this.style.display='block'; this.nextElementSibling.style.display='none';">
+            <div class="absolute inset-0 bg-gray-200 flex items-center justify-center rounded-lg" style="display: none;">
+              <div class="text-center text-gray-500">
+                <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <p class="text-xs">Loading...</p>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center rounded-lg">
               <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div class="bg-white rounded-full p-2">
                   <svg class="size-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

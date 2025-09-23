@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ $post->meta_description ?? Str::limit(strip_tags($post->excerpt ?? $post->content ?? ''), 160) }}" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.plyr.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.plyr.io; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self';" />
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
@@ -20,74 +19,8 @@
         <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
     </div>
 
-    <!-- header -->
-    <header class="z-10 py-3 lg:py-4 xxl:py-6 w-full bg-neutral-0 px-3 sticky top-0">
-        <div class="max-w-[1712px] mx-auto flex justify-between items-center">
-            <a href="{{ url('/') }}" aria-label="site logo">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Punjab Fisheries" />
-            </a>
-
-            <ul class="menu">
-                <a class="flex mb-4 lg:hidden" href="{{ url('/') }}">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="Punjab Fisheries" />
-                </a>
-                <li class="dropdown-item">
-                    <button class="dropdown-btn" aria-label="Dropdown button">
-                        Home
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="menu-link" href="{{ url('/') }}">Home</a></li>
-                    </ul>
-                </li>
-                <li><a class="menu-link" href="{{ url('/about') }}">About</a></li>
-                <li><a class="menu-link" href="{{ url('/services') }}">Services</a></li>
-                <li><a class="menu-link" href="{{ url('/blog') }}">Blogs</a></li>
-                <li><a class="menu-link" href="{{ url('/contact') }}">Contact</a></li>
-            </ul>
-
-            <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
-                <a href="{{ url('/contact') }}" class="btn-primary max-xl:!hidden">Get In Touch!</a>
-
-                <div>
-                    <button aria-label="Search Button" class="topbar-btn search-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5 xl:size-6" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-                    </button>
-                    <div class="search-bar">
-                        <button aria-label="search bar close button" class="absolute top-4 right-4 search-bar-close">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5 xl:size-6" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
-                        </button>
-                        <form class="px-4 flex items-center justify-center cont w-full" method="GET" action="{{ url('/blog') }}">
-                            <div class="flex items-center gap-4 w-full h-12">
-                                <input type="text" name="q" value="{{ request('q') }}" class="w-full h-full py-3.5 px-4 rounded-lg border border-neutral-40 focus:border-primary-300" placeholder="Search" />
-                                <button aria-label="Search button" class="bg-primary-300 rounded-lg py-3 px-6 text-neutral-0 xl:px-8">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <button aria-label="Menu Button" class="topbar-btn text-neutral-700 lg:!hidden menu-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 xl:size-6" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mb-6 flex items-center justify-between gap-3">
-            <a href="{{ url('/') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Punjab Fisheries" /></a>
-            <button class="menu-close text-2xl" aria-label="menu close button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>
-            </button>
-        </div>
-        <ul class="space-y-2 overflow-y-auto h-full pb-16">
-            <li><a href="{{ url('/') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Home</a></li>
-            <li><a href="{{ url('/about') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">About</a></li>
-            <li><a href="{{ url('/blog') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Blogs</a></li>
-            <li><a href="{{ url('/contact') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Contact</a></li>
-        </ul>
-    </div>
+    {{-- Include Header Component --}}
+    @include('frontend.layouts.header')
 
     <!-- Banner -->
     <section class="px-3">
@@ -111,10 +44,10 @@
                 <div class="relative">
                     <div class="relative z-[1]">
                         @php
-                            $hero = $post->banner_image ?? $post->image_url ?? null;
+                            $hero = $post->getFirstMedia('banner_image') ? $post->getFirstMedia('banner_image')->getUrl() : ($post->getFirstMedia('featured_image') ? $post->getFirstMedia('featured_image')->getUrl() : null);
                         @endphp
                         @if($hero)
-                            <img src="{{ asset($hero) }}" class="reveal_anim rounded-xl w-full mb-10 xl:mb-10" alt="{{ $post->title }}" />
+                            <img src="{{ $hero }}" class="reveal_anim rounded-xl w-full mb-10 xl:mb-10" alt="{{ $post->title }}" />
                         @endif
 
                         <p class="font-medium mb-4">
@@ -171,19 +104,6 @@
                                 <span class="text-neutral-500">No tags</span>
                             @endif
                         </div>
-                        
-                        <!-- Debug Info (Remove this after testing) -->
-                        @if(config('app.debug'))
-                            <div class="mt-4 p-4 bg-gray-100 rounded text-xs">
-                                <strong>Debug:</strong> Tags count: {{ $post->tags ? $post->tags->count() : 0 }}
-                                @if($post->tags)
-                                    <br>Tags: 
-                                    @foreach($post->tags as $tag)
-                                        {{ $tag->name }} ({{ $tag->slug }}),
-                                    @endforeach
-                                @endif
-                        </div>
-                        @endif
                     </div>
 
                     @php
@@ -327,7 +247,7 @@
                     @foreach($relatedPosts as $rp)
                         <div class="p-4 xl:p-5 rounded-xl border bg-neutral-0 border-neutral-40">
                             <a href="{{ url('/blog/' . ($rp->slug ?? $rp->id)) }}" aria-label="Read News">
-                                <img src="{{ asset($rp->image_url ?? 'assets/images/blog-placeholder.webp') }}" class="rounded-xl mb-5 w-full" alt="{{ $rp->title }}" />
+                                <img src="{{ $rp->getFirstMedia('featured_image') ? $rp->getFirstMedia('featured_image')->getUrl() : asset('assets/images/blog-placeholder.webp') }}" class="rounded-xl mb-5 w-full" alt="{{ $rp->title }}" />
                             </a>
                             <div class="mb-5 flex justify-between items-center">
                                 <div class="flex items-center gap-2">
@@ -380,7 +300,7 @@
                         @forelse($recentPosts ?? [] as $rp)
                             <div class="flex items-center gap-3">
                                 <div class="size-[114px] shrink-0">
-                                    <img src="{{ asset($rp->image_url ?? 'assets/images/blog-placeholder.webp') }}" class="object-cover object-center h-full rounded-md" alt="{{ $rp->title }}" />
+                                    <img src="{{ $rp->getFirstMedia('featured_image') ? $rp->getFirstMedia('featured_image')->getUrl() : asset('assets/images/blog-placeholder.webp') }}" class="object-cover object-center h-full rounded-md" alt="{{ $rp->title }}" />
                                 </div>
                                 <div>
                                     <p class="text-sm mb-1">{{ optional($rp->published_at)->format('F d, Y') ?? $rp->created_at->format('F d, Y') }}</p>
@@ -416,92 +336,8 @@
         </div>
     </section>
 
-    <!-- footer -->
-    <footer class="relative">
-        <div class="h-[120px] w-full absolute top-0 left-0 right-0 overflow-x-hidden">
-            <div class="wave"></div><div class="wave"></div><div class="wave"></div>
-        </div>
-        <div class="bg-neutral-0 pt-[120px]">
-            <div class="bg-primary-75">
-                <div class="cont relative">
-                    <img src="{{ asset('assets/images/footer-fish.png') }}" class="absolute right-[98%] top-16" alt="" />
-                    <div class="bg-primary-500 relative z-[2] rounded-3xl p-4 md:p-6 xl:p-14 flex justify-between items-center gap-4 max-md:flex-wrap mb-10 xl:mb-20">
-                        <h2 class="text-neutral-0 max-w-lg">Subscribe To Our Newsletter</h2>
-                        <form class="flex items-center rounded-full bg-neutral-0 p-1 md:p-2" method="POST" action="{{ url('/newsletter/subscribe') }}">
-                            @csrf
-                            <input type="email" name="email" placeholder="Enter Your Email..." class="bg-transparent px-3 w-full" required />
-                            <button class="btn-primary" type="submit">
-                                Subscribe
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256"><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.49,29.8L102,154l41.3,84.87A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14,0-.07-40.06-82.3,48-48a8,8,0,0,0-11.31-11.31l-48,48L24.08,98.25l-.07,0,.14,0L216,40Z"></path></svg>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="relative z-[2] grid grid-cols-12 xl:grid-cols-13 gap-4 xl:gap-6 pb-10 md:pb-14 xl:pb-20">
-                        <div class="col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-4">
-                            <img src="{{ asset('assets/images/logo.png') }}" class="mb-6" alt="Punjab Fisheries" />
-                            <p class="font-medium mb-6">Official information sourced from Government of the Punjab fisheries portals.</p>
-                            <div class="flex items-center gap-2">
-                                <a href="https://fisheries.punjab.gov.pk/" target="_blank" rel="noopener" class="social-icon" aria-label="Department Portal">D</a>
-                                <a href="https://www.punjabfisheries.gov.pk/" target="_blank" rel="noopener" class="social-icon" aria-label="Directorate Portal">DG</a>
-                            </div>
-                        </div>
-
-                        <div class="col-span-12 md:col-span-6 lg:col-span-3">
-                            <p class="text-neutral-900 text-2xl font-semibold mb-4 xl:mb-6">Public Services</p>
-                            <ul class="space-y-4">
-                                <li><a href="https://fisheries.punjab.gov.pk/angling_license" target="_blank" class="link">Angling Licenses</a></li>
-                                <li><a href="https://fisheries.punjab.gov.pk/soil_water_testing" target="_blank" class="link">Soil & Water Testing</a></li>
-                                <li><a href="https://fisheries.punjab.gov.pk/projects" target="_blank" class="link">Projects</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-span-12 md:col-span-6 lg:col-span-3">
-                            <p class="text-neutral-900 text-2xl font-semibold mb-4 xl:mb-6">Useful Links</p>
-                            <ul class="space-y-4">
-                                <li><a href="{{ url('/about-us') }}" class="link">About Us</a></li>
-                                <li><a href="{{ url('/contact-us') }}" class="link">Contact Us</a></li>
-                                <li><a href="{{ url('/privacy-policy') }}" class="link">Privacy Policy</a></li>
-                                <li><a href="{{ url('/terms') }}" class="link">Terms &amp; Conditions</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-span-12 md:col-span-6 lg:col-span-3">
-                            <p class="text-neutral-900 text-2xl font-semibold mb-4 xl:mb-6">Head Office</p>
-                            <ul class="space-y-4">
-                                <li class="flex items-start gap-3">
-                                    <span class="social-icon shrink-0 hover:bg-neutral-0 text-primary-300">☎</span>
-                                    <div>
-                                        <p class="mb-2 font-semibold text-neutral-900">Phone</p>
-                                        <span>(042) 99212374–75</span>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="social-icon shrink-0 hover:bg-neutral-0 text-primary-300">@</span>
-                                    <div>
-                                        <p class="mb-2 font-semibold text-neutral-900">Email</p>
-                                        <span><a href="mailto:fishdept@hotmail.com">fishdept@hotmail.com</a></span>
-                                    </div>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="social-icon shrink-0 hover:bg-neutral-0 text-primary-300">📍</span>
-                                    <div>
-                                        <p class="mb-2 font-semibold text-neutral-900">Address</p>
-                                        <span>9-A Bahawalpur Road, Chauburji, Lahore</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="py-5 xl:py-7 text-center border-t border-primary-300">
-                    <p>Copyright <span class="text-primary-300">&copy;</span> {{ now()->year }} — Department of Fisheries, Government of the Punjab</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    {{-- Include Footer Component --}}
+    @include('frontend.layouts.footer')
 
     <script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
     

@@ -8,6 +8,7 @@ use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Frontend\AnnouncementController as FrontendAnnouncementController;
+use App\Http\Controllers\JobController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,8 @@ use Illuminate\Support\Facades\Auth;
 // Frontend Routes (Public)
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
+
+
 Route::get('/services', [FrontendController::class, 'services'])->name('frontend.services');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('frontend.blog');
@@ -35,12 +38,17 @@ Route::post('/blog/comment', [FrontendController::class, 'submitComment'])->name
 Route::get('/service/{slug}', [FrontendController::class, 'serviceDetails'])->name('frontend.service.details');
 Route::get('/page/{slug}', [FrontendController::class, 'page'])->name('frontend.page');
 Route::get('/tenders', [FrontendController::class, 'tenders'])->name('frontend.tenders');
+Route::get('/tenders/{tender}', [FrontendController::class, 'tenderShow'])->name('frontend.tenders.show');
 Route::get('/tender/{id}/download', [FrontendController::class, 'downloadTenderPdf'])->name('frontend.tender.download');
 Route::get('/tender/{id}/download-2', [FrontendController::class, 'downloadTenderPdf2'])->name('frontend.tender.download2');
 
 // Announcements Routes
 Route::get('/announcements', [FrontendAnnouncementController::class, 'index'])->name('frontend.announcements');
 Route::get('/announcements/{announcement}', [FrontendAnnouncementController::class, 'show'])->name('frontend.announcements.show');
+
+// Jobs Routes (Frontend)
+Route::get('/jobs', [JobController::class, 'frontendIndex'])->name('frontend.jobs');
+Route::get('/jobs/{job}', [JobController::class, 'frontendShow'])->name('frontend.jobs.show');
 Route::middleware(['auth','verified'])->group(function (): void {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
@@ -220,6 +228,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/media/upload', [CmsPageController::class, 'uploadMedia'])->name('media.upload');
         Route::get('/media/images', [CmsPageController::class, 'getImages'])->name('media.images');
         Route::delete('/media/delete', [CmsPageController::class, 'deleteImage'])->name('media.delete');
+        Route::get('/galleries', [CmsPageController::class, 'getGalleries'])->name('galleries');
 
         // Slider Management Routes
         Route::get('/sliders', [SliderController::class, 'index'])->name('sliders.index');
@@ -280,6 +289,11 @@ Route::middleware('auth')->group(function () {
         Route::patch('/announcements/{announcement}/toggle-status', [AnnouncementController::class, 'toggleStatus'])->name('announcements.toggle-status');
         Route::patch('/announcements/{announcement}/toggle-featured', [AnnouncementController::class, 'toggleFeatured'])->name('announcements.toggle-featured');
         Route::post('/announcements/reorder', [AnnouncementController::class, 'reorder'])->name('announcements.reorder');
+
+        // Jobs Management Routes
+        Route::resource('jobs', JobController::class);
+        Route::patch('/jobs/{job}/toggle-status', [JobController::class, 'toggleStatus'])->name('jobs.toggle-status');
+        Route::patch('/jobs/{job}/toggle-active', [JobController::class, 'toggleActive'])->name('jobs.toggle-active');
 
     });
     

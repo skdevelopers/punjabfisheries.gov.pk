@@ -821,7 +821,7 @@
         
         div.innerHTML = `
           <div class="aspect-square relative">
-            <img src="${image.thumb || image.url}" alt="${image.name}" class="w-full h-full object-cover">
+            <img src="${image.thumb || image.url}" alt="${image.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src=this.getAttribute('data-original-url');" data-original-url="${image.url}">
             <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
               <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div class="bg-white rounded-full p-2">

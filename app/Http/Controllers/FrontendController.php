@@ -236,6 +236,22 @@ class FrontendController extends Controller
     }
     
     /**
+     * Display individual tender details
+     */
+    public function tenderShow(Tender $tender)
+    {
+        // Ensure tender is published
+        if (!$tender->is_published) {
+            abort(404);
+        }
+        
+        // Increment view count
+        $tender->increment('views');
+        
+        return view('frontend.tenders.show', compact('tender'));
+    }
+    
+    /**
      * Download tender PDF
      */
     public function downloadTenderPdf($id)

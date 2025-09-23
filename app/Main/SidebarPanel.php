@@ -729,6 +729,14 @@ class SidebarPanel
                         'title' => 'Media Library',
                         'route_name' => 'cms.media'
                     ],
+                    'cms_jobs' => [
+                        'title' => 'Jobs Management',
+                        'route_name' => 'cms.jobs.index'
+                    ],
+                    'cms_announcements' => [
+                        'title' => 'Announcements',
+                        'route_name' => 'cms.announcements.index'
+                    ],
                 ]
             ]
         ];

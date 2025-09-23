@@ -396,7 +396,9 @@ class CmsPageController extends Controller
 
     public function getImages(Request $request)
     {
-        $galleries = \App\Models\Gallery::with('media')
+        // Remove org scope to get all galleries for media library
+        $galleries = \App\Models\Gallery::withoutGlobalScope('org_scope')
+            ->with('media')
             ->where('is_public', true)
             ->get();
 
@@ -415,7 +417,23 @@ class CmsPageController extends Controller
             }
         }
 
-        return response()->json($images);
+        return response()->json([
+            'success' => true,
+            'data' => $images,
+            'count' => $images->count()
+        ]);
+    }
+
+    public function getGalleries(Request $request)
+    {
+        // Get all public galleries for upload selection
+        $galleries = \App\Models\Gallery::withoutGlobalScope('org_scope')
+            ->where('is_public', true)
+            ->select('id', 'title', 'slug')
+            ->orderBy('title')
+            ->get();
+
+        return response()->json($galleries);
     }
 
     public function deleteImage(Request $request)

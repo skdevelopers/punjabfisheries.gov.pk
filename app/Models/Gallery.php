@@ -109,80 +109,80 @@ class Gallery extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->fit(Fit::Crop, 360, 240)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(85)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Small size (480x320)
         $this
             ->addMediaConversion('small')
             ->fit(Fit::Max, 480, 320)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(85)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Medium size (800x600)
         $this
             ->addMediaConversion('medium')
             ->fit(Fit::Max, 800, 600)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(90)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Large size (1200x900)
         $this
             ->addMediaConversion('large')
             ->fit(Fit::Max, 1200, 900)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(90)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Extra large size (1920x1080)
         $this
             ->addMediaConversion('xlarge')
             ->fit(Fit::Max, 1920, 1080)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(95)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Square thumbnail (300x300)
         $this
             ->addMediaConversion('square')
             ->fit(Fit::Crop, 300, 300)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(85)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Avatar size (150x150)
         $this
             ->addMediaConversion('avatar')
             ->fit(Fit::Crop, 150, 150)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(85)
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
 
         // Hero banner (1920x600)
         $this
             ->addMediaConversion('hero')
             ->fit(Fit::Crop, 1920, 600)
-            ->format('webp')
+            ->keepOriginalImageFormat()
             ->quality(90)
             ->withResponsiveImages()
             ->performOnCollections('images')
-            ->queued();
+            ->nonQueued();
     }
 
     /**
