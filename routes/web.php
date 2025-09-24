@@ -9,6 +9,8 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Frontend\AnnouncementController as FrontendAnnouncementController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\RoleController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -325,5 +327,21 @@ Route::middleware('auth')->group(function () {
         Route::post('targets/{target}/pause', [\App\Http\Controllers\Crm\TargetController::class, 'pause'])->name('targets.pause');
         Route::post('targets/{target}/resume', [\App\Http\Controllers\Crm\TargetController::class, 'resume'])->name('targets.resume');
         Route::post('targets/{target}/cancel', [\App\Http\Controllers\Crm\TargetController::class, 'cancel'])->name('targets.cancel');
+    });
+
+    // Admin Routes - User & Role Management
+    Route::prefix('admin')->name('admin.')->group(function () {
+        // User Management Routes
+        Route::resource('users', UserManagementController::class);
+        Route::get('users/{user}/permissions', [UserManagementController::class, 'permissions'])->name('users.permissions');
+        Route::post('users/{user}/permissions', [UserManagementController::class, 'updatePermissions'])->name('users.update-permissions');
+        
+        // Role Management Routes
+        Route::resource('roles', RoleController::class);
+        
+        // Permission Management Routes
+        Route::get('permissions', [RoleController::class, 'permissions'])->name('permissions.index');
+        Route::post('permissions', [RoleController::class, 'createPermission'])->name('permissions.create');
+        Route::delete('permissions/{permission}', [RoleController::class, 'destroyPermission'])->name('permissions.destroy');
     });
 });

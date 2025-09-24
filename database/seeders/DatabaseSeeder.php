@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             BlogPostSeeder::class,
             HatcherySeeder::class,
             RbacBootstrapSeeder::class,
+            ActualModulesPermissionsSeeder::class,
         ]);
         User::factory()->create([
             'name' => 'Salman',
