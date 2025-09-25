@@ -134,7 +134,7 @@
               <div class="space-y-3">
                 <!-- WordPress-style Featured Image Box -->
                 <div id="featured-image-box" class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-slate-400 transition-colors cursor-pointer" 
-                     onclick="openGalleryModal()" 
+                     onclick="openMediaLibraryModal()" 
                      x-data="{ hasImage: false }" 
                      x-show="!featuredPreview">
                   <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -153,7 +153,7 @@
                               class="bg-white text-slate-800 px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100">
                         Change Image
                       </button>
-                      <button type="button" onclick="openGalleryModal()" 
+                      <button type="button" onclick="openMediaLibraryModal()" 
                               class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700">
                         Choose from Gallery
                       </button>
@@ -224,13 +224,13 @@
     </div>
   </main>
 
-  <!-- WordPress-style Media Gallery Modal -->
-  <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+  <!-- Media Library Modal -->
+  <div id="mediaLibraryModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-slate-800 rounded-lg max-w-6xl max-h-[90vh] w-full overflow-hidden shadow-2xl">
       <!-- Modal Header -->
       <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
-        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100">Featured Image</h3>
-        <button onclick="closeGalleryModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1">
+        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100">Select Featured Image</h3>
+        <button onclick="closeMediaLibraryModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 p-1">
           <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -240,11 +240,11 @@
       <!-- Tabs -->
       <div class="border-b border-slate-200 dark:border-slate-700">
         <nav class="flex space-x-8 px-4" aria-label="Tabs">
-          <button onclick="switchTab('upload')" id="uploadTab" 
+          <button onclick="switchMediaTab('upload')" id="mediaUploadTab" 
                   class="py-3 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600 dark:text-blue-400">
-            Upload files
+            Upload New
           </button>
-          <button onclick="switchTab('library')" id="libraryTab" 
+          <button onclick="switchMediaTab('library')" id="mediaLibraryTab" 
                   class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
             Media Library
           </button>
@@ -253,91 +253,84 @@
 
       <!-- Tab Content -->
       <div class="flex-1 overflow-hidden">
+        
         <!-- Upload Tab -->
-        <div id="uploadTabContent" class="h-full flex flex-col">
-          <div class="flex-1 flex items-center justify-center p-8">
-            <div class="text-center">
-              <div class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-12 hover:border-slate-400 dark:hover:border-slate-500 transition-colors cursor-pointer" 
-                   onclick="document.getElementById('galleryFileUpload').click()">
-                <svg class="mx-auto h-12 w-12 text-slate-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                  <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="mt-4">
-                  <p class="text-lg font-medium text-slate-900 dark:text-slate-100">Drop files to upload</p>
-                  <p class="text-slate-500 dark:text-slate-400">or</p>
-                  <button type="button" onclick="selectGalleryFiles()" 
-                          class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Select Files
-                  </button>
-                </div>
-              </div>
-              <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">Maximum upload file size: 2 MB</p>
-              
-              <!-- Gallery Selection -->
-              <div class="mt-4">
-                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select Gallery</label>
-                <select id="gallerySelect" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100">
+        <div id="mediaUploadTabContent" class="p-6">
+          <form id="mediaUploadForm" enctype="multipart/form-data" class="space-y-4">
+            @csrf
+            <div>
+              <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Select Gallery</label>
+              <select name="gallery_id" id="mediaGallerySelect" required class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-slate-600 dark:bg-slate-900 dark:text-slate-100">
                   <option value="">Choose a gallery...</option>
                 </select>
               </div>
-              
-              <input type="file" id="galleryFileUpload" multiple accept="image/*" class="hidden" onchange="handleGalleryFileSelect(event)">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 dark:text-slate-200">Choose Files</label>
+              <input type="file" name="files[]" id="mediaFileInput" multiple accept="image/*" required class="mt-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary-focus">
+              <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Maximum file size: 10MB per file</p>
             </div>
+            <input type="hidden" name="collection_name" value="images">
+            <div id="mediaUploadProgress" class="hidden">
+              <div class="w-full bg-slate-200 rounded-full h-2.5 dark:bg-slate-700">
+                <div class="bg-primary h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
+          </div>
+            <div class="flex justify-end">
+              <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-primary border border-transparent rounded-md hover:bg-primary-focus focus:outline-none focus:ring-2 focus:ring-primary">
+                Upload Files
+              </button>
+            </div>
+          </form>
         </div>
 
-        <!-- Media Library Tab -->
-        <div id="libraryTabContent" class="h-full flex flex-col hidden">
-          <div class="p-4 border-b border-slate-200 dark:border-slate-700">
-            <!-- Filter and Search -->
-            <div class="flex gap-4 items-center">
-              <div class="flex items-center gap-2">
-                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Filter media:</label>
-                <select id="galleryFilter" class="text-sm border border-slate-300 dark:border-slate-600 rounded-md px-3 py-1 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100">
+        <!-- Library Tab -->
+        <div id="mediaLibraryTabContent" class="p-6 hidden">
+          <div class="mb-4">
+            <div class="flex items-center space-x-4">
+              <div class="flex-1">
+                <input type="text" id="mediaSearch" placeholder="Search media..." 
+                       class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100">
+              </div>
+              <select id="mediaFilter" class="px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100">
                   <option value="">All media items</option>
-                  <option value="images">Images</option>
-                  <option value="recent">Recent</option>
+                <option value="images">Images only</option>
                 </select>
               </div>
-              <div class="flex-1">
-                <input type="text" id="gallerySearch" placeholder="Search media..." 
-                       class="w-full text-sm border border-slate-300 dark:border-slate-600 rounded-md px-3 py-1 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100">
-              </div>
-            </div>
-        </div>
-        
-        <!-- Images Grid -->
-          <div class="flex-1 overflow-y-auto p-4">
-            <div id="galleryImages" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-          <!-- Images will be loaded here -->
         </div>
         
         <!-- Loading State -->
-            <div id="galleryLoading" class="text-center py-8 hidden">
+          <div id="mediaLoading" class="text-center py-8 hidden">
               <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Loading images...</p>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Loading media...</p>
             </div>
 
             <!-- Empty State -->
-            <div id="galleryEmpty" class="text-center py-12 hidden">
-              <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div id="mediaEmpty" class="text-center py-8 hidden">
+            <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
-              <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">No images found</p>
+            <p class="text-slate-600 mb-2">No media files found</p>
+            <p class="text-sm text-slate-500">Upload some files to get started</p>
             </div>
+
+          <!-- Media Grid -->
+          <div id="mediaGrid" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <!-- Images will be loaded here -->
           </div>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="flex justify-end gap-3 p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700">
-        <button onclick="closeGalleryModal()" 
-                class="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-600 border border-slate-300 dark:border-slate-500 rounded-md hover:bg-slate-50 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+      <div class="flex items-center justify-between p-4 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex items-center space-x-2">
+          <button id="selectMediaBtn" onclick="selectMediaImage()" disabled
+                  class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
+            Select Image
+          </button>
+        </div>
+        <button onclick="closeMediaLibraryModal()" 
+                class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
           Cancel
-        </button>
-        <button onclick="selectGalleryImage()" id="selectImageBtn" disabled
-                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
-          Set featured image
         </button>
       </div>
     </div>
@@ -599,64 +592,63 @@
     }
 
     // WordPress-style Gallery Modal Functions
-    let selectedGalleryImage = null;
-    let galleryImages = [];
-    let currentTab = 'upload';
+    let selectedImage = null;
+    let mediaImages = [];
+    let currentMediaTab = 'upload';
 
-    function openGalleryModal() {
-      document.getElementById('galleryModal').classList.remove('hidden');
-      switchTab('upload'); // Start with upload tab
-      loadGalleries(); // Load galleries for upload
+    function openMediaLibraryModal() {
+      document.getElementById('mediaLibraryModal').classList.remove('hidden');
+      switchMediaTab('upload'); // Start with upload tab
+      loadMediaGalleries(); // Load galleries for upload
     }
 
     function openBannerGalleryModal() {
       // For now, use the same modal but we can customize it later
-      document.getElementById('galleryModal').classList.remove('hidden');
+      document.getElementById('mediaLibraryModal').classList.remove('hidden');
       switchTab('upload'); // Start with upload tab
     }
 
-    function closeGalleryModal() {
-      document.getElementById('galleryModal').classList.add('hidden');
-      selectedGalleryImage = null;
+    function closeMediaLibraryModal() {
+      document.getElementById('mediaLibraryModal').classList.add('hidden');
+      selectedImage = null;
       // Remove selection highlights
-      document.querySelectorAll('.gallery-image-item').forEach(item => {
+      document.querySelectorAll('.media-image-item').forEach(item => {
         item.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2');
       });
-      // Reset select button and modal title
-      const selectBtn = document.getElementById('selectImageBtn');
+      // Reset select button
+      const selectBtn = document.getElementById('selectMediaBtn');
       selectBtn.disabled = true;
-      selectBtn.textContent = 'Set featured image';
-      document.querySelector('#galleryModal h3').textContent = 'Featured Image';
+      selectBtn.textContent = 'Select Image';
     }
 
-    function switchTab(tabName) {
-      currentTab = tabName;
+    function switchMediaTab(tabName) {
+      currentMediaTab = tabName;
       
       // Update tab buttons
-      document.getElementById('uploadTab').className = tabName === 'upload' 
+      document.getElementById('mediaUploadTab').className = tabName === 'upload' 
         ? 'py-3 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600 dark:text-blue-400'
         : 'py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300';
       
-      document.getElementById('libraryTab').className = tabName === 'library' 
+      document.getElementById('mediaLibraryTab').className = tabName === 'library' 
         ? 'py-3 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600 dark:text-blue-400'
         : 'py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300';
 
       // Show/hide tab content
-      document.getElementById('uploadTabContent').classList.toggle('hidden', tabName !== 'upload');
-      document.getElementById('libraryTabContent').classList.toggle('hidden', tabName !== 'library');
+      document.getElementById('mediaUploadTabContent').classList.toggle('hidden', tabName !== 'upload');
+      document.getElementById('mediaLibraryTabContent').classList.toggle('hidden', tabName !== 'library');
 
-      // Load gallery images if switching to library tab
+      // Load media images if switching to library tab
       if (tabName === 'library') {
-        loadGalleryImages();
+        loadMediaImages();
       }
     }
 
     // Load galleries for upload
-    function loadGalleries() {
+    function loadMediaGalleries() {
       fetch('/cms/galleries')
         .then(response => response.json())
         .then(data => {
-          const select = document.getElementById('gallerySelect');
+          const select = document.getElementById('mediaGallerySelect');
           select.innerHTML = '<option value="">Choose a gallery...</option>';
           
           data.forEach(gallery => {
@@ -800,7 +792,7 @@
           } else {
             // If multiple images, just close modal after a short delay
             setTimeout(() => {
-              closeGalleryModal();
+              closeMediaLibraryModal();
             }, 2000);
           }
         } else {
@@ -847,22 +839,9 @@
         div.onclick = () => selectImageFromGallery(image);
         
         div.innerHTML = `
-          <div class="aspect-square relative bg-gray-100">
-            <img src="${image.thumb || image.url}" 
-                 alt="${image.name}" 
-                 class="w-full h-full object-cover rounded-lg" 
-                 style="min-height: 200px; background-color: #f3f4f6;"
-                 onerror="console.log('Image failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                 onload="console.log('Image loaded successfully:', this.src); this.style.display='block'; this.nextElementSibling.style.display='none';">
-            <div class="absolute inset-0 bg-gray-200 flex items-center justify-center rounded-lg" style="display: none;">
-              <div class="text-center text-gray-500">
-                <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                <p class="text-xs">Loading...</p>
-              </div>
-            </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center rounded-lg">
+          <div class="aspect-square relative">
+            <img src="${image.thumb || image.url}" alt="${image.name}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
               <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 <div class="bg-white rounded-full p-2">
                   <svg class="size-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -946,7 +925,7 @@
       // Clear the file input
       document.getElementById('featured_image').value = '';
 
-      closeGalleryModal();
+      closeMediaLibraryModal();
     }
 
     // Search functionality
@@ -997,10 +976,221 @@
       });
     }
 
+    // Load media images
+    function loadMediaImages() {
+      const loading = document.getElementById('mediaLoading');
+      const imagesContainer = document.getElementById('mediaGrid');
+      const emptyState = document.getElementById('mediaEmpty');
+      
+      loading.classList.remove('hidden');
+      imagesContainer.innerHTML = '';
+      emptyState.classList.add('hidden');
+
+      fetch('/cms/media/images')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+      .then(data => {
+          const images = data.data || data; // Handle both old and new response format
+          mediaImages = images;
+          if (images.length === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            displayMediaImages(images);
+          }
+          loading.classList.add('hidden');
+      })
+      .catch(error => {
+          console.error('Error loading media library:', error);
+          emptyState.innerHTML = `
+            <div class="text-center py-8">
+              <svg class="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+              <p class="text-red-600 mb-2">Error loading media library</p>
+              <p class="text-sm text-slate-500">Please check your connection and try again</p>
+            </div>
+          `;
+          emptyState.classList.remove('hidden');
+          loading.classList.add('hidden');
+        });
+    }
+
+    function displayMediaImages(images) {
+      const container = document.getElementById('mediaGrid');
+      container.innerHTML = '';
+
+      if (images.length === 0) {
+        document.getElementById('mediaEmpty').classList.remove('hidden');
+        return;
+      }
+
+      images.forEach(image => {
+        const imageUrl = image.thumb || image.url;
+        
+        const div = document.createElement('div');
+        div.className = 'media-image-item relative group cursor-pointer rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200 border border-slate-200 dark:border-slate-700';
+        div.onclick = () => selectImageFromMedia(image);
+        
+        div.innerHTML = `
+          <div class="aspect-square relative bg-gray-100" style="overflow: hidden;">
+            <img src="${imageUrl}" 
+                 alt="${image.name}" 
+                 class="w-full h-full object-cover rounded-lg" 
+                 style="min-height: 200px; background-color: #f3f4f6; display: block !important; opacity: 1 !important; visibility: visible !important; position: relative; z-index: 1;"
+                 onerror="this.style.backgroundColor='#ff0000'; this.style.border='2px solid red'; this.style.display='block';"
+                 onload="this.style.backgroundColor='transparent'; this.style.display='block';">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center rounded-lg">
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div class="bg-white rounded-full p-2">
+                  <svg class="size-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <!-- Selection indicator -->
+            <div class="absolute top-2 right-2 opacity-0 transition-opacity duration-200">
+              <div class="bg-blue-600 text-white rounded-full p-1">
+                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-2">
+            <p class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">${image.name}</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 truncate">${image.gallery_title || 'Default Gallery'}</p>
+          </div>
+        `;
+        
+        container.appendChild(div);
+      });
+    }
+
+    function selectImageFromMedia(image) {
+      // Remove previous selection
+      document.querySelectorAll('.media-image-item').forEach(item => {
+        item.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2');
+        // Remove checkmark
+        const checkmark = item.querySelector('.absolute.top-2.right-2');
+        if (checkmark) {
+          checkmark.classList.add('opacity-0');
+          checkmark.classList.remove('opacity-100');
+        }
+      });
+      
+      // Add selection to clicked item
+      event.currentTarget.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
+      
+      // Show checkmark for selected item
+      const checkmark = event.currentTarget.querySelector('.absolute.top-2.right-2');
+      if (checkmark) {
+        checkmark.classList.remove('opacity-0');
+        checkmark.classList.add('opacity-100');
+      }
+      
+      selectedImage = image;
+      
+      // Enable select button
+      const selectBtn = document.getElementById('selectMediaBtn');
+      selectBtn.disabled = false;
+    }
+
+    function selectMediaImage() {
+      if (!selectedImage) return;
+      
+      // Set the featured image preview
+      window.wpBuilderInstance.featuredPreview = selectedImage.url;
+      
+      // Create hidden input for the image URL
+      let hiddenInput = document.getElementById('gallery_featured_image');
+      if (!hiddenInput) {
+        hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'gallery_featured_image';
+        hiddenInput.id = 'gallery_featured_image';
+        document.getElementById('blogForm').appendChild(hiddenInput);
+      }
+      hiddenInput.value = selectedImage.url;
+
+      // Clear the file input
+      document.getElementById('featured_image').value = '';
+
+      closeMediaLibraryModal();
+    }
+
+    // Search functionality
+    document.getElementById('mediaSearch').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredImages = mediaImages.filter(image => 
+        image.name.toLowerCase().includes(searchTerm) || 
+        image.gallery_title.toLowerCase().includes(searchTerm)
+      );
+      displayMediaImages(filteredImages);
+    });
+
+    // Media upload form submission
+    document.getElementById('mediaUploadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const progressBar = document.getElementById('mediaUploadProgress');
+      const progressFill = progressBar.querySelector('.bg-primary');
+      
+      progressBar.classList.remove('hidden');
+      
+      fetch('/cms/media/upload', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          showNotification('Files uploaded successfully!', 'success');
+          
+          // If only one image was uploaded, automatically select it
+          if (data.media && data.media.length === 1) {
+            setTimeout(() => {
+              selectImageFromMedia(data.media[0]);
+              selectMediaImage();
+            }, 500);
+          } else {
+            // Switch to library tab and refresh
+            switchMediaTab('library');
+            loadMediaImages();
+          }
+          
+          // Reset form
+          this.reset();
+          progressBar.classList.add('hidden');
+        } else {
+          throw new Error(data.message || 'Upload failed');
+        }
+      })
+      .catch(error => {
+        console.error('Upload error:', error);
+        showNotification('Upload failed: ' + error.message, 'error');
+        progressBar.classList.add('hidden');
+      });
+    });
+
     // Close modal when clicking outside
-    document.getElementById('galleryModal').addEventListener('click', function(e) {
+    document.getElementById('mediaLibraryModal').addEventListener('click', function(e) {
       if (e.target === this) {
-        closeGalleryModal();
+        closeMediaLibraryModal();
       }
     });
   </script>

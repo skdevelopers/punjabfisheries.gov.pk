@@ -766,6 +766,10 @@ class SidebarPanel
                     ],
                 ],
                 [
+                    'crm_brood_productions' => [
+                        'title' => 'Brood Productions',
+                        'route_name' => 'crm.brood-productions.index'
+                    ],
                     'crm_public_stockings' => [
                         'title' => 'Public Stockings',
                         'route_name' => 'crm.public-stockings.index'

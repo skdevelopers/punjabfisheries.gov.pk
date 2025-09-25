@@ -58,7 +58,6 @@ class Gallery extends Model implements HasMedia
                 'image/gif',
                 'image/svg+xml'
             ])
-            ->withResponsiveImages()
             ->useFallbackUrl(url('/images/app-logo.svg'))
             ->useFallbackPath(public_path('/images/app-logo.svg'));
 
@@ -105,82 +104,75 @@ class Gallery extends Model implements HasMedia
      */
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Thumbnail for admin/cards (360x240)
+        // Thumbnail for admin/cards (360x240) - Force JPEG format
         $this
             ->addMediaConversion('thumb')
             ->fit(Fit::Crop, 360, 240)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(85)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Small size (480x320)
+        // Small size (480x320) - Force JPEG format
         $this
             ->addMediaConversion('small')
             ->fit(Fit::Max, 480, 320)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(85)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Medium size (800x600)
+        // Medium size (800x600) - Force JPEG format
         $this
             ->addMediaConversion('medium')
             ->fit(Fit::Max, 800, 600)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(90)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Large size (1200x900)
+        // Large size (1200x900) - Force JPEG format
         $this
             ->addMediaConversion('large')
             ->fit(Fit::Max, 1200, 900)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(90)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Extra large size (1920x1080)
+        // Extra large size (1920x1080) - Force JPEG format
         $this
             ->addMediaConversion('xlarge')
             ->fit(Fit::Max, 1920, 1080)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(95)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Square thumbnail (300x300)
+        // Square thumbnail (300x300) - Force JPEG format
         $this
             ->addMediaConversion('square')
             ->fit(Fit::Crop, 300, 300)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(85)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Avatar size (150x150)
+        // Avatar size (150x150) - Force JPEG format
         $this
             ->addMediaConversion('avatar')
             ->fit(Fit::Crop, 150, 150)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(85)
             ->performOnCollections('images')
             ->nonQueued();
 
-        // Hero banner (1920x600)
+        // Hero banner (1920x600) - Force JPEG format
         $this
             ->addMediaConversion('hero')
             ->fit(Fit::Crop, 1920, 600)
-            ->keepOriginalImageFormat()
+            ->format('jpg')
             ->quality(90)
-            ->withResponsiveImages()
             ->performOnCollections('images')
             ->nonQueued();
     }

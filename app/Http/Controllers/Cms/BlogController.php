@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -89,6 +90,11 @@ class BlogController extends Controller
 
         // Set published_at if status is published and no date provided
         if ($request->status === 'published' && !$request->published_at) {
+            $data['published_at'] = now();
+        }
+        
+        // If published_at is in the future, set it to now for immediate publishing
+        if ($request->status === 'published' && $request->published_at && Carbon::parse($request->published_at)->isFuture()) {
             $data['published_at'] = now();
         }
 
@@ -200,6 +206,11 @@ class BlogController extends Controller
 
         // Set published_at if status is published and no date provided
         if ($request->status === 'published' && !$request->published_at && !$blog->published_at) {
+            $data['published_at'] = now();
+        }
+        
+        // If published_at is in the future, set it to now for immediate publishing
+        if ($request->status === 'published' && $request->published_at && Carbon::parse($request->published_at)->isFuture()) {
             $data['published_at'] = now();
         }
 

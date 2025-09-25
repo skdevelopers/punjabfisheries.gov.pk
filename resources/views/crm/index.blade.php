@@ -49,6 +49,21 @@
                     </div>
                 </div>
 
+                <!-- Brood Productions -->
+                <div class="card p-4 sm:p-5">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs+ text-slate-500 dark:text-navy-200">Brood Productions</p>
+                            <p class="text-2xl font-semibold text-slate-700 dark:text-navy-100">{{ $totalBroodProductions }}</p>
+                        </div>
+                        <div class="size-12 rounded-full bg-accent/10 flex items-center justify-center">
+                            <svg class="size-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Public Stockings -->
                 <div class="card p-4 sm:p-5">
                     <div class="flex items-center justify-between">
@@ -162,6 +177,24 @@
                         </div>
                         @endif
 
+                        <!-- Recent Brood Productions -->
+                        @if($recentBroodProductions->count() > 0)
+                        <div class="border-b border-slate-200 dark:border-navy-500 pb-4">
+                            <h4 class="text-sm font-medium text-slate-600 dark:text-navy-200 mb-2">Recent Brood Productions</h4>
+                            <div class="space-y-2">
+                                @foreach($recentBroodProductions as $broodProduction)
+                                <div class="flex items-center justify-between p-2 bg-slate-50 dark:bg-navy-600 rounded">
+                                    <div>
+                                        <p class="text-sm font-medium text-slate-700 dark:text-navy-100">{{ $broodProduction->species_label }}</p>
+                                        <p class="text-xs text-slate-500 dark:text-navy-300">{{ $broodProduction->hatchery_name }} | {{ $broodProduction->brood_count }} brood</p>
+                                    </div>
+                                    <span class="text-xs text-slate-500 dark:text-navy-300">{{ $broodProduction->created_at->diffForHumans() }}</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
                         <!-- Recent Targets -->
                         @if($recentTargets->count() > 0)
                         <div>
@@ -222,6 +255,18 @@
                             <div>
                                 <p class="text-sm font-medium text-slate-700 dark:text-navy-100">Add Seed Selling</p>
                                 <p class="text-xs text-slate-500 dark:text-navy-300">Record new seed sales</p>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('crm.brood-productions.create') }}" class="flex items-center p-3 bg-accent/10 hover:bg-accent/20 rounded-lg transition-colors">
+                            <div class="size-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
+                                <svg class="size-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-slate-700 dark:text-navy-100">Add Brood Production</p>
+                                <p class="text-xs text-slate-500 dark:text-navy-300">Record breeding activities</p>
                             </div>
                         </a>
 

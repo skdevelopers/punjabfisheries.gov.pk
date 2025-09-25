@@ -295,10 +295,13 @@ class CmsPageController extends Controller
         try {
             Log::info('Upload request received', [
                 'has_files' => $request->hasFile('files'),
+                'has_files_array' => $request->hasFile('files[]'),
                 'files_count' => $request->hasFile('files') ? count($request->file('files')) : 0,
-                'all_input' => $request->all(),
+                'files_array_count' => $request->hasFile('files[]') ? count($request->file('files[]')) : 0,
+                'all_input' => $request->except(['files', 'files[]']),
                 'method' => $request->method(),
-                'content_type' => $request->header('Content-Type')
+                'content_type' => $request->header('Content-Type'),
+                'csrf_token' => $request->header('X-CSRF-TOKEN')
             ]);
 
             // Check if files are present - handle both 'files' and 'files[]' formats
@@ -308,12 +311,23 @@ class CmsPageController extends Controller
                 return response()->json(['error' => 'No files found'], 400);
             }
 
-            $request->validate([
-                $filesKey => 'required|array|min:1',
-                $filesKey . '.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
-                'gallery_id' => 'required|exists:galleries,id',
-                'collection_name' => 'required|in:images,documents,videos,audio'
-            ]);
+            try {
+                $request->validate([
+                    $filesKey => 'required|array|min:1',
+                    $filesKey . '.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
+                    'gallery_id' => 'required|exists:galleries,id',
+                    'collection_name' => 'required|in:images,documents,videos,audio'
+                ]);
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                Log::error('Validation failed', [
+                    'errors' => $e->errors(),
+                    'input' => $request->all()
+                ]);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validation failed: ' . implode(', ', array_flatten($e->errors()))
+                ], 422);
+            }
 
             // Test database connection first
             try {
@@ -341,6 +355,12 @@ class CmsPageController extends Controller
 
             // Get the selected gallery - bypass org scope
             $gallery = \App\Models\Gallery::withoutGlobalScope('org_scope')->findOrFail($request->gallery_id);
+            
+            Log::info('Gallery found', [
+                'gallery_id' => $gallery->id,
+                'gallery_title' => $gallery->title,
+                'is_public' => $gallery->is_public
+            ]);
             $collectionName = $request->collection_name;
             
             Log::info('Using gallery with ID: ' . $gallery->id . ' and collection: ' . $collectionName);
@@ -354,6 +374,12 @@ class CmsPageController extends Controller
                 ]);
 
                 try {
+                    Log::info('Adding media to gallery', [
+                        'gallery_id' => $gallery->id,
+                        'collection' => $collectionName,
+                        'file_name' => $file->getClientOriginalName()
+                    ]);
+                    
                     $media = $gallery->addMedia($file)
                         ->toMediaCollection($collectionName);
                     

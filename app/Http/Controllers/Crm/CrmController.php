@@ -9,6 +9,7 @@ use App\Models\PublicStocking;
 use App\Models\PrivateStocking;
 use App\Models\Hatchery;
 use App\Models\Target;
+use App\Models\BroodProduction;
 use Illuminate\Http\Request;
 
 class CrmController extends Controller
@@ -19,6 +20,7 @@ class CrmController extends Controller
         $totalHatcheries = Hatchery::count();
         $totalFishSellings = FishSelling::count();
         $totalSeedSellings = SeedSelling::count();
+        $totalBroodProductions = BroodProduction::count();
         $totalPublicStockings = PublicStocking::count();
         $totalPrivateStockings = PrivateStocking::count();
         $totalTargets = Target::count();
@@ -30,6 +32,7 @@ class CrmController extends Controller
         $recentHatcheries = Hatchery::latest()->take(5)->get();
         $recentFishSellings = FishSelling::latest()->take(5)->get();
         $recentSeedSellings = SeedSelling::latest()->take(5)->get();
+        $recentBroodProductions = BroodProduction::latest()->take(5)->get();
         $recentPublicStockings = PublicStocking::latest()->take(5)->get();
         $recentPrivateStockings = PrivateStocking::latest()->take(5)->get();
         $recentTargets = Target::latest()->take(5)->get();
@@ -37,7 +40,8 @@ class CrmController extends Controller
         return view('crm.index', compact(
             'totalHatcheries',
             'totalFishSellings',
-            'totalSeedSellings', 
+            'totalSeedSellings',
+            'totalBroodProductions',
             'totalPublicStockings',
             'totalPrivateStockings',
             'totalTargets',
@@ -47,6 +51,7 @@ class CrmController extends Controller
             'recentHatcheries',
             'recentFishSellings',
             'recentSeedSellings',
+            'recentBroodProductions',
             'recentPublicStockings',
             'recentPrivateStockings',
             'recentTargets'

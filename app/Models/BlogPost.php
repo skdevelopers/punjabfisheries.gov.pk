@@ -70,7 +70,10 @@ class BlogPost extends Model implements HasMedia
     public function scopePublished($query)
     {
         return $query->where('status', 'published')
-                    ->where('published_at', '<=', Carbon::now());
+                    ->where(function($q) {
+                        $q->where('published_at', '<=', Carbon::now())
+                          ->orWhereNull('published_at');
+                    });
     }
 
     public function scopeFeatured($query)
@@ -190,20 +193,21 @@ class BlogPost extends Model implements HasMedia
      */
     public function registerMediaConversions(?Media $media = null): void
     {
-        // Generic thumb conversion for both collections
+        // Generic thumb conversion for both collections - Force JPEG format
         $this
             ->addMediaConversion('thumb')
-            ->width(300)
-            ->height(200)
-            ->keepOriginalImageFormat()
+            ->fit(Fit::Crop, 360, 240)
+            ->format('jpg')
+            ->quality(85)
             ->performOnCollections('featured_image', 'banner_image')
             ->nonQueued();
 
-        // Featured image conversions
+        // Featured image conversions - Force JPEG format
         $this
             ->addMediaConversion('featured_thumb')
             ->fit(Fit::Crop, 400, 300)
-            ->format('webp')
+            ->format('jpg')
+            ->quality(85)
             ->withResponsiveImages()
             ->performOnCollections('featured_image')
             ->nonQueued();
@@ -211,16 +215,18 @@ class BlogPost extends Model implements HasMedia
         $this
             ->addMediaConversion('featured_web')
             ->fit(Fit::Max, 1200, 800)
-            ->format('webp')
+            ->format('jpg')
+            ->quality(90)
             ->withResponsiveImages()
             ->performOnCollections('featured_image')
             ->nonQueued();
 
-        // Banner image conversions
+        // Banner image conversions - Force JPEG format
         $this
             ->addMediaConversion('banner_thumb')
             ->fit(Fit::Crop, 600, 200)
-            ->format('webp')
+            ->format('jpg')
+            ->quality(85)
             ->withResponsiveImages()
             ->performOnCollections('banner_image')
             ->nonQueued();
@@ -228,7 +234,8 @@ class BlogPost extends Model implements HasMedia
         $this
             ->addMediaConversion('banner_web')
             ->fit(Fit::Max, 1920, 600)
-            ->format('webp')
+            ->format('jpg')
+            ->quality(90)
             ->withResponsiveImages()
             ->performOnCollections('banner_image')
             ->nonQueued();

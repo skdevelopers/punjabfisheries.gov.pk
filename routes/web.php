@@ -327,6 +327,9 @@ Route::middleware('auth')->group(function () {
         Route::post('targets/{target}/pause', [\App\Http\Controllers\Crm\TargetController::class, 'pause'])->name('targets.pause');
         Route::post('targets/{target}/resume', [\App\Http\Controllers\Crm\TargetController::class, 'resume'])->name('targets.resume');
         Route::post('targets/{target}/cancel', [\App\Http\Controllers\Crm\TargetController::class, 'cancel'])->name('targets.cancel');
+        
+        // Brood Production Management Routes
+        Route::resource('brood-productions', \App\Http\Controllers\Crm\BroodProductionController::class);
     });
 
     // Admin Routes - User & Role Management
