@@ -1,26 +1,8 @@
-{{-- resources/views/blog-details.blade.php --}}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{{ $post->meta_description ?? Str::limit(strip_tags($post->excerpt ?? $post->content ?? ''), 160) }}" />
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <title>{{ $post->title }} — Punjab Fisheries</title>
-    <script defer src="{{ asset('assets/js/app.min.js') }}"></script>
-    <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
-</head>
+@extends('frontend.layouts.app')
 
-<body>
-    <!-- loader -->
-    <div class="screen_loader fixed inset-0 z-[101] grid place-content-center bg-neutral-0">
-        <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
-    </div>
+@section('title', $post->title . ' — Punjab Fisheries')
 
-    {{-- Include Header Component --}}
-    @include('frontend.layouts.header')
+@section('content')
 
     <!-- Banner -->
     <section class="px-3">
@@ -336,20 +318,19 @@
         </div>
     </section>
 
-    {{-- Include Footer Component --}}
-    @include('frontend.layouts.footer')
+@endsection
 
-    <script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
-    
-    <script>
-        function showReplyForm(commentId) {
-            const replyForm = document.getElementById('reply-form-' + commentId);
-            if (replyForm.classList.contains('hidden')) {
-                replyForm.classList.remove('hidden');
-            } else {
-                replyForm.classList.add('hidden');
-            }
+@push('scripts')
+<script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
+
+<script>
+    function showReplyForm(commentId) {
+        const replyForm = document.getElementById('reply-form-' + commentId);
+        if (replyForm.classList.contains('hidden')) {
+            replyForm.classList.remove('hidden');
+        } else {
+            replyForm.classList.add('hidden');
         }
-    </script>
-</body>
-</html>
+    }
+</script>
+@endpush

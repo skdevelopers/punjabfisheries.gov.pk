@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  
-<!-- Mirrored from pixner.net/html/aqaufishe/dist/service-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Aug 2025 05:58:34 GMT -->
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{{ $job->title }} - Career Opportunity at Department of Fisheries Punjab. {{ Str::limit($job->description, 160) }}" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <title>{{ $job->title }} - Department of Fisheries Punjab</title>
-  <script defer src="assets/js/app.min.js"></script><link href="assets/css/styles.css" rel="stylesheet"></head>
+@extends('frontend.layouts.app')
 
-  <body>
-    <!-- loader  -->
-    <div class="screen_loader fixed inset-0 z-[101] grid place-content-center bg-neutral-0">
-  <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
-</div>
+@section('title', $job->title . ' - Department of Fisheries Punjab')
 
-    @include('frontend.layouts.header')
+@section('content')
 
     <!-- Page Header -->
     <section class="pt-32 pb-20 bg-primary-50">
@@ -144,7 +128,4 @@
       </div>
     </section>
 
-    @include('frontend.layouts.footer')
-</body>
-
-</html>
+@endsection

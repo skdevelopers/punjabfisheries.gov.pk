@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  
-<!-- Mirrored from pixner.net/html/aqaufishe/dist/services.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Aug 2025 05:58:34 GMT -->
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Career Opportunities at Department of Fisheries Punjab. Join our team and contribute to sustainable fisheries development in Punjab." />
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <title>Career Opportunities - Department of Fisheries Punjab</title>
-  <script defer src="assets/js/app.min.js"></script><link href="assets/css/styles.css" rel="stylesheet"></head>
+@extends('frontend.layouts.app')
 
-  <body>
-    <!-- loader  -->
-    <div class="screen_loader fixed inset-0 z-[101] grid place-content-center bg-neutral-0">
-  <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
-</div>
+@section('title', 'Career Opportunities - Department of Fisheries Punjab')
 
-    @include('frontend.layouts.header')
+@section('content')
 
     <!-- Banner section start -->
     <section class="px-3">
@@ -114,8 +98,4 @@
     </section>
     <!-- Jobs section end -->
 
-    @include('frontend.layouts.footer')
-  <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
-
-<!-- Mirrored from pixner.net/html/aqaufishe/dist/services.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Aug 2025 05:58:37 GMT -->
-</html>
+@endsection
