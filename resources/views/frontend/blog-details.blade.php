@@ -1,8 +1,4 @@
-@extends('frontend.layouts.app')
-
-@section('title', $post->title . ' — Punjab Fisheries')
-
-@section('content')
+<x-app-layout title="{{ $post->title }} — Punjab Fisheries">
 
     <!-- Banner -->
     <section class="px-3">
@@ -318,7 +314,7 @@
         </div>
     </section>
 
-@endsection
+</x-app-layout>
 
 @push('scripts')
 <script data-cfasync="false" src="{{ asset('cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>

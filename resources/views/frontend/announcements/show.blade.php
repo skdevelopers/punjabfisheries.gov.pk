@@ -1,8 +1,4 @@
-@extends('frontend.layouts.app')
-
-@section('title', $announcement->title . ' - Department of Fisheries - Punjab')
-
-@section('content')
+<x-app-layout title="{{ $announcement->title }} - Department of Fisheries - Punjab">
 
     <!-- Banner section start -->
     <section class="px-3">
@@ -111,4 +107,4 @@
       </div>
     </section>
 
-@endsection
+</x-app-layout>
