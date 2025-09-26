@@ -21,9 +21,21 @@
     <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
   </div>
 
-  @include('frontend.layouts.header')
+  {{-- Conditional Header - Different header for homepage vs other pages --}}
+  @if(request()->is('/'))
+    {{-- Homepage Header (from index.blade.php) --}}
+    @include('frontend.layouts.homepage-header')
+  @else
+    {{-- Regular Header for other pages --}}
+    @include('frontend.layouts.header')
+  @endif
 
-  @yield('content')
+  {{-- Support both @extends and component approaches --}}
+  @hasSection('content')
+    @yield('content')
+  @else
+    {{ $slot }}
+  @endif
 
   @include('frontend.layouts.footer')
 

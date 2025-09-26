@@ -19,11 +19,11 @@
   {{-- Loader --}}
   <div class="screen_loader fixed inset-0 z-[101] grid place-content-center bg-neutral-0">
     <div class="w-10 h-10 border-4 border-t-primary-400 border-neutral-40 rounded-full animate-spin"></div>
-  </div>
+        </div>
 
   @include('frontend.layouts.header')
 
-  {{ $slot }}
+        {{ $slot }}
 
   @include('frontend.layouts.footer')
 
