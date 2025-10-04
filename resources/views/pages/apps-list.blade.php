@@ -241,8 +241,8 @@
                     Jobs Board
                 </h2>
                 <p class="mt-1">
-                    Lineone Job board is responsive and high-quality UI design kit for
-                    the Job board app.
+                    Lineone Career board is responsive and high-quality UI design kit for
+                    the Career board app.
                 </p>
                 <div class="mt-5 pb-1">
                     <a href="{{ route('apps/jobs-board') }}"

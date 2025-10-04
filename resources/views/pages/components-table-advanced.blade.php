@@ -662,7 +662,7 @@
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                                     >
-                                      Job
+                                      Career
                                     </th>
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
@@ -864,7 +864,7 @@
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                                     >
-                                      Job
+                                      Career
                                     </th>
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
@@ -1066,7 +1066,7 @@
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                                     >
-                                      Job
+                                      Career
                                     </th>
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
@@ -1268,7 +1268,7 @@
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
                                     >
-                                      Job
+                                      Career
                                     </th>
                                     <th
                                       class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"

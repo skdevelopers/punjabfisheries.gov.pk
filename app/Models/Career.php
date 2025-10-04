@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Job extends Model
+class Career extends Model
 {
     use HasFactory;
 
@@ -48,7 +48,7 @@ class Job extends Model
     }
 
     // Get formatted salary range
-    public function getSalaryRangeAttribute()
+    public function getSalaryRangeAttribute(): string
     {
         if ($this->salary_min && $this->salary_max) {
             return 'PKR ' . number_format($this->salary_min) . ' - ' . number_format($this->salary_max);
@@ -61,7 +61,7 @@ class Job extends Model
     }
 
     // Get attachment URL
-    public function getAttachmentUrlAttribute()
+    public function getAttachmentUrlAttribute(): ?string
     {
         if ($this->attachment_path) {
             return asset('storage/' . $this->attachment_path);
@@ -70,7 +70,7 @@ class Job extends Model
     }
 
     // Check if job has attachment
-    public function hasAttachment()
+    public function hasAttachment(): bool
     {
         return !empty($this->attachment_path);
     }

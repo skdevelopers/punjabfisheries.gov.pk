@@ -6,14 +6,14 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                 <div>
                     <h1 class="text-2xl font-semibold text-slate-800 dark:text-navy-50">Jobs Management</h1>
-                    <p class="text-slate-500 dark:text-navy-200">Manage job postings and career opportunities</p>
+                    <p class="text-slate-500 dark:text-navy-200">Manage career postings and career opportunities</p>
                 </div>
                 <div class="mt-4 sm:mt-0">
                     <a href="{{ route('cms.jobs.create') }}" class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
                         <svg class="size-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                         </svg>
-                        Add New Job
+                        Add New Career
                     </a>
                 </div>
             </div>
@@ -60,74 +60,74 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($jobs as $job)
+                            @forelse($jobs as $career)
                                 <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <div>
-                                            <p class="font-medium text-slate-700 dark:text-navy-100">{{ $job->title }}</p>
-                                            @if($job->experience_level)
-                                                <p class="text-xs text-slate-500 dark:text-navy-300">{{ $job->experience_level }} Level</p>
+                                            <p class="font-medium text-slate-700 dark:text-navy-100">{{ $career->title }}</p>
+                                            @if($career->experience_level)
+                                                <p class="text-xs text-slate-500 dark:text-navy-300">{{ $career->experience_level }} Level</p>
                                             @endif
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        <p class="text-slate-700 dark:text-navy-100">{{ $job->department ?? 'N/A' }}</p>
+                                        <p class="text-slate-700 dark:text-navy-100">{{ $career->department ?? 'N/A' }}</p>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        <p class="text-slate-700 dark:text-navy-100">{{ $job->location ?? 'N/A' }}</p>
+                                        <p class="text-slate-700 dark:text-navy-100">{{ $career->location ?? 'N/A' }}</p>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        @if($job->employment_type)
-                                            <span class="badge bg-info/10 text-info">{{ $job->employment_type }}</span>
+                                        @if($career->employment_type)
+                                            <span class="badge bg-info/10 text-info">{{ $career->employment_type }}</span>
                                         @else
                                             <span class="text-slate-500 dark:text-navy-300">N/A</span>
                                         @endif
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        <span class="badge {{ $job->status === 'open' ? 'bg-success/10 text-success' : ($job->status === 'closed' ? 'bg-error/10 text-error' : 'bg-warning/10 text-warning') }}">
-                                            {{ ucfirst($job->status) }}
+                                        <span class="badge {{ $career->status === 'open' ? 'bg-success/10 text-success' : ($career->status === 'closed' ? 'bg-error/10 text-error' : 'bg-warning/10 text-warning') }}">
+                                            {{ ucfirst($career->status) }}
                                         </span>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        <span class="badge {{ $job->is_active ? 'bg-success/10 text-success' : 'bg-slate-100 text-slate-500' }}">
-                                            {{ $job->is_active ? 'Active' : 'Inactive' }}
+                                        <span class="badge {{ $career->is_active ? 'bg-success/10 text-success' : 'bg-slate-100 text-slate-500' }}">
+                                            {{ $career->is_active ? 'Active' : 'Inactive' }}
                                         </span>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
-                                        <p class="text-slate-700 dark:text-navy-100">{{ $job->created_at->format('M d, Y') }}</p>
+                                        <p class="text-slate-700 dark:text-navy-100">{{ $career->created_at->format('M d, Y') }}</p>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('cms.jobs.show', $job) }}" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="View">
+                                            <a href="{{ route('cms.jobs.show', $career) }}" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="View">
                                                 <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                                 </svg>
                                             </a>
-                                            <a href="{{ route('cms.jobs.edit', $job) }}" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="Edit">
+                                            <a href="{{ route('cms.jobs.edit', $career) }}" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="Edit">
                                                 <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                 </svg>
                                             </a>
-                                            <form action="{{ route('cms.jobs.toggle-status', $job) }}" method="POST" class="inline">
+                                            <form action="{{ route('cms.jobs.toggle-status', $career) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button type="submit" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="Toggle Status">
                                                     <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M{{ $job->status === 'open' ? '10 9v6m4-6v6' : '14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }}"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M{{ $career->status === 'open' ? '10 9v6m4-6v6' : '14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }}"></path>
                                                     </svg>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('cms.jobs.toggle-active', $job) }}" method="POST" class="inline">
+                                            <form action="{{ route('cms.jobs.toggle-active', $career) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button type="submit" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25" title="Toggle Active">
                                                     <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M{{ $job->is_active ? '13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21' : '15 12a3 3 0 11-6 0 3 3 0 016 0z' }}"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M{{ $career->is_active ? '13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21' : '15 12a3 3 0 11-6 0 3 3 0 016 0z' }}"></path>
                                                     </svg>
                                                 </button>
                                             </form>
-                                            <form action="{{ route('cms.jobs.destroy', $job) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this job?')">
+                                            <form action="{{ route('cms.jobs.destroy', $career) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this career?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn h-8 w-8 rounded-full p-0 hover:bg-error/20 focus:bg-error/20 active:bg-error/25" title="Delete">
@@ -148,7 +148,7 @@
                                             </svg>
                                             <p class="text-slate-500 dark:text-navy-300 mb-4">No jobs found</p>
                                             <a href="{{ route('cms.jobs.create') }}" class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
-                                                Create your first job
+                                                Create your first career
                                             </a>
                                         </div>
                                     </td>

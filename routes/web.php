@@ -8,7 +8,7 @@ use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Frontend\AnnouncementController as FrontendAnnouncementController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\RoleController;
 
@@ -49,8 +49,8 @@ Route::get('/announcements', [FrontendAnnouncementController::class, 'index'])->
 Route::get('/announcements/{announcement}', [FrontendAnnouncementController::class, 'show'])->name('frontend.announcements.show');
 
 // Jobs Routes (Frontend)
-Route::get('/jobs', [JobController::class, 'frontendIndex'])->name('frontend.jobs');
-Route::get('/jobs/{job}', [JobController::class, 'frontendShow'])->name('frontend.jobs.show');
+Route::get('/jobs', [CareerController::class, 'frontendIndex'])->name('frontend.jobs');
+Route::get('/jobs/{job}', [CareerController::class, 'frontendShow'])->name('frontend.jobs.show');
 Route::middleware(['auth','verified'])->group(function (): void {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
@@ -293,33 +293,33 @@ Route::middleware('auth')->group(function () {
         Route::post('/announcements/reorder', [AnnouncementController::class, 'reorder'])->name('announcements.reorder');
 
         // Jobs Management Routes
-        Route::resource('jobs', JobController::class);
-        Route::patch('/jobs/{job}/toggle-status', [JobController::class, 'toggleStatus'])->name('jobs.toggle-status');
-        Route::patch('/jobs/{job}/toggle-active', [JobController::class, 'toggleActive'])->name('jobs.toggle-active');
+        Route::resource('jobs', CareerController::class);
+        Route::patch('/jobs/{job}/toggle-status', [CareerController::class, 'toggleStatus'])->name('jobs.toggle-status');
+        Route::patch('/jobs/{job}/toggle-active', [CareerController::class, 'toggleActive'])->name('jobs.toggle-active');
 
     });
-    
+
 
     // CRM Routes (separate from CMS)
     Route::prefix('crm')->name('crm.')->middleware('auth')->group(function () {
         // CRM Dashboard
         Route::get('/', [\App\Http\Controllers\Crm\CrmController::class, 'index'])->name('index');
-        
+
         // Hatchery Management Routes (moved from CMS)
         Route::resource('hatcheries', \App\Http\Controllers\HatcheryController::class);
-        
+
         // Fish Selling Management Routes
         Route::resource('fish-sellings', \App\Http\Controllers\Crm\FishSellingController::class);
-        
+
         // Seed Selling Management Routes
         Route::resource('seed-sellings', \App\Http\Controllers\Crm\SeedSellingController::class);
-        
+
         // Public Stocking Management Routes
         Route::resource('public-stockings', \App\Http\Controllers\Crm\PublicStockingController::class);
-        
+
         // Private Stocking Management Routes
         Route::resource('private-stockings', \App\Http\Controllers\Crm\PrivateStockingController::class);
-        
+
         // Target Management Routes
         Route::resource('targets', \App\Http\Controllers\Crm\TargetController::class);
         Route::post('targets/{target}/update-progress', [\App\Http\Controllers\Crm\TargetController::class, 'updateProgress'])->name('targets.update-progress');
@@ -327,7 +327,7 @@ Route::middleware('auth')->group(function () {
         Route::post('targets/{target}/pause', [\App\Http\Controllers\Crm\TargetController::class, 'pause'])->name('targets.pause');
         Route::post('targets/{target}/resume', [\App\Http\Controllers\Crm\TargetController::class, 'resume'])->name('targets.resume');
         Route::post('targets/{target}/cancel', [\App\Http\Controllers\Crm\TargetController::class, 'cancel'])->name('targets.cancel');
-        
+
         // Brood Production Management Routes
         Route::resource('brood-productions', \App\Http\Controllers\Crm\BroodProductionController::class);
     });
@@ -338,10 +338,10 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserManagementController::class);
         Route::get('users/{user}/permissions', [UserManagementController::class, 'permissions'])->name('users.permissions');
         Route::post('users/{user}/permissions', [UserManagementController::class, 'updatePermissions'])->name('users.update-permissions');
-        
+
         // Role Management Routes
         Route::resource('roles', RoleController::class);
-        
+
         // Permission Management Routes
         Route::get('permissions', [RoleController::class, 'permissions'])->name('permissions.index');
         Route::post('permissions', [RoleController::class, 'createPermission'])->name('permissions.create');

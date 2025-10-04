@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
+        Schema::table('careers', function (Blueprint $table) {
             $table->string('attachment_path')->nullable()->after('status');
             $table->string('attachment_type')->nullable()->after('attachment_path');
             $table->string('attachment_name')->nullable()->after('attachment_type');
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
+        Schema::table('careers', function (Blueprint $table) {
             $table->dropColumn(['attachment_path', 'attachment_type', 'attachment_name']);
         });
     }

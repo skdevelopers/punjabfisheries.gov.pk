@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Job;
+use App\Models\Career;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class JobSeeder extends Seeder
+class CareerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -157,7 +157,7 @@ class JobSeeder extends Seeder
         ];
 
         foreach ($jobs as $jobData) {
-            Job::create($jobData);
+            Career::create($jobData);
         }
     }
 }

@@ -61,7 +61,7 @@
 
                 <div class="mt-4 flex items-center justify-between">
                     <p class="text-base font-medium text-slate-700 dark:text-navy-100">
-                        Job founds: 64
+                        Career founds: 64
                     </p>
                     <div class="flex items-center space-x-2">
                         <span>1 - 25 of 1234</span>
