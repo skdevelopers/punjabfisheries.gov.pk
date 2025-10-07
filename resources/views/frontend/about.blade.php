@@ -1,13 +1,17 @@
-<x-app-layout title="About — Department of Fisheries, Government of the Punjab">
+@extends('frontend.layouts.app')
+
+@section('title', 'About — Department of Fisheries, Government of the Punjab')
+
+@section('content')
 
   {{-- Banner --}}
   <section class="px-3">
     <div class="max-w-[1800px] mx-auto bg-primary-50 rounded-xl xl:rounded-2xl py-14 xl:py-28 flex justify-center text-center">
       <div class="relative z-[1]">
-        <h2 class="mb-5">About the Department</h2>
+        <h2 class="mb-5">{{ __('about.banner_title') }}</h2>
         <div class="flex justify-center items-center gap-2">
-          <a href="{{ url('/') }}">Home</a> &gt;
-          <span class="text-primary-300">About</span>
+          <a href="{{ url('/') }}">{{ __('about.breadcrumb_home') }}</a> >
+          <span class="text-primary-300">{{ __('about.breadcrumb_about') }}</span>
         </div>
       </div>
     </div>
@@ -17,15 +21,14 @@
   <section class="bg-neutral-0 relative py-120">
     <div class="cont grid grid-cols-12 gap-6">
       <div class="col-span-12 md:col-span-6">
-        <p class="sub-heading">Mission</p>
-        <h2>Conservation, Management & Development of Aquatic Resources</h2>
+        <p class="sub-heading">{{ __('about.mission') }}</p>
+        <h2>{{ __('about.mission_title') }}</h2>
         <p class="mt-4 max-w-2xl">
-          The Department of Fisheries, Government of the Punjab is responsible for conserving, managing and developing Punjab’s natural
-          and farmed fisheries resources, ensuring quality protein for the public and sustainable growth of the sector.
+          {{ __('about.mission_desc') }}
         </p>
         <div class="mt-6 flex gap-3">
-          <a href="https://www.punjabfisheries.gov.pk/" target="_blank" rel="noopener" class="btn-secondary">Directorate (punjabfisheries.gov.pk)</a>
-          <a href="https://fisheries.punjab.gov.pk/overview" target="_blank" rel="noopener" class="btn-primary">Department Overview</a>
+          <a href="https://www.punjabfisheries.gov.pk/" target="_blank" rel="noopener" class="btn-secondary">{{ __('about.directorate_link') }}</a>
+          <a href="https://fisheries.punjab.gov.pk/overview" target="_blank" rel="noopener" class="btn-primary">{{ __('about.department_overview') }}</a>
         </div>
       </div>
 
@@ -33,20 +36,20 @@
       <div class="col-span-12 md:col-span-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <a class="border border-neutral-40 rounded-xl p-5 hover:shadow-md transition" href="https://fisheries.punjab.gov.pk/soil_water_testing" target="_blank" rel="noopener">
-            <h4 class="mb-2">Soil & Water Testing</h4>
-            <p>Physico-chemical analysis for new/existing ponds in Punjab.</p>
+            <h4 class="mb-2">{{ __('about.soil_water_title') }}</h4>
+            <p>{{ __('about.soil_water_desc') }}</p>
           </a>
           <a class="border border-neutral-40 rounded-xl p-5 hover:shadow-md transition" href="https://fisheries.punjab.gov.pk/angling_license" target="_blank" rel="noopener">
-            <h4 class="mb-2">Angling / Fishing Licenses</h4>
-            <p>License types and fees for anglers & fishermen.</p>
+            <h4 class="mb-2">{{ __('about.angling_title') }}</h4>
+            <p>{{ __('about.angling_desc') }}</p>
           </a>
           <a class="border border-neutral-40 rounded-xl p-5 hover:shadow-md transition" href="https://fisheries.punjab.gov.pk/management-of-fisheries-resources" target="_blank" rel="noopener">
-            <h4 class="mb-2">Management of Resources</h4>
-            <p>Leasing of fishing rights, stock replenishment & more.</p>
+            <h4 class="mb-2">{{ __('about.management_title') }}</h4>
+            <p>{{ __('about.management_desc') }}</p>
           </a>
           <a class="border border-neutral-40 rounded-xl p-5 hover:shadow-md transition" href="https://fisheries.punjab.gov.pk/regional_offices" target="_blank" rel="noopener">
-            <h4 class="mb-2">Regional & District Offices</h4>
-            <p>Find your nearest Fisheries office across Punjab.</p>
+            <h4 class="mb-2">{{ __('about.regional_title') }}</h4>
+            <p>{{ __('about.regional_desc') }}</p>
           </a>
         </div>
       </div>
@@ -58,13 +61,13 @@
     <div class="cont">
       <div class="grid grid-cols-12 gap-4 mb-10 xl:mb-14">
         <div class="col-span-12 md:col-span-6 lg:col-span-5">
-          <p class="sub-heading">Projects & Initiatives</p>
-          <h2>Strengthening Punjab’s Fisheries</h2>
+          <p class="sub-heading">{{ __('about.projects') }}</p>
+          <h2>{{ __('about.projects_heading') }}</h2>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 flex items-end">
           <div>
-            <p class="mb-5 xl:mb-7">Recent projects include genetic improvement, shrimp cluster development and cage culture pilots.</p>
-            <a href="https://fisheries.punjab.gov.pk/projects" target="_blank" rel="noopener" class="btn-secondary">View All Projects</a>
+            <p class="mb-5 xl:mb-7">{{ __('about.projects_desc') }}</p>
+            <a href="https://fisheries.punjab.gov.pk/projects" target="_blank" rel="noopener" class="btn-secondary">{{ __('about.projects_view_all') }}</a>
           </div>
         </div>
       </div>
@@ -77,9 +80,9 @@
             <img src="{{ asset('assets/images/projects/genetic-improvement.jpg') }}" class="rounded-xl w-full" alt="Genetic Improvement of Culturable Fish Species" />
           </div>
           <div>
-            <h4 class="mb-3 lg:mb-4">Genetic Improvement of Culturable Fish Species</h4>
-            <p>2019–24 initiative to improve growth and productivity of key species across Punjab.</p>
-            <a href="https://fisheries.punjab.gov.pk/projects" class="link" target="_blank" rel="noopener">Learn more</a>
+            <h4 class="mb-3 lg:mb-4">{{ __('about.proj1_title') }}</h4>
+            <p>{{ __('about.proj1_desc') }}</p>
+            <a href="https://fisheries.punjab.gov.pk/projects" class="link" target="_blank" rel="noopener">{{ __('about.proj1_learn_more') }}</a>
           </div>
         </div>
 
@@ -88,9 +91,9 @@
             <img src="{{ asset('assets/images/projects/shrimp-cluster.jpg') }}" class="rounded-xl w-full" alt="Pilot Shrimp Farming Cluster" />
           </div>
           <div>
-            <h4 class="mb-3 lg:mb-4">Pilot Shrimp Farming Cluster</h4>
-            <p>Cluster development to expand brackish/saline aquaculture and value chains.</p>
-            <a href="https://fisheries.punjab.gov.pk/shrimp_culture" class="link" target="_blank" rel="noopener">Shrimp culture</a>
+            <h4 class="mb-3 lg:mb-4">{{ __('about.proj2_title') }}</h4>
+            <p>{{ __('about.proj2_desc') }}</p>
+            <a href="https://fisheries.punjab.gov.pk/shrimp_culture" class="link" target="_blank" rel="noopener">{{ __('about.proj2_link') }}</a>
           </div>
         </div>
 
@@ -99,9 +102,9 @@
             <img src="{{ asset('assets/images/projects/cage-culture.jpg') }}" class="rounded-xl w-full" alt="Cage Culture & Reservoir Fisheries" />
           </div>
           <div>
-            <h4 class="mb-3 lg:mb-4">Cage Culture & Reservoir Fisheries</h4>
-            <p>Scaling sustainable fish production in public waters through cage systems.</p>
-            <a href="https://fisheries.punjab.gov.pk/projects" class="link" target="_blank" rel="noopener">Learn more</a>
+            <h4 class="mb-3 lg:mb-4">{{ __('about.proj3_title') }}</h4>
+            <p>{{ __('about.proj3_desc') }}</p>
+            <a href="https://fisheries.punjab.gov.pk/projects" class="link" target="_blank" rel="noopener">{{ __('about.proj3_learn_more') }}</a>
           </div>
         </div>
       </div>
@@ -114,11 +117,11 @@
     <div class="cont">
       <div class="grid grid-cols-12 gap-4 mb-10 xl:mb-14">
         <div class="col-span-12 md:col-span-6">
-          <p class="sub-heading">Key Functions</p>
-          <h2>How the Department Serves Punjab</h2>
+          <p class="sub-heading">{{ __('about.key_functions') }}</p>
+          <h2>{{ __('about.how_serves') }}</h2>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8">
-          <p>Public water fisheries management, licensing, and stock enhancement across the province.</p>
+          <p>{{ __('about.functions_intro') }}</p>
         </div>
       </div>
 
@@ -126,22 +129,22 @@
         <div class="flex items-center gap-4 xl:gap-6">
           <span class="stroke-text">01</span>
           <div>
-            <h4 class="mb-2">Lease of Fishing Rights</h4>
-            <p>Transparent leasing of public waters for sustainable capture fisheries.</p>
+            <h4 class="mb-2">{{ __('about.func1_title') }}</h4>
+            <p>{{ __('about.func1_desc') }}</p>
           </div>
         </div>
         <div class="flex items-center gap-4 xl:gap-6">
           <span class="stroke-text">02</span>
           <div>
-            <h4 class="mb-2">Stock Replenishment</h4>
-            <p>Restocking of public waters to conserve biodiversity and maintain yields.</p>
+            <h4 class="mb-2">{{ __('about.func2_title') }}</h4>
+            <p>{{ __('about.func2_desc') }}</p>
           </div>
         </div>
         <div class="flex items-center gap-4 xl:gap-6">
           <span class="stroke-text">03</span>
           <div>
-            <h4 class="mb-2">Licensing & Angling</h4>
-            <p>Issuance of licenses to fishermen and anglers per applicable rules.</p>
+            <h4 class="mb-2">{{ __('about.func3_title') }}</h4>
+            <p>{{ __('about.func3_desc') }}</p>
           </div>
         </div>
       </div>
@@ -152,12 +155,12 @@
   <section class="bg-primary-50 py-120">
     <div class="cont grid grid-cols-12 gap-6 items-center">
       <div class="col-span-12 lg:col-span-5">
-        <p class="sub-heading">Institutes & Capability</p>
-        <h2 class="mb-6">Fisheries Research & Training, Extension & Lab Services</h2>
-        <p class="mb-5 xl:mb-8">The Directorate leads research, training and extension to support aquaculture and inland fisheries development across Punjab.</p>
+        <p class="sub-heading">{{ __('about.institutes') }}</p>
+        <h2 class="mb-6">{{ __('about.institutes_heading') }}</h2>
+        <p class="mb-5 xl:mb-8">{{ __('about.institutes_desc') }}</p>
         <div class="flex gap-3">
-          <a href="https://www.punjabfisheries.gov.pk/" target="_blank" rel="noopener" class="btn-secondary">Directorate Portal</a>
-          <a href="https://fisheries.punjab.gov.pk/" target="_blank" rel="noopener" class="btn-primary">Department Portal</a>
+          <a href="https://www.punjabfisheries.gov.pk/" target="_blank" rel="noopener" class="btn-secondary">{{ __('about.directorate_portal') }}</a>
+          <a href="https://fisheries.punjab.gov.pk/" target="_blank" rel="noopener" class="btn-primary">{{ __('about.department_portal') }}</a>
         </div>
       </div>
       <div class="col-span-12 lg:col-span-7 xxl:col-span-6 xxl:col-start-7 flex flex-wrap justify-center items-center gap-6">
@@ -165,14 +168,14 @@
           <div class="absolute size-[235px] xl:size-[285px] rounded-full bg-neutral-0 inner-circle"></div>
           <div class="text-center z-[2]">
             <p class="relative mb-1 text-5xl xl:text-[64px] font-bold text-primary-500 percentage">0%</p>
-            <span class="text-neutral-400">Water/Soil Labs</span>
+            <span class="text-neutral-400">{{ __('about.labs') }}</span>
           </div>
         </div>
         <div class="size-[250px] xl:size-[306px] rounded-full f-center circular-progress" data-percentage="90" data-bg-color="#f5f5f5">
           <div class="absolute size-[235px] xl:size-[285px] rounded-full bg-neutral-0 inner-circle"></div>
           <div class="text-center z-[2]">
             <p class="relative mb-1 text-5xl xl:text-[64px] font-bold text-primary-500 percentage">0%</p>
-            <span class="text-neutral-400">Training & Extension</span>
+            <span class="text-neutral-400">{{ __('about.training_extension') }}</span>
           </div>
         </div>
       </div>
@@ -183,8 +186,8 @@
   <section id="contact" class="py-120 bg-neutral-0 relative">
     <div class="cont grid grid-cols-12 gap-6 items-center">
       <div class="col-span-12 md:col-span-5">
-        <p class="sub-heading">Contact</p>
-        <h2 class="mb-6 xl:mb-8">Department of Fisheries, Government of the Punjab</h2>
+        <p class="sub-heading">{{ __('about.contact') }}</p>
+        <h2 class="mb-6 xl:mb-8">{{ __('about.contact_heading') }}</h2>
 
         <div class="space-y-4 xl:space-y-6 max-w-sm">
           <div class="flex items-start gap-3">
@@ -219,16 +222,16 @@
 
         <form action="#" method="post" class="p-4 md:p-6 xl:py-10 xxl:py-[60px] bg-primary-50 rounded-xl">
           @csrf
-          <h2 class="mb-5 xl:mb-7">Send Us a Message</h2>
+          <h2 class="mb-5 xl:mb-7">{{ __('about.send_us_message') }}</h2>
           <div class="space-y-4 mb-6 xl:mb-10">
-            <input type="text" name="name" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Full Name" />
-            <input type="email" name="email" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Email" />
-            <textarea name="message" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Message..." rows="5"></textarea>
+            <input type="text" name="name" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('home.full_name') }}" />
+            <input type="email" name="email" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('common.email') }}" />
+            <textarea name="message" class="py-3 px-4 rounded-xl w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('common.message') }}..." rows="5"></textarea>
           </div>
-          <button class="btn-primary" type="submit">Send Message</button>
+          <button class="btn-primary" type="submit">{{ __('about.send_message') }}</button>
         </form>
       </div>
     </div>
   </section>
 
-</x-app-layout>
+@endsection

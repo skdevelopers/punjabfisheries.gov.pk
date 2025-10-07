@@ -1,8 +1,12 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Department of Fisheries - Punjab')
+@section('title', __('common.site_title'))
 
 @section('content')
+
+@php($isUr = \Illuminate\Support\Str::startsWith(app()->getLocale(), 'ur'))
+@php($splitClass = $isUr ? '' : 'split_anim')
+@php($upperClass = $isUr ? '' : 'uppercase')
 
 
     <!-- banner section start -->
@@ -33,53 +37,53 @@
           </div>
         </div>
         <div class="col-span-12 lg:col-span-6">
-          <p class="sub-heading split_anim">About us</p>
-          <h2 class="mb-4 xl:mb-6 blur_anim" data-fade-from="right">About Punjab Fisheries Department</h2>
-          <p class="reveal_anim text-neutral-600 mb-6 xl:mb-10 border-b border-neutral-40 pb-6 xl:pb-10" data-fade-from="right" data-delay=".4">The Punjab Fisheries Department was founded in 1912 to manage, conserve, and develop the inland fisheries resources of Punjab. We provide fish seed through hatcheries, offer soil & water testing, disease diagnosis, and hands-on training to fish farmers. Our mission is to strengthen the aquaculture sector through science-based solutions and public-private partnership, ensuring quality fish supply and improved nutrition for all.</p>
+          <p class="sub-heading {{ $splitClass }}">{{ __('home.about_us') }}</p>
+          <h2 class="mb-4 xl:mb-6 blur_anim" data-fade-from="right">{{ __('home.about_title') }}</h2>
+          <p class="reveal_anim text-neutral-600 mb-6 xl:mb-10 border-b border-neutral-40 pb-6 xl:pb-10" data-fade-from="right" data-delay=".4">{{ __('home.about_description') }}</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6 mb-6 xl:mb-10 border-b border-neutral-40 pb-6 xl:pb-10">
             <div class="fade_anim flex items-center gap-4">
               <img src="{{ asset('assets/images/home-1/shrimp.png') }}" alt="" />
               <div>
-                <h5 class="mb-3">Shrimp Feeds</h5>
-                <p>Premium nutrition for shrimps.</p>
+                <h5 class="mb-3">{{ __('home.shrimp_feeds') }}</h5>
+                <p>{{ __('home.shrimp_feeds_desc') }}</p>
               </div>
             </div>
             <div data-delay=".2" class="fade_anim flex items-center gap-4">
               <img src="{{ asset('assets/images/home-1/spear.png') }}" alt="" />
               <div>
-                <h5 class="mb-3">Spear Fishing</h5>
-                <p>Precision hunting for seafood.</p>
+                <h5 class="mb-3">{{ __('home.spear_fishing') }}</h5>
+                <p>{{ __('home.spear_fishing_desc') }}</p>
               </div>
             </div>
             <div data-delay=".4" class="fade_anim flex items-center gap-4">
               <img src="{{ asset('assets/images/home-1/hook.png') }}" alt="" />
               <div>
-                <h5 class="mb-3">Hand Fishing</h5>
-                <p>Traditional fishing, pure catch.</p>
+                <h5 class="mb-3">{{ __('home.hand_fishing') }}</h5>
+                <p>{{ __('home.hand_fishing_desc') }}</p>
               </div>
             </div>
             <div data-delay=".6" class="fade_anim flex items-center gap-4">
               <img src="{{ asset('assets/images/home-1/boat.png') }}" alt="" />
               <div>
-                <h5 class="mb-3">Boat Fishing</h5>
-                <p>Deepwater fishing, fresh supply.</p>
+                <h5 class="mb-3">{{ __('home.boat_fishing') }}</h5>
+                <p>{{ __('home.boat_fishing_desc') }}</p>
               </div>
             </div>
           </div>
           <div class="flex gap-4 items-center flex-wrap fade_anim mb-7 xl:mb-10">
             <a href="#" class="btn-primary"
-              >About Company <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+              >{{ __('home.about_company') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
             ></a>
             <a href="#" class="flex items-center gap-2">
               <div class="size-14 rounded-full border border-neutral-40 text-primary-300 f-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-7" fill="currentColor" viewBox="0 0 256 256">
                   <path
-                    d="M144.27,45.93a8,8,0,0,1,9.8-5.66,86.22,86.22,0,0,1,61.66,61.66,8,8,0,0,1-5.66,9.8A8.23,8.23,0,0,1,208,112a8,8,0,0,1-7.73-5.94,70.35,70.35,0,0,0-50.33-50.33A8,8,0,0,1,144.27,45.93Zm-2.33,41.8c13.79,3.68,22.65,12.54,26.33,26.33A8,8,0,0,0,176,120a8.23,8.23,0,0,0,2.07-.27,8,8,0,0,0,5.66-9.8c-5.12-19.16-18.5-32.54-37.66-37.66a8,8,0,1,0-4.13,15.46Zm81.94,95.35A56.26,56.26,0,0,1,168,232C88.6,232,24,167.4,24,88A56.26,56.26,0,0,1,72.92,32.12a16,16,0,0,1,16.62,9.52l21.12,47.15,0,.12A16,16,0,0,1,109.39,104c-.18.27-.37.52-.57.77L88,129.45c7.49,15.22,23.41,31,38.83,38.51l24.34-20.71a8.12,8.12,0,0,1,.75-.56,16,16,0,0,1,15.17-1.4l.13.06,47.11,21.11A16,16,0,0,1,223.88,183.08Zm-15.88-2s-.07,0-.11,0h0l-47-21.05-24.35,20.71a8.44,8.44,0,0,1-.74.56,16,16,0,0,1-15.75,1.14c-18.73-9.05-37.4-27.58-46.46-46.11a16,16,0,0,1,1-15.7,6.13,6.13,0,0,1,.57-.77L96,95.15l-21-47a.61.61,0,0,1,0-.12A40.2,40.2,0,0,0,40,88,128.14,128.14,0,0,0,168,216,40.21,40.21,0,0,0,208,181.07Z"
+                    d="M144.27,45.93a8,8,0,0,1,9.8-5.66,86.22,86.22,0,0,1,61.66,61.66,8,8,0,0,1-5.66,9.8A8.23,8.23,0,0,1,208,112a8,8,0,0,1-7.73-5.94,70.35,70.35,0,0,0-50.33-50.33A8,8,0,0,1,144.27,45.93Zm-2.33,41.8c13.79,3.68,22.65,12.54,26.33,26.33A8,8,0,0,0,176,120a8.23,8.23,0,0,0,2.07-.27,8,8,0,0,0,5.66-9.8c-5.12-19.16-18.5-32.54-37.66-37.66a8,8,0,1,0-4.13,15.46Zm81.94,95.35A56.26,56.26,0,0,1,168,232C88.6,232,24,167.4,24,88A56.26,56.26,0,0,1,72.92,32.12a16,16,0,0,1,16.62,9.52l21.12,47.15,0,.12A16,16,0,0,1,109.39,104c-.18.27-.37.52-.57.77L88,129.45c7.49,15.22,23.41,31,38.83,38.51l24.34-20.71a8.12,8.12,0,0,1,.75-.56,16,16,0,0,1,15.17-1.4l.13.06,47.11,21.11A16,16,0,0,1,223.88,183.08Zm-15.88-2s-.07,0-.11,0h0l-47-21.05-24.35,20.71a8.44,8.44,0,0,1-.74.56,16,16,0,0,1-15.75,1.14c-18.73-9.05-37.4-27.58-46.46-46.11a16,16,0,0,1,1-15.7,6.13,6.13,0,0,1,.57-.77L96,95.15l-21-47a.61.61,0,0,1,0-.12A40.2,40.2,0,0,0,40,88A128.14,128.14,0,0,0,168,216A40.21,40.21,0,0,0,208,181.07Z"
                   ></path>
                 </svg>
               </div>
               <div>
-                <p class="text-neutral-100 mb-1 text-sm">Call Us Now</p>
+                <p class="text-neutral-100 mb-1 text-sm">{{ __('home.call_us_now') }}</p>
                 <p class="text-sm text-neutral-900">04299211584</p>
               </div>
             </a>
@@ -93,43 +97,43 @@
       <div class="max-w-[1700px] mx-auto px-3 reveal_anim" id="cards">
         <div class="cont flex justify-between items-center mb-10 xl:mb-14">
           <div>
-            <p class="sub-heading">Our Services</p>
-            <h2 class="mb-6 split_anim">Services We Provide</h2>
+            <p class="sub-heading">{{ __('home.our_services') }}</p>
+            <h2 class="mb-6">{{ __('home.services_we_provide') }}</h2>
           </div>
           <a href="#" class="btn-secondary">
-            View All
+            {{ __('common.view_all') }}
             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
           </a>
         </div>
         <div class="card rounded-[32px] relative min-h-[300px] after:size-full after:absolute after:inset-0 after:rounded-[32px] after:bg-gradient-to-t after:from-black/80 after:to-transparent">
           <img src="{{ asset('assets/images/home-1/service-1.webp') }}" class="min-h-[300px] object-cover object-center" alt="" />
           <div class="absolute z-[1] px-4 md:px-8 xl:px-14 pb-6 md:pb-8 xl:pb-14 flex justify-between items-center flex-wrap gap-3 w-full bottom-0 left-0 right-0">
-            <a href="#" class="text-secondary font-medium">See Details</a>
-            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">PREMIUM HARVESTING</h2>
+            <a href="#" class="text-secondary font-medium">{{ __('home.see_details') }}</a>
+            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">{{ __('home.premium_harvesting') }}</h2>
             <span class="text-secondary font-medium">2025</span>
           </div>
         </div>
         <div class="card rounded-[32px] relative min-h-[300px] after:size-full after:absolute after:inset-0 after:rounded-[32px] after:bg-gradient-to-t after:from-black/80 after:to-transparent">
           <img src="{{ asset('assets/images/home-1/service-2.webp') }}" class="min-h-[300px] object-cover object-center" alt="" />
           <div class="absolute z-[1] px-4 md:px-8 xl:px-14 pb-6 md:pb-8 xl:pb-14 flex justify-between items-center flex-wrap gap-3 w-full bottom-0 left-0 right-0">
-            <a href="#" class="text-secondary font-medium">See Details</a>
-            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">FISH HEALTH</h2>
+            <a href="#" class="text-secondary font-medium">{{ __('home.see_details') }}</a>
+            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">{{ __('home.fish_health') }}</h2>
             <span class="text-secondary font-medium">2025</span>
           </div>
         </div>
         <div class="card rounded-[32px] relative min-h-[300px] after:size-full after:absolute after:inset-0 after:rounded-[32px] after:bg-gradient-to-t after:from-black/80 after:to-transparent">
           <img src="{{ asset('assets/images/home-1/service-3.webp') }}" class="min-h-[300px] object-cover object-center" alt="" />
           <div class="absolute z-[1] px-4 md:px-8 xl:px-14 pb-6 md:pb-8 xl:pb-14 flex justify-between items-center flex-wrap gap-3 w-full bottom-0 left-0 right-0">
-            <a href="#" class="text-secondary font-medium">See Details</a>
-            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">WATER MANAGEMENT</h2>
+            <a href="#" class="text-secondary font-medium">{{ __('home.see_details') }}</a>
+            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">{{ __('home.water_management') }}</h2>
             <span class="text-secondary font-medium">2025</span>
           </div>
         </div>
         <div class="card rounded-[32px] relative min-h-[300px] after:size-full after:absolute after:inset-0 after:rounded-[32px] after:bg-gradient-to-t after:from-black/80 after:to-transparent">
           <img src="{{ asset('assets/images/home-1/service-4.webp') }}" class="min-h-[300px] object-cover object-center" alt="" />
           <div class="absolute z-[1] px-4 md:px-8 xl:px-14 pb-6 md:pb-8 xl:pb-14 flex justify-between items-center flex-wrap gap-3 w-full bottom-0 left-0 right-0">
-            <a href="#" class="text-secondary font-medium">See Details</a>
-            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">FISH BREEDING</h2>
+            <a href="#" class="text-secondary font-medium">{{ __('home.see_details') }}</a>
+            <h2 class="text-4xl lg:text-5xl xl:text-[56px] text-neutral-0">{{ __('home.fish_breeding') }}</h2>
             <span class="text-secondary font-medium">2025</span>
           </div>
         </div>
@@ -141,11 +145,11 @@
     <section class="bg-primary-50 py-120">
       <div class="cont grid grid-cols-12 gap-6 items-center">
         <div class="col-span-12 lg:col-span-5">
-          <p class="sub-heading">Our Skills</p>
-          <h2 class="mb-6 split_anim">Aquaculture Solutions</h2>
-          <p class="reveal_anim mb-5 xl:mb-8">Decades of expertise and advanced tech for thriving aquatic ecosystems.</p>
+          <p class="sub-heading">{{ __('home.our_skills') }}</p>
+          <h2 class="mb-6">{{ __('home.aquaculture_solutions') }}</h2>
+          <p class="reveal_anim mb-5 xl:mb-8">{{ __('home.aquaculture_desc') }}</p>
           <a href="#" class="btn-secondary"
-            >Let's Work <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+            >{{ __('home.lets_work') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
           ></a>
         </div>
         <div class="col-span-12 lg:col-span-7 xxl:col-span-6 xxl:col-start-7 flex flex-wrap justify-center items-center gap-6">
@@ -153,14 +157,14 @@
             <div class="absolute size-[235px] xl:size-[285px] rounded-full bg-neutral-0 inner-circle"></div>
             <div class="text-center z-[2]">
               <p class="relative mb-1 text-5xl xl:text-[64px] font-bold text-primary-500 percentage">0%</p>
-              <span class="text-neutral-400">Water Quality</span>
+              <span class="text-neutral-400">{{ __('home.water_quality') }}</span>
             </div>
           </div>
           <div class="size-[250px] xl:size-[306px] rounded-full f-center circular-progress" data-percentage="90" data-bg-color="#f5f5f5">
             <div class="absolute size-[235px] xl:size-[285px] rounded-full bg-neutral-0 inner-circle"></div>
             <div class="text-center z-[2]">
               <p class="relative mb-1 text-5xl xl:text-[64px] font-bold text-primary-500 percentage">0%</p>
-              <span class="text-neutral-400">Fish Health</span>
+              <span class="text-neutral-400">{{ __('home.fish_health') }}</span>
             </div>
           </div>
         </div>
@@ -171,8 +175,8 @@
     <!-- projects section start -->
     <section class="bg-neutral-0 relative py-120">
       <div class="mx-auto text-center mb-10 xl:mb-14">
-        <p class="sub-heading blur_anim mx-auto">Recent Works Gallery</p>
-        <h2 class="split_anim">Our Completed Projects</h2>
+        <p class="sub-heading blur_anim mx-auto">{{ __('home.recent_works_gallery') }}</p>
+        <h2>{{ __('home.completed_projects') }}</h2>
       </div>
       <div class="swiper projectSlider">
         <div class="swiper-wrapper">
@@ -188,9 +192,9 @@
                   </svg>
                 </div>
                 <a href="#" class="text-center">
-                  <h6 class="text-secondary font-semibold mb-2">Aquaculture Development</h6>
-                  <h4 class="text-neutral-0 mb-2">Shrimp Farming in Punjab (2024-28)</h4>
-                  <p class="text-neutral-200 text-sm">Cost: Rs. 1,800 Million</p>
+                  <h6 class="text-secondary font-semibold mb-2">{{ __('home.aquaculture_development') }}</h6>
+                  <h4 class="text-neutral-0 mb-2">{{ __('home.shrimp_farming_project') }}</h4>
+                  <p class="text-neutral-200 text-sm">{{ __('home.project_cost') }}</p>
                 </a>
               </div>
             </div>
@@ -352,7 +356,7 @@
       </div>
       <div class="flex justify-center mt-10 xl:mt-14">
         <a href="#" class="btn-secondary">
-          View All
+          {{ __('common.view_all') }}
           <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
         </a>
       </div>
@@ -364,11 +368,11 @@
       <div class="cont">
         <div class="grid grid-cols-12 gap-4 mb-10 xl:mb-14">
           <div class="col-span-12 md:col-span-6 lg:col-span-5">
-            <p class="sub-heading blur_anim">Our Process</p>
-            <h2 class="scale_anim">Our Process for Quality Seafood</h2>
+            <p class="sub-heading blur_anim">{{ __('home.our_process') }}</p>
+            <h2 class="scale_anim">{{ __('home.our_process_title') }}</h2>
           </div>
           <div class="col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 flex items-end">
-            <p class="reveal_anim">Step-by-step process ensuring fresh, sustainable seafood from farm to table efficiently.</p>
+            <p class="reveal_anim">{{ __('home.our_process_desc') }}</p>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 text-center">
@@ -380,8 +384,8 @@
                 <img src="{{ asset('assets/images/home-1/process-1.png') }}" alt="" />
               </div>
             </div>
-            <h4 class="mb-4">Fresh Farming</h4>
-            <p>Experience the purity of nature with sustainable</p>
+            <h4 class="mb-4">{{ __('home.fresh_farming') }}</h4>
+            <p>{{ __('home.fresh_farming_desc') }}</p>
           </div>
           <div data-delay=".2" class="fade_anim bg-neutral-0 rounded-3xl shadow-[0px_6px_12px_-2px_rgba(88,82,129,0.08)] p-4 md:p-6 xl:py-8 xl:px-7 flex flex-col items-center">
             <div class="size-[200px] rounded-full bg-neutral-0 border border-neutral-30 f-center relative mb-5 xl:mb-8">
@@ -392,8 +396,8 @@
               </div>
             </div>
 
-            <h4 class="mb-4">Quality Monitoring</h4>
-            <p>Experience the purity of nature with sustainable</p>
+            <h4 class="mb-4">{{ __('home.quality_monitoring') }}</h4>
+            <p>{{ __('home.quality_monitoring_desc') }}</p>
           </div>
           <div data-delay=".4" class="fade_anim bg-neutral-0 rounded-3xl shadow-[0px_6px_12px_-2px_rgba(88,82,129,0.08)] p-4 md:p-6 xl:py-8 xl:px-7 flex flex-col items-center">
             <div class="size-[200px] rounded-full bg-neutral-0 border border-neutral-30 f-center relative mb-5 xl:mb-8">
@@ -403,8 +407,8 @@
                 <img src="{{ asset('assets/images/home-1/process-3.png') }}" alt="" />
               </div>
             </div>
-            <h4 class="mb-4">Efficient Harvesting</h4>
-            <p>Experience the purity of nature with sustainable</p>
+            <h4 class="mb-4">{{ __('home.efficient_harvesting') }}</h4>
+            <p>{{ __('home.efficient_harvesting_desc') }}</p>
           </div>
           <div data-delay=".6" class="fade_anim bg-neutral-0 rounded-3xl shadow-[0px_6px_12px_-2px_rgba(88,82,129,0.08)] p-4 md:p-6 xl:py-8 xl:px-7 flex flex-col items-center">
             <div class="size-[200px] rounded-full bg-neutral-0 border border-neutral-30 f-center relative mb-5 xl:mb-8">
@@ -414,8 +418,8 @@
                 <img src="{{ asset('assets/images/home-1/process-4.png') }}" alt="" />
               </div>
             </div>
-            <h4 class="mb-4">Timely Delivery</h4>
-            <p>Experience the purity of nature with sustainable</p>
+            <h4 class="mb-4">{{ __('home.timely_delivery') }}</h4>
+            <p>{{ __('home.timely_delivery_desc') }}</p>
           </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 xl:translate-y-1/2 relative z-[1] max-xl:py-14">
@@ -423,20 +427,20 @@
             <img src="{{ asset('assets/images/home-1/process-card-1.webp') }}" class="rounded-xl max-sm:w-full" alt="" />
             <div class="flex flex-col justify-between h-full">
               <div>
-                <h4 class="mb-4">Global Trade Opportunities</h4>
-                <p>Expanding markets, premium seafood, and sustainable practices driving global export growth.</p>
+                <h4 class="mb-4">{{ __('home.global_trade_opportunities') }}</h4>
+                <p>{{ __('home.global_trade_desc') }}</p>
               </div>
-              <a href="#" class="text-primary-500 uppercase underline">View More</a>
+              <a href="#" class="text-primary-500 uppercase underline">{{ __('common.view_more') }}</a>
             </div>
           </div>
           <div data-reveal-from="right" class="reveal_anim p-3 xl:p-4 rounded-3xl bg-neutral-0 flex flex-col sm:flex-row items-center gap-4 shadow-[0px_4px_24px_0px_rgba(0,0,0,0.06)]">
             <img src="{{ asset('assets/images/home-1/process-card-2.webp') }}" class="rounded-xl max-sm:w-full" alt="" />
             <div class="flex flex-col justify-between h-full">
               <div>
-                <h4 class="mb-4">What's Coming Up Next?</h4>
-                <p>Stay tuned for groundbreaking innovations and exciting updates in sustainable aquaculture!</p>
+                <h4 class="mb-4">{{ __('home.whats_next') }}</h4>
+                <p>{{ __('home.whats_next_desc') }}</p>
               </div>
-              <a href="#" class="text-primary-500 uppercase underline">View More</a>
+              <a href="#" class="text-primary-500 uppercase underline">{{ __('common.view_more') }}</a>
             </div>
           </div>
         </div>
@@ -448,11 +452,11 @@
     <section class="bg-neutral-0 pb-120 pt-14 xl:pt-56">
       <div class="cont grid grid-cols-12 gap-6 items-center">
         <div class="col-span-12 md:col-span-6 lg:col-span-5">
-          <p class="sub-heading split_anim">Our Team</p>
-          <h2 class="mb-6 blur_anim">Meet Our Expert Team</h2>
-          <p class="reveal_anim mb-5 xl:mb-8">Providing sustainable fish farming solutions with expert care for quality seafood supply.</p>
+          <p class="sub-heading {{ $splitClass }}">{{ __('home.our_team') }}</p>
+          <h2 class="mb-6 blur_anim">{{ __('home.meet_our_expert_team') }}</h2>
+          <p class="reveal_anim mb-5 xl:mb-8">{{ __('home.team_desc') }}</p>
           <a href="#" class="btn-secondary"
-            >View All <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+            >{{ __('common.view_all') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
           ></a>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-start-7 relative">
@@ -495,28 +499,28 @@
         <div class="max-w-[250px]">
           <div class="relative">
             <span class="odometer-text"><span data-end-value="60" class="counter">60</span>+</span>
-            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">+ Acres Cultivated</p>
+            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">{{ __('home.acres_cultivated') }}</p>
           </div>
           <p class="text-neutral-0">At Pure Agriculture &amp; Organic Farm, we blend tradition</p>
         </div>
         <div class="max-w-[250px]" data-delay=".2">
           <div class="relative">
             <span class="odometer-text"><span data-end-value="50" class="counter">50</span>+</span>
-            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">+ Products</p>
+            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">{{ __('home.products') }}</p>
           </div>
           <p class="text-neutral-0">At Pure Agriculture &amp; Organic Farm, we blend tradition</p>
         </div>
         <div class="max-w-[250px]" data-delay=".4">
           <div class="relative">
             <span class="odometer-text"><span data-end-value="27" class="counter">27</span>+</span>
-            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">+ Years</p>
+            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">{{ __('home.years') }}</p>
           </div>
           <p class="text-neutral-0">At Pure Agriculture &amp; Organic Farm, we blend tradition</p>
         </div>
         <div class="max-w-[280px]" data-delay=".6">
           <div class="relative">
             <span class="odometer-text"><span data-end-value="300" class="counter">300</span>+</span>
-            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">+ Happy Customers</p>
+            <p class="font-medium text-base py-1 px-4 absolute text-neutral-0 right-5 top-1/2 -translate-y-1/2 bg-neutral-900 rounded-lg">{{ __('home.happy_customers') }}</p>
           </div>
           <p class="text-neutral-0">Satisfied customers enjoying fresh, organic produce every day!</p>
         </div>
@@ -531,11 +535,11 @@
       <div class="cont relative z-[2]">
         <div class="flex justify-between items-center flex-wrap gap-4 mb-10 xl:mb-14">
           <div>
-            <p class="sub-heading blur_anim">Blogs & News</p>
-            <h2 class="split_anim">News & Article</h2>
+            <p class="sub-heading blur_anim">{{ __('home.blogs_news') }}</p>
+            <h2>{{ __('home.news_article') }}</h2>
           </div>
           <a href="#" class="btn-secondary"
-            >View All <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+            >{{ __('common.view_all') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
           ></a>
         </div>
         <div class="grid grid-cols-12 gap-4 xl:gap-6">
@@ -613,8 +617,8 @@
       <img src="{{ asset('assets/images/home-1/testimonial-el.png') }}" class="absolute max-xxl:hidden left-0 top-0" alt="" />
       <img src="{{ asset('assets/images/home-1/testimonial-fish.png') }}" class="absolute fish fish-right max-xl:hidden right-5 bottom-5" alt="" />
       <div class="mx-auto text-center mb-10 xl:mb-14">
-        <p class="sub-heading blur_anim mx-auto">Tenders</p>
-        <h2 class="split_anim">Latest Tender Notices</h2>
+        <p class="sub-heading blur_anim mx-auto">{{ __('home.tenders') }}</p>
+        <h2>{{ __('home.latest_tender_notices') }}</h2>
       </div>
       <div class="cont">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
@@ -622,13 +626,13 @@
           <div class="bg-neutral-0 rounded-2xl p-6 xl:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              <span class="text-sm font-semibold text-red-600">New</span>
+              <span class="text-sm font-semibold text-red-600">{{ __('home.new') }}</span>
             </div>
             <h3 class="text-lg xl:text-xl font-bold mb-3 text-neutral-900">Shrimp Seed PL-10 Procurement</h3>
             <p class="text-neutral-600 mb-4">Procurement of Shrimp Seed PL-10 Panaeus monodon (Tiger Prawn) for aquaculture development project.</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-neutral-500">Deadline: 15 Jan 2025</span>
-              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F2025005151224.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">View Details</a>
+              <span class="text-sm text-neutral-500">{{ __('home.deadline') }}: 15 Jan 2025</span>
+              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F2025005151224.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">{{ __('home.view_details') }}</a>
             </div>
           </div>
 
@@ -636,13 +640,13 @@
           <div class="bg-neutral-0 rounded-2xl p-6 xl:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              <span class="text-sm font-semibold text-red-600">New</span>
+              <span class="text-sm font-semibold text-red-600">{{ __('home.new') }}</span>
             </div>
             <h3 class="text-lg xl:text-xl font-bold mb-3 text-neutral-900">Pre-Qualification for Shrimp Seed Supply</h3>
             <p class="text-neutral-600 mb-4">Pre-Qualification of suppliers/firms for supply of shrimp seed (PL-10) Litopenaenus Vannamei to shrimp farmers.</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-neutral-500">Deadline: 18 Apr 2025</span>
-              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F20250418.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">View Details</a>
+              <span class="text-sm text-neutral-500">{{ __('home.deadline') }}: 18 Apr 2025</span>
+              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F20250418.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">{{ __('home.view_details') }}</a>
             </div>
           </div>
 
@@ -650,13 +654,13 @@
           <div class="bg-neutral-0 rounded-2xl p-6 xl:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              <span class="text-sm font-semibold text-red-600">New</span>
+              <span class="text-sm font-semibold text-red-600">{{ __('home.new') }}</span>
             </div>
             <h3 class="text-lg xl:text-xl font-bold mb-3 text-neutral-900">Aquaculture Development Project</h3>
             <p class="text-neutral-600 mb-4">Tender Notice for the Procurement of Various Items under development project "Aquaculture: Shrimp Farming in Punjab".</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-neutral-500">Deadline: 11 Mar 2025</span>
-              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F20250311.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">View Details</a>
+              <span class="text-sm text-neutral-500">{{ __('home.deadline') }}: 11 Mar 2025</span>
+              <a href="http://punjabfisheries.gov.pk/tenders/tender%5Fnotice%5F20250311.pdf" target="_blank" class="btn-primary text-sm px-4 py-2">{{ __('home.view_details') }}</a>
             </div>
           </div>
 
@@ -706,7 +710,7 @@
         
         <div class="text-center mt-10 xl:mt-14">
           <a href="http://punjabfisheries.gov.pk/tenders/tender-notice.html" target="_blank" class="btn-secondary">
-            View All Tenders <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+            {{ __('home.view_all_tenders') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
           </a>
         </div>
       </div>
@@ -718,11 +722,11 @@
       <div class="cont relative z-[2]">
         <div class="flex justify-between items-center flex-wrap gap-4 mb-10 xl:mb-14">
           <div>
-            <p class="sub-heading blur_anim">Announcements</p>
-            <h2 class="split_anim">Latest Announcements</h2>
+            <p class="sub-heading blur_anim">{{ __('home.announcements') }}</p>
+            <h2>{{ __('home.latest_announcements') }}</h2>
           </div>
           <a href="{{ route('frontend.announcements') }}" class="btn-secondary"
-            >View All <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
+            >{{ __('common.view_all') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg
           ></a>
         </div>
         
@@ -787,21 +791,21 @@
       <div class="cont grid grid-cols-12 gap-6 xl:gap-8 items-center relative z-[1]">
         <div class="col-span-12 lg:col-span-6 xl:col-span-5">
           <form class="reveal_anim p-4 md:p-6 xl:p-8 bg-neutral-0 rounded-2xl">
-            <h2 class="mb-6 xl:mb-8 split_anim" data-delay=".5">Book An Appointment</h2>
+            <h2 class="mb-6 xl:mb-8" data-delay=".5">{{ __('home.book_appointment') }}</h2>
             <div class="grid grid-cols-2 gap-4 xl:gap-6 mb-6 xl:mb-10">
-              <input type="text" class="col-span-2 md:col-span-1 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Full Name" />
-              <input type="number" class="col-span-2 md:col-span-1 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Phone Number" />
-              <input type="email" class="col-span-2 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Email" />
-              <textarea class="col-span-2 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="Message..." rows="5"></textarea>
+              <input type="text" class="col-span-2 md:col-span-1 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('home.full_name') }}" />
+              <input type="number" class="col-span-2 md:col-span-1 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('home.phone_number') }}" />
+              <input type="email" class="col-span-2 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('common.email') }}" />
+              <textarea class="col-span-2 py-3 px-4 rounded-lg w-full border bg-neutral-10 border-neutral-40 focus:border-primary-300" placeholder="{{ __('common.message') }}" rows="5"></textarea>
             </div>
             <button type="submit" class="btn-secondary">
-              Submit <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+              {{ __('common.submit') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
             </button>
           </form>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-start-7">
-          <p class="sub-heading split_anim">Fisheries Benefits</p>
-          <h2 class="scale_anim text-neutral-0 mb-9 xl:mb-12">Why choose Department of Fisheries - Punjab?</h2>
+          <p class="sub-heading {{ $splitClass }}">{{ __('home.fisheries_benefits') }}</p>
+          <h2 class="scale_anim text-neutral-0 mb-9 xl:mb-12">{{ __('home.why_choose') }}</h2>
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6">
             <div class="rounded-3xl bg-neutral-0 p-4 md:p-6 relative after:w-full after:h-[200px] after:absolute after:left-0 after:-top-[65%] after:bg-primary-300 after:rounded-b-[45%] overflow-hidden">
               <img src="{{ asset('assets/images/home-1/benefit-el-1.png') }}" class="absolute left-5 top-20" alt="" />
@@ -810,8 +814,8 @@
                 <div class="size-[72px] f-center bg-neutral-0 rounded-full shadow-lg mb-4 xl:mb-6">
                   <img src="{{ asset('assets/images/home-1/benefit-icon-1.png') }}" alt="" />
                 </div>
-                <h5 class="mb-2">Quality organic Shrimp</h5>
-                <p class="text-[13px]">Premium organic fish for exceptional quality.</p>
+                <h5 class="mb-2">{{ __('home.quality_organic_shrimp') }}</h5>
+                <p class="text-[13px]">{{ __('home.premium_organic_fish') }}</p>
               </div>
             </div>
             <div class="rounded-3xl bg-neutral-0 p-4 md:p-6 relative after:w-full after:h-[200px] after:absolute after:left-0 after:-top-[65%] after:bg-primary-300 after:rounded-b-[45%] overflow-hidden">
@@ -821,8 +825,8 @@
                 <div class="size-[72px] f-center bg-neutral-0 rounded-full shadow-lg mb-4 xl:mb-6">
                   <img src="{{ asset('assets/images/home-1/benefit-icon-2.png') }}" alt="" />
                 </div>
-                <h5 class="mb-2">100% satisfaction</h5>
-                <p class="text-[13px]">Premium organic fish for exceptional quality.</p>
+                <h5 class="mb-2">{{ __('home.satisfaction_100') }}</h5>
+                <p class="text-[13px]">{{ __('home.premium_organic_fish') }}</p>
               </div>
             </div>
             <div class="rounded-3xl bg-neutral-0 p-4 md:p-6 relative after:w-full after:h-[200px] after:absolute after:left-0 after:-top-[65%] after:bg-primary-300 after:rounded-b-[45%] overflow-hidden">
@@ -832,8 +836,8 @@
                 <div class="size-[72px] f-center bg-neutral-0 rounded-full shadow-lg mb-4 xl:mb-6">
                   <img src="{{ asset('assets/images/home-1/benefit-icon-3.png') }}" alt="" />
                 </div>
-                <h5 class="mb-2">Professional staff</h5>
-                <p class="text-[13px]">Premium organic fish for exceptional quality.</p>
+                <h5 class="mb-2">{{ __('home.professional_staff') }}</h5>
+                <p class="text-[13px]">{{ __('home.premium_organic_fish') }}</p>
               </div>
             </div>
             <div class="rounded-3xl bg-neutral-0 p-4 md:p-6 relative after:w-full after:h-[200px] after:absolute after:left-0 after:-top-[65%] after:bg-primary-300 after:rounded-b-[45%] overflow-hidden">
@@ -843,8 +847,8 @@
                 <div class="size-[72px] f-center bg-neutral-0 rounded-full shadow-lg mb-4 xl:mb-6">
                   <img src="{{ asset('assets/images/home-1/benefit-icon-1.png') }}" alt="" />
                 </div>
-                <h5 class="mb-2">Quality organic fish</h5>
-                <p class="text-[13px]">Premium organic fish for exceptional quality.</p>
+                <h5 class="mb-2">{{ __('home.quality_organic_fish') }}</h5>
+                <p class="text-[13px]">{{ __('home.premium_organic_fish') }}</p>
               </div>
             </div>
           </div>

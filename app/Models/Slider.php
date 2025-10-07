@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -26,6 +27,10 @@ class Slider extends Model implements HasMedia
         'background_color',
         'text_color',
         'overlay_opacity',
+        'ur_title',
+        'ur_subtitle',
+        'ur_description',
+        'ur_button_text',
     ];
 
     protected $casts = [
@@ -107,5 +112,22 @@ class Slider extends Model implements HasMedia
     {
         $media = $this->getFirstMedia('slider_image');
         return $media ? $media->getUrl() : $this->getImageUrlAttribute();
+    }
+
+    public function t(string $field): ?string
+    {
+        $locale = app()->getLocale();
+        $isUrdu = ($locale === 'ur') || Str::startsWith($locale, 'ur');
+        if ($isUrdu) {
+            $uField = 'ur_' . $field;
+            $val = $this->{$uField} ?? null;
+            if (is_string($val)) {
+                $val = trim($val);
+            }
+            if (!empty($val)) {
+                return $val;
+            }
+        }
+        return $this->{$field} ?? null;
     }
 }

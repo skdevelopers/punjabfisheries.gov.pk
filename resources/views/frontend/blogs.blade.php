@@ -1,4 +1,8 @@
-<x-app-layout title="Blogs — Department of Fisheries, Government of the Punjab">
+@extends('frontend.layouts.app')
+
+@section('title', 'Blogs — Department of Fisheries, Government of the Punjab')
+
+@section('content')
 
 
   {{-- Banner --}}
@@ -134,4 +138,4 @@
     </div>
   </section>
 
-</x-app-layout>
+@endsection

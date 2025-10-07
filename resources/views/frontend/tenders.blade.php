@@ -1,4 +1,8 @@
-<x-app-layout title="Tenders - Department of Fisheries - Punjab">
+@extends('frontend.layouts.app')
+
+@section('title', 'Tenders - Department of Fisheries - Punjab')
+
+@section('content')
 
   <!-- Page Header -->
   <section class="pt-32 pb-20 bg-primary-50">
@@ -101,4 +105,4 @@
     </div>
   </section>
 
-</x-app-layout>
+@endsection

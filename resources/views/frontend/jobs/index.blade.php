@@ -1,4 +1,8 @@
-<x-app-layout title="Career Opportunities - Department of Fisheries Punjab">
+@extends('frontend.layouts.app')
+
+@section('title', 'Career Opportunities - Department of Fisheries Punjab')
+
+@section('content')
 
     <!-- Banner section start -->
     <section class="px-3">
@@ -94,4 +98,4 @@
     </section>
     <!-- Jobs section end -->
 
-</x-app-layout>
+@endsection

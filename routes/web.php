@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\AnnouncementController as FrontendAnnouncement
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\LanguageController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,9 @@ Route::get('/announcements/{announcement}', [FrontendAnnouncementController::cla
 // Jobs Routes (Frontend)
 Route::get('/jobs', [JobController::class, 'frontendIndex'])->name('frontend.jobs');
 Route::get('/jobs/{job}', [JobController::class, 'frontendShow'])->name('frontend.jobs.show');
+
+// Language Routes
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 Route::middleware(['auth','verified'])->group(function (): void {
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });

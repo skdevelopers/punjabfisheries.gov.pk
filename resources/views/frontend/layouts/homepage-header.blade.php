@@ -10,25 +10,25 @@
     </button>
   </div>
   <ul class="space-y-2 overflow-y-auto h-full pb-16">
-    <li><a href="/" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Home</a></li>
-    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">About</a></li>
-    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Services</a></li>
-    <li><a href="{{ route('frontend.announcements') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Announcements</a></li>
-    <li><a href="{{ route('frontend.jobs') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Careers</a></li>
-    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Shop</a></li>
+    <li><a href="/" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.home') }}</a></li>
+    <li><a href="{{ route('frontend.about') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.about') }}</a></li>
+    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.services') }}</a></li>
+    <li><a href="{{ route('frontend.announcements') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.announcements') }}</a></li>
+    <li><a href="{{ route('frontend.jobs') }}" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.careers') }}</a></li>
+    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.shop') }}</a></li>
     <li class="submenu-item">
       <button aria-label="submenu button" class="submenu-btn border border-neutral-40 flex w-full items-center justify-between rounded-md px-3 py-2.5 font-medium">
-        Pages <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
+        {{ __('common.pages') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
       </button>
       <div class="submenu-content">
         <ul class="space-y-2 py-2 pl-3">
-          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="{{ route('frontend.blog') }}">Blogs</a></li>
-          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="#">Blog Details</a></li>
-          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="#">Service Details</a></li>
+          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="{{ route('frontend.blog') }}">{{ __('common.blogs') }}</a></li>
+          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="#">{{ __('common.blog_details') }}</a></li>
+          <li><a class="border border-neutral-40 flex rounded-md px-3 py-2" href="#">{{ __('common.service_details') }}</a></li>
         </ul>
       </div>
     </li>
-    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">Contact</a></li>
+    <li><a href="#" class="border border-neutral-40 flex rounded-md px-3 py-2.5 font-medium">{{ __('common.contact') }}</a></li>
   </ul>
 </div>
 
@@ -43,34 +43,34 @@
         <img src="{{ asset('assets/images/flogo.svg') }}" alt="" class="logo-size" />
       </a>
       <li>
-        <a class="menu-link" href="/">Home</a>
+        <a class="menu-link" href="/">{{ __('common.home') }}</a>
       </li>
       
       <li>
-        <a class="menu-link" href="#">About</a>
+        <a class="menu-link" href="{{ route('frontend.about') }}">{{ __('common.about') }}</a>
       </li>
       <li>
-        <a class="menu-link" href="#">Services</a>
+        <a class="menu-link" href="#">{{ __('common.services') }}</a>
       </li>
       <li>
-        <a class="menu-link" href="{{ route('frontend.announcements') }}">Announcements</a>
+        <a class="menu-link" href="{{ route('frontend.announcements') }}">{{ __('common.announcements') }}</a>
       </li>
       <li>
-        <a class="menu-link" href="{{ route('frontend.jobs') }}">Careers</a>
+        <a class="menu-link" href="{{ route('frontend.jobs') }}">{{ __('common.careers') }}</a>
       </li>
      
       <li class="dropdown-item">
         <button class="dropdown-btn" aria-label="Dropdown button">
-          Pages <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
+          {{ __('common.pages') }} <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path></svg>
         </button>
         <ul class="dropdown-menu">
-          <li><a class="menu-link" href="{{ route('frontend.blog') }}">Blogs</a></li>
-          <li><a class="menu-link" href="#">Blog Details</a></li>
-          <li><a class="menu-link" href="#">Service Details</a></li>
+          <li><a class="menu-link" href="{{ route('frontend.blog') }}">{{ __('common.blogs') }}</a></li>
+          <li><a class="menu-link" href="#">{{ __('common.blog_details') }}</a></li>
+          <li><a class="menu-link" href="#">{{ __('common.service_details') }}</a></li>
         </ul>
       </li>
       <li>
-        <a class="menu-link" href="#">Contact</a>
+        <a class="menu-link" href="#">{{ __('common.contact') }}</a>
       </li>
     </ul>
     <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
@@ -84,8 +84,8 @@
           </button>
           <div class="px-4 flex items-center justify-center cont w-full">
             <div class="flex items-center gap-4 w-full h-12">
-              <input type="text" class="w-full h-full py-3.5 px-4 border rounded-lg border-neutral-40 focus:border-primary-300" placeholder="Search" />
-              <button aria-label="Search button" class="bg-primary-300 rounded-lg py-3 px-6 text-neutral-0 xl:px-8">Search</button>
+              <input type="text" class="w-full h-full py-3.5 px-4 border rounded-lg border-neutral-40 focus:border-primary-300" placeholder="{{ __('common.search_placeholder') }}" />
+              <button aria-label="Search button" class="bg-primary-300 rounded-lg py-3 px-6 text-neutral-0 xl:px-8">{{ __('common.search') }}</button>
             </div>
           </div>
         </div>

@@ -1,7 +1,11 @@
 {{-- Slider Component - Displays dynamic sliders from database --}}
 @props(['sliders' => collect()])
 
-<section class="relative overflow-x-hidden">
+@php($isUr = \Illuminate\Support\Str::startsWith(app()->getLocale(), 'ur'))
+@php($splitClass = $isUr ? '' : 'split_anim')
+@php($upperClass = $isUr ? '' : 'uppercase')
+
+<section class="relative overflow-x-hidden" dir="{{ app()->getLocale() === 'ur' ? 'rtl' : 'ltr' }}">
     <div class="swiper banner1Slider relative">
         <div class="swiper-wrapper">
             @forelse($sliders as $slider)
@@ -12,37 +16,41 @@
                              style="background-color: {{ $slider->background_color }};"
                          @endif>
                         <div class="flex flex-col items-center relative z-[1]">
-                            @if($slider->subtitle)
-                                <p class="font-medium text-lg text-secondary mb-2 split_anim" 
+@php($subtitle = $slider->t('subtitle'))
+                            @if($subtitle)
+                                <p class="font-medium text-lg text-secondary mb-2 {{ $splitClass }}" 
                                    @if($slider->text_color)
                                        style="color: {{ $slider->text_color }};"
                                    @endif>
-                                    {{ $slider->subtitle }}
+                                    {{ $subtitle }}
                                 </p>
                             @endif
                             
-                            @if($slider->title)
-                                <h2 class="split_anim text-4xl uppercase font-playfair font-bold md:text-6xl lg:text-7xl xl:text-9xl xxl:text-[140px] text-neutral-0 mb-6"
+@php($title = $slider->t('title'))
+                            @if($title)
+                                <h2 class="text-4xl {{ $upperClass }} font-playfair font-bold md:text-6xl lg:text-7xl xl:text-9xl xxl:text-[140px] text-neutral-0 mb-6"
                                     @if($slider->text_color)
                                         style="color: {{ $slider->text_color }};"
                                     @endif>
-                                    {{ $slider->title }}
+                                    {{ $title }}
                                 </h2>
                             @endif
                             
-                            @if($slider->description)
-                                <p data-delay=".3" class="reveal_anim max-w-[630px] mx-auto font-medium mb-7 xl:mb-10 text-neutral-0"
+@php($desc = $slider->t('description'))
+                            @if($desc)
+                                <p data-delay=",3" class="reveal_anim max-w-[630px] mx-auto font-medium mb-7 xl:mb-10 text-neutral-0"
                                    @if($slider->text_color)
                                        style="color: {{ $slider->text_color }};"
                                    @endif>
-                                    {{ $slider->description }}
+                                    {{ $desc }}
                                 </p>
                             @endif
                             
-                            @if($slider->button_text && $slider->button_url)
+@php($btnText = $slider->t('button_text'))
+                            @if($btnText && $slider->button_url)
                                 <div class="fade_anim">
                                     <a href="{{ $slider->button_url }}" class="btn-secondary">
-                                        {{ $slider->button_text }}
+                                        {{ $btnText }}
                                     </a>
                                 </div>
                             @endif
@@ -55,18 +63,18 @@
                     <div class="relative after:size-full after:bg-gradient-to-b after:from-black after:to-transparent after:absolute after:inset-0 bg-no-repeat bg-cover py-40 px-3 md:py-56 xl:py-[290px] text-center bg-center" 
                          data-bg="{{ asset('assets/images/home-1/banner-1.webp') }}">
                         <div class="flex flex-col items-center relative z-[1]">
-                            <p class="font-medium text-lg text-secondary mb-2 split_anim">
-                                FISHING MAKES ME CRAZY
+<p class="font-medium text-lg text-secondary mb-2 {{ $splitClass }}">
+                                {{ __('home.slider_default_subtitle') }}
                             </p>
-                            <h2 class="split_anim text-4xl uppercase font-playfair font-bold md:text-6xl lg:text-7xl xl:text-9xl xxl:text-[140px] text-neutral-0 mb-6">
-                                Fresh Fisheries
+                            <h2 class="text-4xl {{ $upperClass }} font-playfair font-bold md:text-6xl lg:text-7xl xl:text-9xl xxl:text-[140px] text-neutral-0 mb-6">
+                                {{ __('home.slider_default_title') }}
                             </h2>
-                            <p data-delay=".3" class="reveal_anim max-w-[630px] mx-auto font-medium mb-7 xl:mb-10 text-neutral-0">
-                                Fresh Fisheries delivers premium, sustainable seafood through innovative aqua farming and expert fishery services.
+                            <p data-delay=",3" class="reveal_anim max-w-[630px] mx-auto font-medium mb-7 xl:mb-10 text-neutral-0">
+                                {{ __('home.slider_default_description') }}
                             </p>
                             <div class="fade_anim">
                                 <a href="#" class="btn-secondary">
-                                    Get A Quote
+                                    {{ __('home.slider_default_button') }}
                                 </a>
                             </div>
                         </div>
