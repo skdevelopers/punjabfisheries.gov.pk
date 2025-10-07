@@ -26,6 +26,14 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Public map
+Route::view('/gis', 'frontend.gis.google')->name('gis.public');
+
+// Admin map (login + permission)
+Route::middleware(['auth', 'permission:gis.edit'])->group(function () {
+    Route::view('/admin/gis', 'cms.gis.index')->name('gis.admin');
+});
+
 // Frontend Routes (Public)
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.home');
 Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');

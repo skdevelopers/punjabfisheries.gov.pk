@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Gallery;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
@@ -19,9 +21,13 @@ class MediaLibraryService
 
         foreach ($files as $file) {
             if ($file instanceof UploadedFile) {
-                $media = $gallery
-                    ->addMediaFromRequest($file)
-                    ->toMediaCollection($collection);
+                try {
+                    $media = $gallery
+                        ->addMediaFromRequest($file)
+                        ->toMediaCollection($collection);
+                } catch (FileDoesNotExist|FileIsTooBig $e) {
+
+                }
 
                 $uploadedMedia->push($media);
             }
@@ -117,7 +123,7 @@ class MediaLibraryService
             $attributeString .= " {$key}=\"" . htmlspecialchars($value) . "\"";
         }
 
-        return "<img src=\"{$src}\" srcset=\"{$srcset}\" sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"{$attributeString}>";
+        return "<img alt='Fisheries media' src=\"{$src}\" srcset=\"{$srcset}\" sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"{$attributeString}>";
     }
 
     /**
@@ -126,7 +132,7 @@ class MediaLibraryService
     protected function buildSrcset(Media $media, string $conversion = ''): string
     {
         $srcset = [];
-        $responsiveImages = $conversion 
+        $responsiveImages = $conversion
             ? $media->getResponsiveImageUrls($conversion)
             : $media->getResponsiveImageUrls();
 
@@ -251,11 +257,11 @@ class MediaLibraryService
     protected function formatBytes(int $bytes): string
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
-        
+
         for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
             $bytes /= 1024;
         }
-        
+
         return round($bytes, 2) . ' ' . $units[$i];
     }
 
@@ -294,7 +300,7 @@ class MediaLibraryService
     {
         return [
             'images' => 'Images',
-            'documents' => 'Documents', 
+            'documents' => 'Documents',
             'videos' => 'Videos',
             'audio' => 'Audio',
         ];
